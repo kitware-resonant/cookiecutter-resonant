@@ -48,7 +48,7 @@ setup(
         'django-cors-headers',
         'django-extensions',
         'django-filter',
-        'django-girder',
+        'django-girders',
         'djangorestframework',
         'drf-extensions',
         'drf-yasg',
