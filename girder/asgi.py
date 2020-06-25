@@ -1,16 +1,11 @@
-"""
-ASGI config for girder project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
-"""
-
 import os
 
+import configurations.importer
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'girder.settings')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'dandi.settings'
+if not os.environ.get('DJANGO_CONFIGURATION'):
+    raise ValueError('The environment variable "DJANGO_CONFIGURATION" must be set.')
+configurations.importer.install()
 
 application = get_asgi_application()
