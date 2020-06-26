@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pathlib import Path
 
 from django_girders.configuration import DevelopmentBaseConfiguration
@@ -9,4 +11,6 @@ class DevelopmentConfiguration(DevelopmentBaseConfiguration):
 
     BASE_DIR = str(Path(__file__).absolute().parent.parent)
 
-    # TODO: INSTALLED_APPS
+    @staticmethod
+    def before_binding(configuration: DevelopmentConfiguration) -> None:
+        configuration.INSTALLED_APPS += ['girder.core']
