@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from {{ pkg_name }}.{{ first_app_name }}.models import Image
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
 
 @shared_task()
