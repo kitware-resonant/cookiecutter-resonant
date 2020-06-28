@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from girder.core.models import Image
+from {{ pkg_name }}.{{ first_app_name }}.models import Image
 
 
 @shared_task()

@@ -5,7 +5,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions, routers
 
-from girder.core.rest import ImageViewSet
+from {{ pkg_name }}.{{ first_app_name }}.rest import ImageViewSet
 
 
 router = routers.SimpleRouter()
@@ -13,7 +13,7 @@ router.register(r'images', ImageViewSet)
 
 # OpenAPI generation
 schema_view = get_schema_view(
-    openapi.Info(title='Girder', default_version='v1', description='',),
+    openapi.Info(title='{{ project_name }}', default_version='v1', description='',),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )

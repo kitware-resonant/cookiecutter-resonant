@@ -4,7 +4,7 @@ from celery import Celery
 import configurations.importer
 
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'girder.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = '{{ pkg_name }}.settings'
 if not os.environ.get('DJANGO_CONFIGURATION'):
     raise ValueError('The environment variable "DJANGO_CONFIGURATION" must be set.')
 configurations.importer.install()

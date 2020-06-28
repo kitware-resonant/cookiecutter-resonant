@@ -12,7 +12,7 @@ else:
     long_description = ''
 
 setup(
-    name='girder',
+    name='{{ pkg_name }}',
     version='0.1.0',
     description='',
     long_description=long_description,
