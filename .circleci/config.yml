@@ -1,0 +1,33 @@
+---
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install Python packages
+          command: sudo pip install cookiecutter tox
+      - run:
+          name: Create from cookiecutter with defaults
+          command: cookiecutter --no-input .
+      - run:
+          name: Run tox tests from new project
+          command: tox
+          working_directory: my-new-project
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - test
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test
