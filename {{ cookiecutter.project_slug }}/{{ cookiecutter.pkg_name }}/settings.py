@@ -13,4 +13,4 @@ class DevelopmentConfiguration(DevelopmentBaseConfiguration):
 
     @staticmethod
     def before_binding(configuration: DevelopmentConfiguration) -> None:
-        configuration.INSTALLED_APPS += ['{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}']
+        configuration.INSTALLED_APPS += ['{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.capitalize() }}Config']
