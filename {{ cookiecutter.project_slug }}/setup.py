@@ -44,7 +44,7 @@ setup(
         'celery',
         'django',
         'django-admin-display',
-        'django-configurations[database]',
+        'django-configurations[database,email]',
         'django-cors-headers',
         'django-extensions',
         'django-filter',
