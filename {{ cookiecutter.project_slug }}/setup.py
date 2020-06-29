@@ -12,7 +12,7 @@ else:
     long_description = ''
 
 setup(
-    name='girder',
+    name='{{ cookiecutter.project_slug }}',
     version='0.1.0',
     description='',
     long_description=long_description,

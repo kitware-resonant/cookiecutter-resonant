@@ -4,8 +4,8 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 from django_admin_display import admin_display
 
-from girder.core.models import Image
-from girder.core.tasks import image_compute_checksum
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.tasks import image_compute_checksum
 
 
 class _ImageChecksumExistsFilter(admin.SimpleListFilter):

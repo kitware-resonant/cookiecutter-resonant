@@ -7,9 +7,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from girder.core.models import Image
-from girder.core.rest.user import UserSerializer
-from girder.core.tasks import image_compute_checksum
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.rest.user import UserSerializer
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.tasks import image_compute_checksum
 
 
 class ImageSerializer(serializers.ModelSerializer):

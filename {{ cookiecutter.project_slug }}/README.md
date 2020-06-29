@@ -1,4 +1,4 @@
-# girder
+# {{ cookiecutter.project_name }}
 
 ## Develop with Docker (recommended)
 
@@ -35,7 +35,7 @@ but allows developers to run the Python code on their native system.
 ### Run Application
 1. Run (in separate windows) both:
    1. `./manage.py runserver`
-   2. `celery worker --app girder.celery --loglevel info --without-heartbeat`
+   2. `celery worker --app {{ cookiecutter.pkg_name }}.celery --loglevel info --without-heartbeat`
 2. When finished, run `docker-compose stop`
 
 
