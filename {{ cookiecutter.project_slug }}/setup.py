@@ -18,11 +18,6 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',
-    # url='https://github.com/girder/girder',
-    # project_urls={
-    #     'Bug Reports': 'https://github.com/brianhelba/django-girders/issues',
-    #     'Source': 'https://github.com/brianhelba/django-girders',
-    # },
     author='Kitware, Inc',
     author_email='kitware@kitware.com',
     keywords='',
