@@ -5,7 +5,8 @@
 This is the simplest configuration for developers to start with.
 ### Initial Setup
 1. Run `docker-compose run --rm django ./manage.py migrate`
-2. Run `docker-compose run --rm django ./manage.py createsuperuser` and follow the prompts to create your own user
+2. Run `docker-compose run --rm django ./manage.py createsuperuser` 
+   and follow the prompts to create your own user
 
 ### Run Application
 1. Run `docker-compose up`
@@ -25,7 +26,8 @@ but allows developers to run the Python code on their native system.
 ### Initial Setup
 1. Run `docker-compose -f ./docker-compose.yml up -d`
 2. Install Python 3.8
-3. Install [`psycopg2` build prerequisites](https://www.psycopg.org/docs/install.html#build-prerequisites)
+3. Install
+   [`psycopg2` build prerequisites](https://www.psycopg.org/docs/install.html#build-prerequisites)
 4. Create and activate a new Python virtualenv
 5. Run `pip install -e .`
 6. Run `source ./dev/source-native-env.sh`
