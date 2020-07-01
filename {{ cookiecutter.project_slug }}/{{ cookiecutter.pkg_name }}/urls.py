@@ -4,6 +4,7 @@ from django.urls import include, path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions, routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.rest import ImageViewSet
 
@@ -23,7 +24,13 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api/docs/redoc', schema_view.with_ui('redoc'), name='docs-redoc'),
     path('api/docs/swagger', schema_view.with_ui('swagger'), name='docs-swagger'),
-]
+] + format_suffix_patterns(
+    [path('api/docs/openapi', schema_view.without_ui(), name='docs-openapi')],
+    allowed=['json', 'yaml'], suffix_required=True,
+) + format_suffix_patterns(
+    [path('api/schema', schema_view.with_ui(), name='schema')],
+    allowed=['swagger', 'redoc', 'json', 'yaml'], suffix_required=True
+)
 
 if settings.DEBUG:
     import debug_toolbar
