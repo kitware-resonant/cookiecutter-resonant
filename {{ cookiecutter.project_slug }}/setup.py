@@ -57,5 +57,6 @@ setup(
         # Development-only
         'django-debug-toolbar',
         'django-minio-storage',
+        'ipython',
     ],
 )
