@@ -19,7 +19,7 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(Co
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
-        configuration.INSTALLED_APPS += ['{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.capitalize() }}Config']
+        configuration.INSTALLED_APPS += ['{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.split('_')|map('capitalize')|join('') }}Config']
 
 
 class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, DevelopmentBaseConfiguration):
