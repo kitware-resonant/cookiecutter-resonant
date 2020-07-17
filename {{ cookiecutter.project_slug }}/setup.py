@@ -51,7 +51,7 @@ setup(
         'rich',
         'whitenoise[brotli]',
         # Production-only
-        'django-storages',
+        'django-storages[boto3]',
         'gunicorn',
         'sentry-sdk',
         # Development-only
