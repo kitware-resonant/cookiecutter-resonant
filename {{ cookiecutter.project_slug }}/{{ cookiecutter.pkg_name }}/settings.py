@@ -8,6 +8,7 @@ from django_girders.configuration import (
     DevelopmentBaseConfiguration,
     HerokuProductionBaseConfiguration,
     ProductionBaseConfiguration,
+    TestingBaseConfiguration,
 )
 
 
@@ -23,6 +24,10 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(Co
 
 
 class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, DevelopmentBaseConfiguration):
+    pass
+
+
+class TestingConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, TestingBaseConfiguration):
     pass
 
 
