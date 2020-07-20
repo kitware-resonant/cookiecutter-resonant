@@ -17,9 +17,9 @@ class Image(TimeStampedModel, models.Model):
     def short_checksum(self) -> Optional[str]:
         return f'{self.checksum[:10]}' if self.checksum else None
 
-    def compute_checksum(self) -> str:
+    def compute_checksum(self) -> None:
         hasher = sha512()
         with self.blob.open() as blob:
             for chunk in blob.chunks():
                 hasher.update(chunk)
-        return hasher.hexdigest()
+        self.checksum = hasher.hexdigest()
