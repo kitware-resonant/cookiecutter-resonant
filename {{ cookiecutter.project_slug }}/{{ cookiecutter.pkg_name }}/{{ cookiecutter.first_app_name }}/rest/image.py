@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django_filters import rest_framework as filters
 from rest_framework import serializers
@@ -32,6 +33,11 @@ class ImageViewSet(ReadOnlyModelViewSet):
     filterset_fields = ['name', 'checksum']
 
     pagination_class = PageNumberPagination
+
+    @action(detail=True, methods=['get'])
+    def download(self, request, pk=None):
+        image = get_object_or_404(Image, pk=pk)
+        return HttpResponseRedirect(image.blob.url)
 
     @action(detail=True, methods=['post'])
     def compute(self, request, pk=None):
