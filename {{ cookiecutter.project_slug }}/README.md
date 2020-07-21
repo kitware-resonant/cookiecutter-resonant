@@ -5,7 +5,7 @@
 This is the simplest configuration for developers to start with.
 ### Initial Setup
 1. Run `docker-compose run --rm django ./manage.py migrate`
-2. Run `docker-compose run --rm django ./manage.py createsuperuser` 
+2. Run `docker-compose run --rm django ./manage.py createsuperuser`
    and follow the prompts to create your own user
 
 ### Run Application
@@ -40,6 +40,11 @@ but allows developers to run the Python code on their native system.
    2. `celery worker --app {{ cookiecutter.pkg_name }}.celery --loglevel info --without-heartbeat`
 2. When finished, run `docker-compose stop`
 
+## TODO Delete the example migration!
+
+The cookiecutter includes some initial models and migrations as an example of how models should be written.
+After you have created your first models and are ready to commit your code, you should **delete** `{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0001_initial.py` and run `./manage.py makemigrations` to create a new initial migration.
+Otherwise, the example models will be permanently included in the migration history.
 
 TODO: Document:
   DOCKER_POSTGRES_PORT (with DJANGO_DATABASE_URL)

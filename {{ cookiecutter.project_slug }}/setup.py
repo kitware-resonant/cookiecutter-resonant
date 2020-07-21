@@ -44,6 +44,7 @@ setup(
         'django-extensions',
         'django-filter',
         'django-girders',
+        'django-s3-file-field',
         'djangorestframework',
         'drf-extensions',
         'drf-yasg',
