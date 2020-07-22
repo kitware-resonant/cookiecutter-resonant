@@ -4,7 +4,6 @@ from typing import Optional
 from django.contrib.auth.models import User
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
-
 from s3_file_field import S3FileField
 
 
