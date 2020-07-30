@@ -67,8 +67,11 @@ the appropriate `dev/.env.docker-compose*` file as a baseline for overrides.
 
 ## Testing
 ### Initial Setup
-Tox is required to execute all tests.
-It may be installed with `pip install tox`.
+Tox is used to execute all tests.
+Tox is installed automatically with the `dev` package extra.
+
+When running the "Develop with Docker" configuration, all Tox commands must be run as
+`docker-compose run --rm django tox`; extra arguments may also be appended to this form.
 
 ### Running Tests
 Run `tox` to launch the full test suite.
