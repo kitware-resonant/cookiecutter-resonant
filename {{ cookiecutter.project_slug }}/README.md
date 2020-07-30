@@ -30,7 +30,7 @@ but allows developers to run Python code on their native system.
 3. Install
    [`psycopg2` build prerequisites](https://www.psycopg.org/docs/install.html#build-prerequisites)
 4. Create and activate a new Python virtualenv
-5. Run: `pip install -e .`
+5. Run: `pip install -e .[dev]`
 6. Run `source ./dev/source-native-env.sh`
 7. Run `./manage.py migrate`
 8. Run `./manage.py createsuperuser` and follow the prompts to create your own user
@@ -67,8 +67,11 @@ the appropriate `dev/.env.docker-compose*` file as a baseline for overrides.
 
 ## Testing
 ### Initial Setup
-Tox is required to execute all tests.
-It may be installed with `pip install tox`.
+Tox is used to execute all tests.
+Tox is installed automatically with the `dev` package extra.
+
+When running the "Develop with Docker" configuration, all Tox commands must be run as
+`docker-compose run --rm django tox`; extra arguments may also be appended to this form.
 
 ### Running Tests
 Run `tox` to launch the full test suite.
