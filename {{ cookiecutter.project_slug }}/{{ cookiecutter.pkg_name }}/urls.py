@@ -14,7 +14,7 @@ router.register(r'images', ImageViewSet)
 
 # OpenAPI generation
 schema_view = get_schema_view(
-    openapi.Info(title='{{ cookiecutter.project_name }}', default_version='v1', description='',),
+    openapi.Info(title='{{ cookiecutter.project_name }}', default_version='v1', description=''),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
