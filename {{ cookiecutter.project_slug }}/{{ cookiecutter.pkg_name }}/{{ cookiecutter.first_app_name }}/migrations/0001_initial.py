@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django_extensions.db.fields
+import s3_file_field.fields
 
 
 class Migration(migrations.Migration):
@@ -35,7 +36,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ('name', models.CharField(max_length=255)),
-                ('blob', models.FileField(upload_to='')),
+                (
+                    'blob',
+                    s3_file_field.fields.S3FileField(
+                        max_length=2000,
+                        upload_to=s3_file_field.fields.S3FileField.uuid_prefix_filename,
+                    ),
+                ),
                 ('checksum', models.CharField(blank=True, max_length=128, null=True)),
                 (
                     'owner',
