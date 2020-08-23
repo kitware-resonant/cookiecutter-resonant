@@ -8,7 +8,6 @@ from rest_framework import permissions, routers
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.rest import ImageViewSet
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.views import GalleryView, image_summary
 
-
 router = routers.SimpleRouter()
 router.register(r'images', ImageViewSet)
 
