@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django.contrib.admin import ModelAdmin
 from django.db.models import QuerySet
 from django.http import HttpRequest
 from django_admin_display import admin_display
@@ -8,28 +7,12 @@ from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.tasks import image_compute_checksum
 
 
-class _ImageChecksumExistsFilter(admin.SimpleListFilter):
-    title = 'checksum computed'
-    parameter_name = 'checksum_exists'
-
-    def lookups(self, request: HttpRequest, model_admin: ModelAdmin):
-        return [('yes', 'Yes'), ('no', 'No')]
-
-    def queryset(self, request: HttpRequest, queryset: QuerySet) -> QuerySet:
-        value = self.value()
-        if value == 'yes':
-            return queryset.filter(checksum__isnull=False)
-        elif value == 'no':
-            return queryset.filter(checksum__isnull=True)
-        return queryset
-
-
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'short_checksum', 'created', 'owner']
     list_display_links = ['id', 'name']
     list_filter = [
-        _ImageChecksumExistsFilter,
+        ('checksum', admin.EmptyFieldListFilter),
         ('created', admin.DateFieldListFilter),
         'owner__username',
     ]
