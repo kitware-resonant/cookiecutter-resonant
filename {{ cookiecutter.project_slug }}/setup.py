@@ -44,7 +44,7 @@ setup(
         'django-filter',
         'django-girders',
         'django-s3-file-field',
-        'djangorestframework',
+        'djangorestframework==3.11.1',
         'drf-extensions',
         'drf-yasg',
         'psycopg2',
