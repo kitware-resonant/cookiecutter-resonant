@@ -35,7 +35,7 @@ setup(
     python_requires='>=3.8',
     packages=find_packages(),
     install_requires=[
-        'celery',
+        'celery<5',
         'django',
         'django-admin-display',
         'django-configurations[database,email]',
