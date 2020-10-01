@@ -13,7 +13,8 @@ ENV PYTHONUNBUFFERED 1
 # but find_packages() will find nothing (which is fine). When Docker Compose mounts the real source
 # over top of this directory, the .egg-link in site-packages resolves to the mounted directory
 # and all package modules are importable.
-COPY ./setup.py /opt/django/setup.py
-RUN pip install --editable /opt/django[dev]
+COPY ./setup.py /opt/django-project/setup.py
+RUN pip install --editable /opt/django-project[dev]
 
-WORKDIR /opt/django
+# Use a directory name which will never be an import name, as isort considers this as first-party.
+WORKDIR /opt/django-project

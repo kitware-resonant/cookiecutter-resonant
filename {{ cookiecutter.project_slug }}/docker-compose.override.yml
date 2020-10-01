@@ -9,7 +9,7 @@ services:
     tty: true
     env_file: ./dev/.env.docker-compose
     volumes:
-      - .:/opt/django
+      - .:/opt/django-project
     ports:
       - 8000:8000
     depends_on:
@@ -31,7 +31,7 @@ services:
     tty: false
     env_file: ./dev/.env.docker-compose
     volumes:
-      - .:/opt/django
+      - .:/opt/django-project
     depends_on:
       - postgres
       - rabbitmq
