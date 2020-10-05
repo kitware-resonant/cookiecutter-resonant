@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from django_girders.configuration import (
+from composed_configuration import (
     ComposedConfiguration,
     ConfigMixin,
     DevelopmentBaseConfiguration,
@@ -16,7 +16,7 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(Co
     WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
     ROOT_URLCONF = '{{ cookiecutter.pkg_name }}.urls'
 
-    BASE_DIR = str(Path(__file__).absolute().parent.parent)
+    BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
