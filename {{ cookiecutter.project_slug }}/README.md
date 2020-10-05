@@ -31,7 +31,7 @@ but allows developers to run Python code on their native system.
    [`psycopg2` build prerequisites](https://www.psycopg.org/docs/install.html#build-prerequisites)
 4. Create and activate a new Python virtualenv
 5. Run `pip install -e .[dev]`
-6. Run `source ./dev/source-native-env.sh`
+6. Run `cd dev && source ./source-native-env.sh && cd ..`
 7. Run `./manage.py migrate`
 8. Run `./manage.py createsuperuser` and follow the prompts to create your own user
 
