@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/s3-upload/', include('s3_file_field.urls')),
     path('summary/', image_summary, name='image-summary'),
     path('gallery/', GalleryView.as_view(), name='gallery'),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
