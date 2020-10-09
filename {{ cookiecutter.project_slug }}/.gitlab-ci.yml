@@ -1,0 +1,26 @@
+stages:
+  - test
+
+test:
+  stage: test
+  variables:
+    POSTGRES_DB: django
+    POSTGRES_PASSWORD: postgres
+    MINIO_ACCESS_KEY: minioAccessKey
+    MINIO_SECRET_KEY: minioSecretKey
+    DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
+    DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
+    DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
+    DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
+  image:
+    name: circleci/python:3.8
+  services:
+    - name: circleci/postgres:latest-ram
+      alias: postgres
+    - name: minio/minio:latest
+      alias: minio
+      command: ["server", "/data"]
+  dependencies: []
+  script:
+    - sudo pip install tox
+    - tox
