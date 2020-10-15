@@ -7,10 +7,12 @@ import s3_file_field.fields
 
 class Migration(migrations.Migration):
 
+    # This is semantically the "initial" migration, since it creates the first tables
     initial = True
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('{{ cookiecutter.first_app_name }}', '0001_default_site'),
     ]
 
     operations = [
