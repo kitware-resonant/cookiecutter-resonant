@@ -18,8 +18,6 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(Co
 
     BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-    SITE_ID = 1
-
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
         configuration.INSTALLED_APPS += [
