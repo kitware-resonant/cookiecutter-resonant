@@ -38,6 +38,7 @@ setup(
         'celery<5',
         'django',
         'django-admin-display',
+        'django-allauth',
         'django-composed-configuration',
         'django-configurations[database,email]',
         'django-cors-headers',
