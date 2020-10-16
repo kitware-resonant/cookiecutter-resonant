@@ -27,8 +27,6 @@ def rollback_default_site(apps: StateApps, schema_editor: BaseDatabaseSchemaEdit
 
 class Migration(migrations.Migration):
 
-    initial = True
-
     dependencies = [
         # This is the final sites app migration
         ('sites', '0002_alter_domain_unique'),
