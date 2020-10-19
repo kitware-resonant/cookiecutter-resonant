@@ -42,7 +42,7 @@ but allows developers to run Python code on their native system.
    2. `./manage.py runserver`
 3. Run in a separate terminal:
    1. `source ./dev/source-native-env.sh`
-   2. `celery worker --app {{ cookiecutter.pkg_name }}.celery --loglevel info --without-heartbeat`
+   2. `celery --app {{ cookiecutter.pkg_name }}.celery worker --loglevel INFO --without-heartbeat`
 4. When finished, run `docker-compose stop`
 
 ## Remap Service Ports (optional)
