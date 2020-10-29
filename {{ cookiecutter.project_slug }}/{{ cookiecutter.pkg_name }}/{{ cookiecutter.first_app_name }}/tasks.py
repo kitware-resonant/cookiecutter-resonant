@@ -4,7 +4,7 @@ from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import
 
 
 @shared_task()
-def image_compute_checksum(image_id: int):
-    image = Image.objects.get(pk=image_id)
+def image_compute_checksum(image_pk: int):
+    image = Image.objects.get(pk=image_pk)
     image.compute_checksum()
     image.save()
