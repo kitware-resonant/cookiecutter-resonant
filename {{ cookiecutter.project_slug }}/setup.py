@@ -48,7 +48,7 @@ setup(
         'django-s3-file-field',
         'djangorestframework',
         'drf-extensions',
-        'drf-yasg2',
+        'drf-yasg',
         'psycopg2',
         'rich',
         'whitenoise[brotli]',
