@@ -44,7 +44,7 @@ setup(
         'django-cors-headers',
         'django-extensions',
         'django-filter',
-        'django-s3-file-field>=0.0.12',
+        'django-s3-file-field',
         'djangorestframework',
         'drf-extensions',
         'drf-yasg2',
