@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/s3-upload/', include('s3_file_field.urls')),
     path('api/v1/', include(router.urls)),
-    path('api/docs/redoc', schema_view.with_ui('redoc'), name='docs-redoc'),
-    path('api/docs/swagger', schema_view.with_ui('swagger'), name='docs-swagger'),
+    path('api/docs/redoc/', schema_view.with_ui('redoc'), name='docs-redoc'),
+    path('api/docs/swagger/', schema_view.with_ui('swagger'), name='docs-swagger'),
     path('summary/', image_summary, name='image-summary'),
     path('gallery/', GalleryView.as_view(), name='gallery'),
 ]
