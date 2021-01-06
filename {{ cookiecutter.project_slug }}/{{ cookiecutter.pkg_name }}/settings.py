@@ -12,7 +12,7 @@ from composed_configuration import (
 )
 
 
-class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(ConfigMixin):
+class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(ConfigMixin):
     WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
     ROOT_URLCONF = '{{ cookiecutter.pkg_name }}.urls'
 
@@ -26,17 +26,17 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config(Co
         ]
 
 
-class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, DevelopmentBaseConfiguration):
+class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, DevelopmentBaseConfiguration):
     pass
 
 
-class TestingConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, TestingBaseConfiguration):
+class TestingConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, TestingBaseConfiguration):
     pass
 
 
-class ProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, ProductionBaseConfiguration):
+class ProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, ProductionBaseConfiguration):
     pass
 
 
-class HerokuProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Config, HerokuProductionBaseConfiguration):
+class HerokuProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, HerokuProductionBaseConfiguration):
     pass
