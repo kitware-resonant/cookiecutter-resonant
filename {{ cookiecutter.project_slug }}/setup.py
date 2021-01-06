@@ -43,7 +43,7 @@ setup(
         'django-configurations',
         'django-extensions',
         'django-filter',
-        'django-oauth-toolkit==1.3.2',
+        'django-oauth-toolkit',
         'django-s3-file-field',
         'djangorestframework',
         'drf-yasg',
