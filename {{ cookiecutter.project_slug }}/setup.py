@@ -7,7 +7,7 @@ if readme_file.exists():
     with readme_file.open() as f:
         long_description = f.read()
 else:
-    # WHen this is first installed in development Docker, README.md is not available
+    # When this is first installed in development Docker, README.md is not available
     long_description = ''
 
 setup(
