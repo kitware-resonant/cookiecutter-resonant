@@ -2,7 +2,11 @@ import pytest
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
+{% if cookiecutter.example_models == 'yes' -%}
 from .factories import ImageFactory, UserFactory
+{%- else -%}
+from .factories import UserFactory
+{%- endif %}
 
 
 @pytest.fixture
@@ -17,5 +21,7 @@ def authenticated_api_client(user) -> APIClient:
     return client
 
 
+{% if cookiecutter.example_models == 'yes' -%}
 register(ImageFactory)
+{% endif -%}
 register(UserFactory)
