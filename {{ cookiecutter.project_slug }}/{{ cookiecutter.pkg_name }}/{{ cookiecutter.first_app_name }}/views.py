@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
-from django.db.models import Count, Q
-from django.shortcuts import render
-from django.views.generic import ListView
-
-{% if cookiecutter.example_models == 'yes' -%}
+from django.contrib.auth.models import User  # noqa: F401
+from django.db.models import Count, Q  # noqa: F401
+from django.shortcuts import render  # noqa: F401
+from django.views.generic import ListView  # noqa: F401
+{% if cookiecutter.example_models == 'yes' %}
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
 
@@ -24,4 +23,4 @@ def image_summary(request):
             )
         },
     )
-{%- endif %}
+{% endif -%}
