@@ -2,27 +2,35 @@
 
 import os
 import shutil
-
+import sys
 
 EXAMPLE_MODELS_REMOVE = [
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/admin/image.py',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/models/image.py',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/rest/image.py',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/templates/gallery.html',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/templates/summary.html',
-    '{{ cookiecutter.project_slug }}/{{ cookiecutter.first_app_name }}/tests/test_image.py'
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/admin/image.py',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/models/image.py',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/rest/image.py',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/gallery.html',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/summary.html',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/tests/test_image.py'
 ]
 
 def _delete_resource(resource):
     if os.path.isfile(resource):
         os.remove(resource)
+        return True
     elif os.path.isdir(resource):
         shutil.rmtree(resource)
+        return True
+    return False
 
 def example_models_hook():
     for path in EXAMPLE_MODELS_REMOVE:
-        _delete_resource(path)
+        resource = os.path.join(os.getcwd(), path)
+        if _delete_resource(resource):
+            print("Removed resource {}".format(resource))
+        else:
+            print("Failed to remove {}".format(resource))
+            sys.exit(1)
 
 def run_hooks():
     if '{{ cookiecutter.example_models }}' != 'yes':
