@@ -11,8 +11,9 @@ EXAMPLE_MODELS_REMOVE = [
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/rest/image.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/gallery.html',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/summary.html',
-    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/tests/test_image.py'
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/tests/test_image.py',
 ]
+
 
 def _delete_resource(resource):
     if os.path.isfile(resource):
@@ -23,6 +24,7 @@ def _delete_resource(resource):
         return True
     return False
 
+
 def example_models_hook():
     for path in EXAMPLE_MODELS_REMOVE:
         resource = os.path.join(os.getcwd(), path)
@@ -32,9 +34,11 @@ def example_models_hook():
             print("Failed to remove {}".format(resource))
             sys.exit(1)
 
+
 def run_hooks():
     if '{{ cookiecutter.example_models }}' != 'yes':
         example_models_hook()
+
 
 if __name__ == "__main__":
     run_hooks()
