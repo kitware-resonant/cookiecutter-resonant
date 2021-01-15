@@ -36,7 +36,7 @@ def include_example_code_hook():
 
 
 def run_hooks():
-    if '{{ cookiecutter.include_example_code }}' != 'yes':
+    if '{{ cookiecutter.include_example_code }}' != 'Y':
         include_example_code_hook()
 
 

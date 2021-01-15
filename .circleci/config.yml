@@ -49,10 +49,10 @@ jobs:
           name: Install Python packages
           command: sudo pip install cookiecutter tox
       - run:
-          name: Create from cookiecutter with include_example_code="no"
-          command: cookiecutter --no-input . include_example_code="no"
+          name: Create from cookiecutter with include_example_code="n"
+          command: cookiecutter --no-input . include_example_code="n"
       - run:
-          name: Run tox tests from new project with include_example_code="no"
+          name: Run tox tests from new project with include_example_code="n"
           command: tox
           environment:
             DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django

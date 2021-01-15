@@ -1,4 +1,4 @@
-{% if cookiecutter.include_example_code == 'yes' -%}
+{% if cookiecutter.include_example_code == 'Y' -%}
 from .image import ImageAdmin
 
 __all__ = ['ImageAdmin']
