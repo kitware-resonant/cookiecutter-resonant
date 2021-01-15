@@ -26,3 +26,11 @@ Once you've adapted the example code to your own project's needs, you should **d
 `{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py` 
 and run `./manage.py makemigrations` to create a new initial migration for your actual models.
 Otherwise, the example models will be permanently included in the migration history.
+
+### Without `include_example_code`
+
+If `include_example_code` is disabled, you may wish to make some small changes as your project
+grows.
+
+Once pytest tests are added, add / uncomment `envlist = test` in
+`{{ cookiecutter.project_slug }}/tox.ini`.
