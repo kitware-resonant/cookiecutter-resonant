@@ -1,5 +1,5 @@
-from celery import shared_task  # noqa: F401
-{%- if cookiecutter.include_example_code == 'Y'  %}
+{% if cookiecutter.include_example_code != 'Y' %}# {% endif -%}from celery import shared_task
+{%- if cookiecutter.include_example_code == 'Y' %}
 
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
