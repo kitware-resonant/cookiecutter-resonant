@@ -30,11 +30,43 @@ jobs:
             DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
             DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
           working_directory: my-new-project
+
+  test-minimal:
+    docker:
+      - image: circleci/python:3.8
+      - image: circleci/postgres:latest-ram
+        environment:
+          POSTGRES_DB: django
+          POSTGRES_PASSWORD: postgres
+      - image: minio/minio:latest
+        command: server /data
+        environment:
+          MINIO_ACCESS_KEY: minioAccessKey
+          MINIO_SECRET_KEY: minioSecretKey
+    steps:
+      - checkout
+      - run:
+          name: Install Python packages
+          command: sudo pip install cookiecutter tox
+      - run:
+          name: Create from cookiecutter with include_example_code="n"
+          command: cookiecutter --no-input . include_example_code="n"
+      - run:
+          name: Run tox tests from new project with include_example_code="n"
+          command: tox
+          environment:
+            DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
+            DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
+            DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
+            DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
+          working_directory: my-new-project
+
 workflows:
   version: 2
   ci:
     jobs:
       - test
+      - test-minimal
   nightly:
     triggers:
       - schedule:
@@ -45,3 +77,4 @@ workflows:
                 - master
     jobs:
       - test
+      - test-minimal

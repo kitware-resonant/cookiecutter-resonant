@@ -1,3 +1,4 @@
+{% if cookiecutter.include_example_code == 'Y' -%}
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from django.shortcuts import render
@@ -23,3 +24,4 @@ def image_summary(request):
             )
         },
     )
+{% endif -%}
