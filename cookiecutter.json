@@ -4,5 +4,5 @@
   "pkg_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
   "first_app_name": "core",
   "site_domain": "{{ cookiecutter.project_slug }}.test",
-  "example_models": "yes"
+  "include_example_code": ["Y", "n"]
 }

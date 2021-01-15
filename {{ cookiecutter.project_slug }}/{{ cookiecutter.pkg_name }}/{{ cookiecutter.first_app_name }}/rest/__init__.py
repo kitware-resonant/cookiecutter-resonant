@@ -1,4 +1,4 @@
-{% if cookiecutter.example_models == 'yes' -%}
+{% if cookiecutter.include_example_code == 'yes' -%}
 from .image import ImageViewSet
 
 __all__ = ['ImageViewSet']

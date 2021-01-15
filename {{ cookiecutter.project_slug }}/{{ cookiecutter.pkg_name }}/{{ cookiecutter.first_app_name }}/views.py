@@ -2,7 +2,7 @@ from django.contrib.auth.models import User  # noqa: F401
 from django.db.models import Count, Q  # noqa: F401
 from django.shortcuts import render  # noqa: F401
 from django.views.generic import ListView  # noqa: F401
-{% if cookiecutter.example_models == 'yes' %}
+{% if cookiecutter.include_example_code == 'yes' %}
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
 

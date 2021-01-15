@@ -4,7 +4,7 @@ import os
 import shutil
 import sys
 
-EXAMPLE_MODELS_REMOVE = [
+EXAMPLE_CODE_REMOVE = [
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/admin/image.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/models/image.py',
@@ -25,8 +25,8 @@ def _delete_resource(resource):
     return False
 
 
-def example_models_hook():
-    for path in EXAMPLE_MODELS_REMOVE:
+def include_example_code_hook():
+    for path in EXAMPLE_CODE_REMOVE:
         resource = os.path.join(os.getcwd(), path)
         if _delete_resource(resource):
             print("Removed resource {}".format(resource))
@@ -36,8 +36,8 @@ def example_models_hook():
 
 
 def run_hooks():
-    if '{{ cookiecutter.example_models }}' != 'yes':
-        example_models_hook()
+    if '{{ cookiecutter.include_example_code }}' != 'yes':
+        include_example_code_hook()
 
 
 if __name__ == "__main__":
