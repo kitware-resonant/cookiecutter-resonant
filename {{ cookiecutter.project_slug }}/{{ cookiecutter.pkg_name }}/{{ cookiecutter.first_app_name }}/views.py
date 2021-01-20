@@ -1,4 +1,4 @@
-{% if cookiecutter.include_example_code == 'Y' -%}
+{% if cookiecutter.include_example_code == 'yes' -%}
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from django.shortcuts import render
