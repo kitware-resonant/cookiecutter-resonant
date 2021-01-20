@@ -1,4 +1,4 @@
-{% if cookiecutter.include_example_code == 'Y' -%}
+{% if cookiecutter.include_example_code == 'yes' -%}
 from .image import Image
 
 __all__ = ['Image']

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 import factory.django
-{% if cookiecutter.include_example_code == 'Y' %}
+{% if cookiecutter.include_example_code == 'yes' %}
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 {% endif %}
 
@@ -12,7 +12,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('safe_email')
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
-{% if cookiecutter.include_example_code == 'Y' %}
+{% if cookiecutter.include_example_code == 'yes' %}
 
 class ImageFactory(factory.django.DjangoModelFactory):
     class Meta:
