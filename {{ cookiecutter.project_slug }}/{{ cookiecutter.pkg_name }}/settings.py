@@ -20,8 +20,13 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
-        configuration.INSTALLED_APPS += [
+        # Install local apps first, to ensure any overridden resources are found first
+        configuration.INSTALLED_APPS = [
             '{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.split('_')|map('capitalize')|join('') }}Config',
+        ] + configuration.INSTALLED_APPS
+
+        # Install any additional apps
+        configuration.INSTALLED_APPS += [
             's3_file_field',
         ]
 
