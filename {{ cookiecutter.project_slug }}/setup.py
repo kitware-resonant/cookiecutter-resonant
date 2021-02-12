@@ -40,7 +40,7 @@ setup(
         'django',
         'django-admin-display',
         'django-allauth',
-        'django-configurations[database,email]',
+        'django-configurations',
         'django-extensions',
         'django-filter',
         'django-oauth-toolkit',
