@@ -25,7 +25,7 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
             '{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.split('_')|map('capitalize')|join('') }}Config',
         ] + configuration.INSTALLED_APPS
 
-        # Install any additional apps
+        # Install additional apps
         configuration.INSTALLED_APPS += [
             's3_file_field',
         ]
