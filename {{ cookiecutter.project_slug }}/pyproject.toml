@@ -41,6 +41,7 @@ dev = [
   "iptools",
   "ipython",
   "tox",
+  "werkzeug",
 ]
 
 [dependency-groups]
