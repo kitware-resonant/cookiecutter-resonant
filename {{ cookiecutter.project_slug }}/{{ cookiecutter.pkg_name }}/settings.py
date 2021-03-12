@@ -18,6 +18,9 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
     BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
+    USE_TZ = True
+    TIME_ZONE = '{{ cookiecutter.timezone }}'
+
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
         # Install local apps first, to ensure any overridden resources are found first
