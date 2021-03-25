@@ -1,4 +1,4 @@
-# cookiecutter-django-girder
+# cookiecutter-girder-4
 
 # Creation
 * Install [`cookiecutter`](https://pypi.org/project/cookiecutter/)
