@@ -1,7 +1,6 @@
 from django.contrib import admin, messages
 from django.db.models import QuerySet
 from django.http import HttpRequest
-from django_admin_display import admin_display
 
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.tasks import image_compute_checksum
@@ -26,16 +25,16 @@ class ImageAdmin(admin.ModelAdmin):
     autocomplete_fields = ['owner']
     readonly_fields = ['checksum', 'created', 'modified']
 
-    @admin_display(
-        short_description='Checksum prefix',
-        empty_value_display='Not computed',
+    @admin.display(
+        description='Checksum prefix',
+        empty_value='Not computed',
         # Sorting by checksum also sorts the prefix values
-        admin_order_field='checksum',
+        ordering='checksum',
     )
     def short_checksum(self, image: Image):
         return image.short_checksum
 
-    @admin_display(short_description='Recompute checksum')
+    @admin.action(description='Recompute checksum')
     def compute_checksum(self, request: HttpRequest, queryset: QuerySet):
         for image in queryset:
             image_compute_checksum.delay(image.pk)
