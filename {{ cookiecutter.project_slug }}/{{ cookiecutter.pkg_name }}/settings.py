@@ -18,7 +18,6 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
     BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-    USE_TZ = True
     TIME_ZONE = '{{ cookiecutter.timezone }}'
 
     @staticmethod
