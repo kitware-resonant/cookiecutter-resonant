@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
 from django_filters import rest_framework as filters
 from rest_framework import serializers, status
 from rest_framework.decorators import action
@@ -35,12 +34,12 @@ class ImageViewSet(ReadOnlyModelViewSet):
 
     @action(detail=True, methods=['get'])
     def download(self, request, pk=None):
-        image = get_object_or_404(Image, pk=pk)
+        image = self.get_object()
         return HttpResponseRedirect(image.blob.url)
 
     @action(detail=True, methods=['post'])
     def compute(self, request, pk=None):
         # Ensure that the image exists, so a non-existent pk isn't dispatched
-        image = get_object_or_404(Image, pk=pk)
+        image = self.get_object()
         image_compute_checksum.delay(image.pk)
         return Response('', status=status.HTTP_202_ACCEPTED)

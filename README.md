@@ -1,8 +1,8 @@
-# cookiecutter-django-girder
+# cookiecutter-girder-4
 
 # Creation
 * Install [`cookiecutter`](https://pypi.org/project/cookiecutter/)
-* Run: `cookiecutter https://github.com/girder/cookiecutter-django-girder.git`
+* Run: `cookiecutter https://github.com/girder/cookiecutter-girder-4.git`
   * Fill variables, as documented below.
   * This will create a new directory for you.
 * In the new directory, initialize Git and connect it to your upstream repository.
