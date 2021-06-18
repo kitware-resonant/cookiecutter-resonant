@@ -18,7 +18,10 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
     BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-    TIME_ZONE = '{{ cookiecutter.timezone }}'
+    # Optionally set the following to any of the timezones defined in, e.g.,
+    # https://github.com/dmfilipenko/timezones.json/blob/master/timezones.json.
+    #
+    # TIME_ZONE = 'America/New_York'
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
