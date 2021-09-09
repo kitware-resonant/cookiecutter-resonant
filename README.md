@@ -2,7 +2,7 @@
 
 # Creation
 * Install [`cookiecutter`](https://pypi.org/project/cookiecutter/)
-* Run: `cookiecutter https://github.com/girder/cookiecutter-girder-4.git`
+* Run: `cookiecutter gh:girder/cookiecutter-girder-4`
   * Fill variables, as documented below.
   * This will create a new directory for you.
 * In the new directory, initialize Git and connect it to your upstream repository.
