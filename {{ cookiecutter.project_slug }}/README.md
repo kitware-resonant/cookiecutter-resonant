@@ -20,11 +20,11 @@ A paragraph explaining your work, who you are, and why you made it.
 *Show off what your software looks like in action! Add screenshots here.*
 
 
-## Development
+## 🧑‍💻 Development
 
 Please see the development instructions in [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 
-## Connections
+## 🔌 Connections
 
 This Django project was generated from the [Girder 4 cookiecutter](https://github.com/girder/cookiecutter-girder-4).
