@@ -1,4 +1,4 @@
-# {{ cookiecutter.project_name }}
+# Development Instructions
 
 ## Develop with Docker (recommended quickstart)
 This is the simplest configuration for developers to start with.
