@@ -1,4 +1,3 @@
-from io import open as io_open
 from pathlib import Path
 
 from setuptools import find_packages, setup
