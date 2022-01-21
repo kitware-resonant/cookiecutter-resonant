@@ -17,8 +17,8 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',
-    author='Kitware, Inc.',
-    author_email='kitware@kitware.com',
+    author='{{ cookiecutter.full_name }}',
+    author_email='{{ cookiecutter.email }}',
     keywords='',
     classifiers=[
         'Development Status :: 3 - Alpha',

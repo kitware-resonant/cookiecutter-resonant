@@ -4,5 +4,7 @@
   "pkg_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
   "first_app_name": "core",
   "site_domain": "{{ cookiecutter.project_slug }}.test",
-  "include_example_code": ["yes", "no"]
+  "include_example_code": ["yes", "no"],
+  "email": "kitware@kitware.com",
+  "full_name": "Kitware, Inc."
 }
