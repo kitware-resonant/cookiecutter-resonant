@@ -4,6 +4,7 @@
   "pkg_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
   "first_app_name": "core",
   "site_domain": "{{ cookiecutter.project_slug }}.test",
+  "default_branch": "main",
   "github_repo": "girder/{{ cookiecutter.project_slug }}",
   "include_example_code": ["yes", "no"]
 }
