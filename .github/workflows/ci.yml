@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - ${{ github.event.repository.default_branch }}
+      - master
   schedule:
     - cron: "0 0 * * *"
 jobs:
