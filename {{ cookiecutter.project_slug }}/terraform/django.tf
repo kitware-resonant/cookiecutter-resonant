@@ -8,7 +8,7 @@ data "heroku_team" "this" {
 }
 
 module "django" {
-  source = "girder/django/heroku"
+  source  = "girder/django/heroku"
   version = "0.10.0"
 
   project_slug     = "{{ cookiecutter.project_slug }}"
