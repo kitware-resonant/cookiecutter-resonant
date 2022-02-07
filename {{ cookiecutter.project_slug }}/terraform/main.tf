@@ -1,6 +1,14 @@
 terraform {
   required_version = ">= 1.1"
 
+  backend "remote" {
+    organization = "{{ cookiecutter.project_slug }}"
+
+    workspaces {
+      name = "{{ cookiecutter.project_slug }}"
+    }
+  }
+
   required_providers {
     aws = {
       source = "hashicorp/aws"
