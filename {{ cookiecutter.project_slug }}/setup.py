@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'celery',
-        'django>=3.2',
+        'django',
         'django-allauth',
         'django-configurations[database,email]',
         'django-extensions',
@@ -46,7 +46,7 @@ setup(
         'djangorestframework',
         'drf-yasg',
         # Production-only
-        'django-composed-configuration[prod]>=0.18',
+        'django-composed-configuration[prod]>=0.20',
         'django-s3-file-field[boto3]',
         'gunicorn',
     ],
