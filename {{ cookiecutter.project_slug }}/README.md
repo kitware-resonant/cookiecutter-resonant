@@ -44,6 +44,7 @@ but allows developers to run Python code on their native system.
    1. `source ./dev/export-env.sh`
    2. `celery --app {{ cookiecutter.pkg_name }}.celery worker --loglevel INFO --without-heartbeat`
 4. When finished, run `docker-compose stop`
+5. To destroy the stack and start fresh, run `docker-compose down -v`
 
 ## Remap Service Ports (optional)
 Attached services may be exposed to the host system via alternative ports. Developers who work
