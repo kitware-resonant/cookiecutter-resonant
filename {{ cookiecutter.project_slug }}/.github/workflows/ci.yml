@@ -6,6 +6,10 @@ on:
       - master
   schedule:
     - cron: "0 0 * * *"
+concurrency:
+  # Only run the latest workflow per-branch
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
 jobs:
   test:
     runs-on: ubuntu-latest
