@@ -1,3 +1,3 @@
 release: ./manage.py migrate
-web: gunicorn --bind 0.0.0.0:$PORT {{ cookiecutter.pkg_name }}.wsgi
+web: gunicorn --bind 0.0.0.0:$PORT {{ cookiecutter.pkg_name }}.wsgi --timeout 25
 worker: REMAP_SIGTERM=SIGQUIT celery --app {{ cookiecutter.pkg_name }}.celery worker --loglevel INFO --without-heartbeat
