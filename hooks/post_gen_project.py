@@ -29,9 +29,9 @@ def include_example_code_hook():
     for path in EXAMPLE_CODE_REMOVE:
         resource = os.path.join(os.getcwd(), path)
         if _delete_resource(resource):
-            print("Removed resource {}".format(resource))
+            print(f'Removed resource {resource}')
         else:
-            print("Failed to remove {}".format(resource))
+            print(f'Failed to remove {resource}')
             sys.exit(1)
 
 
