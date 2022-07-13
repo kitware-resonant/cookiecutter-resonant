@@ -1,5 +1,4 @@
 from hashlib import sha512
-from typing import Optional
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -15,7 +14,7 @@ class Image(TimeStampedModel, models.Model):
     # TimeStampedModel also provides "created" and "modified" fields
 
     @property
-    def short_checksum(self) -> Optional[str]:
+    def short_checksum(self) -> str | None:
         return f'{self.checksum[:10]}' if self.checksum else None
 
     def compute_checksum(self) -> None:
