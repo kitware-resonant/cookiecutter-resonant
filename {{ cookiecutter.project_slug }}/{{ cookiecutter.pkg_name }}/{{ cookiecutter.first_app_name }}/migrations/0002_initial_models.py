@@ -6,7 +6,6 @@ import s3_file_field.fields
 
 
 class Migration(migrations.Migration):
-
     # This is semantically the "initial" migration, since it creates the first tables
     initial = True
 
