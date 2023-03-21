@@ -7,12 +7,16 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - ${DOCKER_POSTGRES_PORT-5432}:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
 
   rabbitmq:
     image: rabbitmq:management
     ports:
       - ${DOCKER_RABBITMQ_PORT-5672}:5672
       - ${DOCKER_RABBITMQ_CONSOLE_PORT-15672}:15672
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq/mnesia
 
   minio:
     image: minio/minio:latest
@@ -25,3 +29,10 @@ services:
     ports:
       - ${DOCKER_MINIO_PORT-9000}:9000
       - ${DOCKER_MINIO_CONSOLE_PORT-9001}:9001
+    volumes:
+      - minio:/data
+
+volumes:
+  postgres:
+  minio:
+  rabbitmq:
