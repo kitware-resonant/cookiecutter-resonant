@@ -32,7 +32,9 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
 
 class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, DevelopmentBaseConfiguration):
-    pass
+    SHELL_PLUS_IMPORTS = [
+        'from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }} import tasks',
+    ]
 
 
 class TestingConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, TestingBaseConfiguration):
