@@ -7,7 +7,6 @@ from composed_configuration import (
     ConfigMixin,
     DevelopmentBaseConfiguration,
     HerokuProductionBaseConfiguration,
-    ProductionBaseConfiguration,
     TestingBaseConfiguration,
 )
 
@@ -38,10 +37,6 @@ class DevelopmentConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitali
 
 
 class TestingConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, TestingBaseConfiguration):
-    pass
-
-
-class ProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, ProductionBaseConfiguration):
     pass
 
 
