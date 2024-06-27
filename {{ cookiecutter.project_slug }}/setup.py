@@ -23,7 +23,7 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
-        'Framework :: Django :: 3.0',
+        'Framework :: Django :: 5.0',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
@@ -37,7 +37,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'celery',
-        'django',
+        'django>=5.0',
         'django-allauth',
         'django-configurations[database,email]',
         'django-extensions',
@@ -46,13 +46,13 @@ setup(
         'djangorestframework',
         'drf-yasg',
         # Production-only
-        'django-composed-configuration[prod]>=0.20',
+        'django-composed-configuration[prod]>=0.25',
         'django-s3-file-field[boto3]',
         'gunicorn',
     ],
     extras_require={
         'dev': [
-            'django-composed-configuration[dev]>=0.18',
+            'django-composed-configuration[dev]>=0.25',
             'django-debug-toolbar',
             'django-s3-file-field[minio]',
             'ipython',
