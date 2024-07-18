@@ -57,6 +57,7 @@ setup(
             'django-s3-file-field[minio]',
             'ipython',
             'tox',
+            'werkzeug',
         ]
     },
 )
