@@ -47,7 +47,7 @@ setup(
         'drf-yasg',
         # Production-only
         'django-composed-configuration[prod]>=0.20',
-        'django-s3-file-field[boto3]',
+        'django-s3-file-field[s3]',
         'gunicorn',
     ],
     extras_require={
