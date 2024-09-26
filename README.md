@@ -1,8 +1,8 @@
-# cookiecutter-girder-4
+# cookiecutter-resonant
 
 # Creation
 * Install [`cookiecutter`](https://pypi.org/project/cookiecutter/)
-* Run: `cookiecutter gh:girder/cookiecutter-girder-4`
+* Run: `cookiecutter gh:kitware-resonant/cookiecutter-resonant`
   * Fill variables, as documented below.
   * This will create a new directory for you.
 * In the new directory, initialize Git and connect it to your upstream repository.
