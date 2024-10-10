@@ -36,7 +36,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'celery',
+        'celery[redis]',
         'django',
         'django-allauth',
         'django-configurations[database,email]',

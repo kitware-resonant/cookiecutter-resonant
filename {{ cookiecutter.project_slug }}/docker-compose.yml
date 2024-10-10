@@ -10,13 +10,12 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - ${DOCKER_RABBITMQ_PORT-5672}:5672
-      - ${DOCKER_RABBITMQ_CONSOLE_PORT-15672}:15672
+  redis:
+    image: redis:latest
     volumes:
-      - rabbitmq:/var/lib/rabbitmq/mnesia
+      - redis-data:/redis/data
+    ports:
+      - ${DOCKER_REDIS_PORT-6379}:6379
 
   minio:
     image: minio/minio:latest
@@ -35,4 +34,4 @@ services:
 volumes:
   postgres:
   minio:
-  rabbitmq:
+  redis-data:
