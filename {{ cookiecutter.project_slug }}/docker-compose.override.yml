@@ -13,7 +13,7 @@ services:
       - 8000:8000
     depends_on:
       - postgres
-      - rabbitmq
+      - redis
       - minio
 
   celery:
@@ -34,5 +34,5 @@ services:
       - .:/opt/django-project
     depends_on:
       - postgres
-      - rabbitmq
+      - redis
       - minio

@@ -50,9 +50,14 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 # CloudAMQP-suggested settings
 # https://www.cloudamqp.com/docs/celery.html
+
+# If using Heroku Redis addon, consult the connection limits for your tier to see if it's safe
+# to raise this: https://elements.heroku.com/addons/heroku-redis
+# Keep in mind that celery workers may not be the only use of Redis in a deployment.
 CELERY_BROKER_POOL_LIMIT = 1
 CELERY_BROKER_HEARTBEAT = None
 CELERY_BROKER_CONNECTION_TIMEOUT = 30
+# The following settings are only used with the AMQP transport.
 CELERY_EVENT_QUEUE_EXPIRES = 60
 
 # Note, CELERY_WORKER settings could be different on each running worker.
