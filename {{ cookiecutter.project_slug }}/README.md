@@ -52,7 +52,7 @@ on multiple software projects concurrently may find this helpful to avoid port c
 
 To do so, before running any `docker-compose` commands, set any of the environment variables:
 * `DOCKER_POSTGRES_PORT`
-* `DOCKER_RABBITMQ_PORT`
+* `DOCKER_REDIS_PORT`
 * `DOCKER_MINIO_PORT`
 
 The Django server must be informed about the changes:
@@ -60,7 +60,7 @@ The Django server must be informed about the changes:
   * `DJANGO_MINIO_STORAGE_MEDIA_URL`, using the port from `DOCKER_MINIO_PORT`.
 * When running the "Develop Natively" configuration, override the environment variables:
   * `DJANGO_DATABASE_URL`, using the port from `DOCKER_POSTGRES_PORT`
-  * `DJANGO_CELERY_BROKER_URL`, using the port from `DOCKER_RABBITMQ_PORT`
+  * `DJANGO_CELERY_BROKER_URL`, using the port from `DOCKER_REDIS_PORT`
   * `DJANGO_MINIO_STORAGE_ENDPOINT`, using the port from `DOCKER_MINIO_PORT`
 
 Since most of Django's environment variables contain additional content, use the values from
