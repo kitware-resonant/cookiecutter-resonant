@@ -13,6 +13,7 @@ from composed_configuration import (
 
 
 class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(ConfigMixin):
+    ASGI_APPLICATION = '{{ cookiecutter.pkg_name }}.asgi.application'
     WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
     ROOT_URLCONF = '{{ cookiecutter.pkg_name }}.urls'
 
@@ -20,9 +21,11 @@ class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(Con
 
     @staticmethod
     def mutate_configuration(configuration: ComposedConfiguration) -> None:
-        # Install local apps first, to ensure any overridden resources are found first
         configuration.INSTALLED_APPS = [
+            # Install local apps first, to ensure any overridden resources are found first
             '{{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.apps.{{ cookiecutter.first_app_name.split('_')|map('capitalize')|join('') }}Config',
+            # Daphne must be listed before django.contrib.staticfiles in INSTALLED_APPS
+            'daphne',
         ] + configuration.INSTALLED_APPS
 
         # Install additional apps

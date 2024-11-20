@@ -37,6 +37,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'celery',
+        'daphne',
         'django',
         'django-allauth',
         'django-configurations[database,email]',
@@ -48,7 +49,6 @@ setup(
         # Production-only
         'django-composed-configuration[prod]>=0.20',
         'django-s3-file-field[s3]',
-        'gunicorn',
     ],
     extras_require={
         'dev': [
