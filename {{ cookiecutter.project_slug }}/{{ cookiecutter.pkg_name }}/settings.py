@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from composed_configuration import (
@@ -10,6 +11,7 @@ from composed_configuration import (
     ProductionBaseConfiguration,
     TestingBaseConfiguration,
 )
+import dj_database_url
 
 
 class {{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin(ConfigMixin):
@@ -49,4 +51,17 @@ class ProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitaliz
 
 
 class HerokuProductionConfiguration({{ cookiecutter.pkg_name.split('_')|map('capitalize')|join('') }}Mixin, HerokuProductionBaseConfiguration):
-    pass
+    @property
+    def DATABASES(self):  # noqa: N802
+        return {
+            'default': {
+                **dj_database_url.parse(os.environ['DATABASE_URL']),
+                'OPTIONS': {
+                    'pool': {
+                        # Adjust this pool size according to your postgres add-on service tier,
+                        # web dyno count, number of workers, etc.
+                        'max_size': 12,
+                    },
+                },
+            },
+        }

@@ -49,6 +49,7 @@ setup(
         # Production-only
         'django-composed-configuration[prod]>=0.20',
         'django-s3-file-field[s3]',
+        'psycopg[pool]',
     ],
     extras_require={
         'dev': [
