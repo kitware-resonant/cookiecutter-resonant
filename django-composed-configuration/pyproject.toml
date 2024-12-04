@@ -1,0 +1,102 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-composed-configuration"
+description = "Turnkey Django settings for data management applications."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache 2.0" }
+maintainers = [{ name = "Kitware, Inc.", email = "kitware@kitware.com" }]
+keywords = [
+  "django",
+  "resonant",
+  "configuration",
+  "configurations",
+  "setting",
+  "settings",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Web Environment",
+  "Framework :: Django :: 4",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python",
+]
+dependencies = [
+  "django[argon2]>=4.2",
+  # Required for "allauth.account.middleware.AccountMiddleware"
+  "django-allauth>=0.56.0",
+  "django-auth-style",
+  "django-configurations[database,email]",
+  "django-cors-headers",
+  "django-extensions",
+  "django-filter",
+  "django-girder-utils>=0.9.0",
+  # django-oauth-toolkit==1.3.3 doesn't have working PKCE
+  "django-oauth-toolkit>=1.4.0",
+  "drf-yasg",
+  "psycopg",
+  "rich",
+  "whitenoise[brotli]",
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/kitware-resonant/django-composed-configuration"
+"Bug Reports" = "https://github.com/kitware-resonant/django-composed-configuration/issues"
+
+[project.optional-dependencies]
+dev = [
+  "django-debug-toolbar",
+  "django-minio-storage",
+  "psycopg[binary]",
+]
+prod = [
+  "django-storages[boto3]",
+  "psycopg[c]",
+  "sentry-sdk",
+]
+
+[tool.hatch.build]
+packages = [
+  "composed_configuration",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+# Sort by name, don't cluster "from" vs "import"
+force_sort_within_sections = true
+# Combines "as" imports on the same line
+combine_as_imports = true
+
+[tool.mypy]
+files = [
+  "composed_configuration",
+]
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+  "allauth.*",
+  "configurations.*",
+  "sentry_sdk.*",
+]
+ignore_missing_imports = true
