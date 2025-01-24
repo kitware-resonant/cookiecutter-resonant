@@ -15,7 +15,7 @@ services:
       - 5672:5672
       - 15672:15672
     volumes:
-      - rabbitmq:/var/lib/rabbitmq/mnesia
+      - rabbitmq:/var/lib/rabbitmq
 
   minio:
     image: minio/minio:latest
