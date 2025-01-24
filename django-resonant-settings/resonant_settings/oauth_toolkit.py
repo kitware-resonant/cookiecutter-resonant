@@ -10,7 +10,6 @@ This requires the `django-oauth-toolkit` package to be installed.
 from datetime import timedelta
 
 OAUTH2_PROVIDER = {
-    "PKCE_REQUIRED": True,
     "ALLOWED_REDIRECT_URI_SCHEMES": ["https"],
     # Don't require users to re-approve scopes each time
     "REQUEST_APPROVAL_PROMPT": "auto",
