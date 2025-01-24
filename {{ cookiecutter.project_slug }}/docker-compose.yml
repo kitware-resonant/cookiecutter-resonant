@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:alpine
+    shm_size: 128mb
     environment:
       POSTGRES_DB: django
       POSTGRES_PASSWORD: postgres
