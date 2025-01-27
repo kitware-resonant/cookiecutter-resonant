@@ -1,0 +1,31 @@
+name: release
+on:
+  release:
+    types: [published]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Tags are needed to compute the current version number
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install Python build
+        run: |
+          pip install --upgrade pip
+          pip install build
+      - name: Build the Python distribution
+        run: |
+          python -m build
+        working-directory: django-resonant-settings
+      - name: Publish the Python distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: django-resonant-settings/dist

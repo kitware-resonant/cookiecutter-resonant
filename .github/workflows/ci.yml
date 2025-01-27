@@ -31,24 +31,34 @@ jobs:
         ports:
           - 9000:9000
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          # Tags are needed to compute the current version number
+          fetch-depth: 0
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
       - name: Install Python packages
         run: |
           pip install --upgrade pip
-          pip install cookiecutter tox
-      - name: Create from cookiecutter
+          pip install build cookiecutter tox
+      - name: Build django-resonant-settings
         run: |
-          cookiecutter --no-input . ${{ matrix.cookiecutter-variables }}
+            python -m build --sdist
+        working-directory: django-resonant-settings
+      - name: Eject from cookiecutter
+        run: |
+          cookiecutter --no-input . project_name=Resonant ${{ matrix.cookiecutter-variables }}
       - name: Run tox tests from new project
         run: |
           tox
         env:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
+          DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_ENDPOINT: localhost:9000
           DJANGO_MINIO_STORAGE_ACCESS_KEY: minioAccessKey
           DJANGO_MINIO_STORAGE_SECRET_KEY: minioSecretKey
-        working-directory: my-new-project
+          DJANGO_STORAGE_BUCKET_NAME: django-storage-testing
+          PIP_FIND_LINKS: file://${{ github.workspace }}/django-resonant-settings/dist
+        working-directory: resonant
