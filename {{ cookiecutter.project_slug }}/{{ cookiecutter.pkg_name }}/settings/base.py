@@ -73,7 +73,6 @@ DATABASES = {
         'CONN_MAX_AGE': timedelta(minutes=10).total_seconds(),
     }
 }
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STORAGES = {
     # Inject the default storage in particular run configurations
