@@ -11,7 +11,6 @@ from resonant_settings.django import *
 from resonant_settings.django_extensions import *
 from resonant_settings.logging import *
 from resonant_settings.oauth_toolkit import *
-from resonant_settings.rest_framework import *
 
 django_stubs_ext.monkeypatch()
 
@@ -43,11 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_filters',
-    'drf_yasg',
     'oauth2_provider',
     'resonant_utils',
-    'rest_framework',
-    'rest_framework.authtoken',
     's3_file_field',
 ]
 
@@ -84,9 +80,7 @@ STORAGES = {
     # Inject the default storage in particular run configurations
     'default': None,
     'staticfiles': {
-        # CompressedManifestStaticFilesStorage does not work properly with drf-
-        # https://github.com/axnsan12/drf-yasg/issues/761
-        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
 
