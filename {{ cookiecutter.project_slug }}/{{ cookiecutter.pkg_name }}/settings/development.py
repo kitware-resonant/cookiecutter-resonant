@@ -22,7 +22,7 @@ MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 # to add new settings as individual feature flags.
 DEBUG = True
 
-CORS_ORIGIN_REGEX_WHITELIST: list[str] = env.list(
+CORS_ORIGIN_REGEX_WHITELIST = env.list(
     'DJANGO_CORS_ORIGIN_REGEX_WHITELIST',
     cast=str,
     default=[r'^http://localhost:\d+$', r'^http://127\.0\.0\.1:\d+$'],
