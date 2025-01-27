@@ -19,12 +19,11 @@ dependencies = [
   "django-environ",
   "django-extensions",
   "django-filter",
+  "django-ninja",
   "django-oauth-toolkit",
   "django-resonant-settings[allauth,celery]",
   "django-resonant-utils",
   "django-stubs-ext",
-  "djangorestframework",
-  "drf-yasg",
   "psycopg[binary]",
   "rich",
   "whitenoise[brotli]",
@@ -73,7 +72,6 @@ type = [
   "mypy",
   "celery-types",
   "django-stubs[compatible-mypy]",
-  "djangorestframework-stubs",
 ]
 test = [
   "factory-boy",
