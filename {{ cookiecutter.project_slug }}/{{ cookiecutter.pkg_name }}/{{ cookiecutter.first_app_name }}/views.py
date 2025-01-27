@@ -9,14 +9,14 @@ from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import
 
 class GalleryView(ListView):
     queryset = Image.objects.order_by('created')
-    template_name = 'gallery.html'
+    template_name = '{{ cookiecutter.first_app_name }}/gallery.html'
     paginate_by = 20
 
 
 def image_summary(request):
     return render(
         request,
-        'summary.html',
+        '{{ cookiecutter.first_app_name }}/summary.html',
         {
             'user_summary': User.objects.annotate(
                 processed_images=Count('image', filter=Q(image__checksum__isnull=False)),

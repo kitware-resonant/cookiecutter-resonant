@@ -9,8 +9,8 @@ EXAMPLE_CODE_REMOVE = [
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/models/image.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/rest/image.py',
-    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/gallery.html',
-    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/summary.html',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/{{ cookiecutter.first_app_name }}/gallery.html',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/{{ cookiecutter.first_app_name }}/summary.html',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/tests/test_image.py',
 ]
 
