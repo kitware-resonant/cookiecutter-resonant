@@ -46,26 +46,6 @@ but allows developers to run Python code on their native system.
 4. When finished, run `docker compose stop`
 5. To destroy the stack and start fresh, run `docker compose down -v`
 
-## Remap Service Ports (optional)
-Attached services may be exposed to the host system via alternative ports. Developers who work
-on multiple software projects concurrently may find this helpful to avoid port conflicts.
-
-To do so, before running any `docker compose` commands, set any of the environment variables:
-* `DOCKER_POSTGRES_PORT`
-* `DOCKER_RABBITMQ_PORT`
-* `DOCKER_MINIO_PORT`
-
-The Django server must be informed about the changes:
-* When running the "Develop with Docker" configuration, override the environment variables:
-  * `DJANGO_MINIO_STORAGE_MEDIA_URL`, using the port from `DOCKER_MINIO_PORT`.
-* When running the "Develop Natively" configuration, override the environment variables:
-  * `DJANGO_DATABASE_URL`, using the port from `DOCKER_POSTGRES_PORT`
-  * `DJANGO_CELERY_BROKER_URL`, using the port from `DOCKER_RABBITMQ_PORT`
-  * `DJANGO_MINIO_STORAGE_ENDPOINT`, using the port from `DOCKER_MINIO_PORT`
-
-Since most of Django's environment variables contain additional content, use the values from
-the appropriate `dev/.env.docker-compose*` file as a baseline for overrides.
-
 ## Testing
 ### Initial Setup
 tox is used to execute all tests.

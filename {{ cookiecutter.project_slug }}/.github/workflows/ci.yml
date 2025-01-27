@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:alpine
         env:
           POSTGRES_DB: django
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
       rabbitmq:
-        image: rabbitmq:management
+        image: rabbitmq:management-alpine
         ports:
           - 5672:5672
       minio:
