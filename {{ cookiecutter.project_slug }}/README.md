@@ -26,7 +26,7 @@ but allows developers to run Python code on their native system.
 
 ### Initial Setup
 1. Run `docker compose -f ./docker-compose.yml up -d`
-2. Install Python 3.10
+2. Install Python 3.13
 3. Create and activate a new Python virtualenv
 4. Run `pip install -e .[dev]`
 5. Run `source ./dev/export-env.sh`
