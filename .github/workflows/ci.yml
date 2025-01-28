@@ -5,7 +5,26 @@ on:
     branches:
       - master
 jobs:
-  test:
+  test-resonant-settings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Tags are needed to compute the current version number
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "{{ cookiecutter.project_slug }}/.python-version"
+      - name: Install Python packages
+        run: |
+          pip install --upgrade pip
+          pip install tox
+      - name: Run tests
+        run: |
+          tox
+        working-directory: django-resonant-settings
+  test-cookecutter:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,11 +61,7 @@ jobs:
       - name: Install Python packages
         run: |
           pip install --upgrade pip
-          pip install build cookiecutter tox
-      - name: Build django-resonant-settings
-        run: |
-            python -m build --sdist
-        working-directory: django-resonant-settings
+          pip install cookiecutter tox
       - name: Eject from cookiecutter
         run: |
           cookiecutter --no-input . project_name=Resonant ${{ matrix.cookiecutter-variables }}
@@ -57,5 +72,9 @@ jobs:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
-          PIP_FIND_LINKS: file://${{ github.workspace }}/django-resonant-settings/dist
+          # Ensure that the local django-resonant-settings (instead of the one on PyPI) is
+          # installed for environments that install the project
+          TOX_OVERRIDE: >
+            testenv:test.deps+=${{ github.workspace }}/django-resonant-settings;
+            testenv:check-migrations.deps+=${{ github.workspace }}/django-resonant-settings
         working-directory: resonant
