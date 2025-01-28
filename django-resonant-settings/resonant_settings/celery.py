@@ -45,6 +45,9 @@ CELERY_TASK_ACKS_ON_FAILURE_OR_TIMEOUT = True
 # and this will be Celery's default in 6.0.
 CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS = True
 
+# This is the default, but is necessary to suppress warnings in Celery
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
 # CloudAMQP-suggested settings
 # https://www.cloudamqp.com/docs/celery.html
 CELERY_BROKER_POOL_LIMIT = 1
