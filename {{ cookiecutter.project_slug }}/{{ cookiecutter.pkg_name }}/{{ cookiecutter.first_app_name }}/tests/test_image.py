@@ -1,9 +1,11 @@
 import pytest
 
+from .factories import ImageFactory
 
-def test_image_checksum(image_factory):
+
+def test_image_checksum():
     # Use "build" strategy, so database is not required
-    image = image_factory.build()
+    image = ImageFactory.build()
     image.compute_checksum()
     assert image.checksum is not None
 
