@@ -1,6 +1,4 @@
-"""
-Configure a basic Django project.
-"""
+"""Configure a basic Django project."""
 
 TEMPLATES = [
     {
