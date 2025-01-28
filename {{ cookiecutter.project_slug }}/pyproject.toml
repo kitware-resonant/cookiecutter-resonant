@@ -33,6 +33,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
   "django-s3-file-field[minio]",

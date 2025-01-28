@@ -6,6 +6,7 @@ from resonant_settings.development.extensions import *  # isort: skip
 
 INSTALLED_APPS += [
     'debug_toolbar',
+    'django_browser_reload',
     'django_extensions',
 ]
 # Force WhiteNoice to serve static files, even when using 'manage.py runserver'
@@ -16,6 +17,10 @@ INSTALLED_APPS.insert(staticfiles_index, 'whitenoise.runserver_nostatic')
 # However, it must come after any other middleware that encodes the response’s content,
 # such as GZipMiddleware.
 MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+# Should be listed after middleware that encode the response.
+MIDDLEWARE += [
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
+]
 
 # DEBUG is not enabled for testing, to maintain parity with production.
 # Also, do not directly reference DEBUG when toggling application features; it's more sustainable
