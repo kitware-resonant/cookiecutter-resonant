@@ -5,7 +5,26 @@ on:
     branches:
       - master
 jobs:
-  test:
+  test-resonant-settings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Tags are needed to compute the current version number
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "{{ cookiecutter.project_slug }}/.python-version"
+      - name: Install Python packages
+        run: |
+          pip install --upgrade pip
+          pip install tox
+      - name: Run tests
+        run: |
+          tox
+        working-directory: django-resonant-settings
+  test-cookecutter:
     runs-on: ubuntu-latest
     strategy:
       matrix:
