@@ -35,14 +35,19 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_ADAPTER = "resonant_settings.allauth_support.adapter.EmailAsUsernameAccountAdapter"
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
+# Allow login via emailed magic code
+ACCOUNT_LOGIN_BY_CODE_ENABLED = True
+
+# Notify users of changes to their account, which can alert them to attempted compromises
+ACCOUNT_EMAIL_NOTIFICATIONS = True
+
+# Force reauthentication for account changes, which is worth the inconvenience
+ACCOUNT_REAUTHENTICATION_REQUIRED = True
+
 # Quality of life improvements, but may not work if the browser is closed
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-
-# These will permit GET requests to mutate the user state, but significantly improve usability
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # This will likely become the default in the future, but enable it now
 ACCOUNT_PRESERVE_USERNAME_CASING = False

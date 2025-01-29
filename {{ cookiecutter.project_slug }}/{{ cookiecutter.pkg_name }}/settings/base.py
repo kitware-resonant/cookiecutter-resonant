@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # Everything else
     'allauth',
     'allauth.account',
+    'allauth.mfa',
     'allauth.socialaccount',
     'corsheaders',
     'django.contrib.admin',

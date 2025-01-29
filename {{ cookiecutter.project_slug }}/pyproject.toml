@@ -11,7 +11,7 @@ classifiers = ["Private :: Do Not Upload"]
 dependencies = [
   "celery",
   "django[argon2]",
-  "django-allauth",
+  "django-allauth[mfa]",
   "django-auth-style",
   "django-cors-headers",
   "django-environ",
