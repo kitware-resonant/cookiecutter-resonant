@@ -7,6 +7,7 @@ name = "{{ cookiecutter.project_slug }}"
 version = "0.0.0"
 requires-python = ">=3.13"
 license = { text = "Apache 2.0" }
+classifiers = ["Private :: Do Not Upload"]
 dependencies = [
   "celery",
   "django[argon2]",
