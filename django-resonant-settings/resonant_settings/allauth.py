@@ -23,11 +23,11 @@ AUTHENTICATION_BACKENDS = [
 # see configuration documentation at
 #   https://django-allauth.readthedocs.io/en/latest/configuration.html
 
-# Require email verification, but this can be overridden
+# Require email verification
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # Use email as the identifier for login
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
