@@ -4,7 +4,7 @@ SECRET_KEY = 'insecure-secret'
 
 # Use a fast, insecure hasher to speed up tests, but keep existing hashers for development use
 # when reading a production databases.
-PASSWORD_HASHERS.insert(0, 'django.contrib.auth.hashers.PlainTextPasswordHasher')
+PASSWORD_HASHERS.insert(0, 'django.contrib.auth.hashers.MD5PasswordHasher')
 
 STORAGES['default'] = {
     'BACKEND': 'minio_storage.storage.MinioMediaStorage',
