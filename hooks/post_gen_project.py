@@ -6,7 +6,7 @@ import sys
 
 EXAMPLE_CODE_REMOVE = [
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/admin/image.py',
-    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py',
+    '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0001_initial_models.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/models/image.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/rest/image.py',
     '{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/templates/{{ cookiecutter.first_app_name }}/gallery.html',

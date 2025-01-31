@@ -25,7 +25,7 @@ If `include_example_code` is enabled, the cookiecutter includes some initial mod
 and an associated migration, as an example of a simple project's structure and capabilities.
 
 Once you've adapted the example code to your own project's needs, you should **delete**
-`{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0002_initial_models.py` 
+`{{ cookiecutter.pkg_name }}/{{ cookiecutter.first_app_name }}/migrations/0001_initial_models.py` 
 and run `./manage.py makemigrations` to create a new initial migration for your actual models.
 Otherwise, the example models will be permanently included in the migration history.
 
