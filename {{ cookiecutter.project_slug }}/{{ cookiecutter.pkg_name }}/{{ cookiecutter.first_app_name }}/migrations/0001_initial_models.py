@@ -11,7 +11,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('{{ cookiecutter.first_app_name }}', '0001_default_site'),
     ]
 
     operations = [
