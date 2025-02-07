@@ -4,7 +4,7 @@ import factory.django
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 {% endif %}
 
-class UserFactory(factory.django.DjangoModelFactory):
+class UserFactory(factory.django.DjangoModelFactory[User]):
     class Meta:
         model = User
 
@@ -14,7 +14,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.Faker('last_name')
 {% if cookiecutter.include_example_code == 'yes' %}
 
-class ImageFactory(factory.django.DjangoModelFactory):
+class ImageFactory(factory.django.DjangoModelFactory[Image]):
     class Meta:
         model = Image
 
