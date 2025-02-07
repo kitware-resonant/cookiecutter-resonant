@@ -26,10 +26,10 @@ def authenticated_api_client(user) -> APIClient:
 {% if cookiecutter.include_example_code == 'yes' -%}
 @pytest.fixture
 def image() -> Image:
-    return ImageFactory()
+    return ImageFactory.create()
 
 
 {% endif -%}
 @pytest.fixture
 def user() -> User:
-    return UserFactory()
+    return UserFactory.create()
