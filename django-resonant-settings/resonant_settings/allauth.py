@@ -23,11 +23,11 @@ AUTHENTICATION_BACKENDS = [
 # see configuration documentation at
 #   https://django-allauth.readthedocs.io/en/latest/configuration.html
 
-# Require email verification, but this can be overridden
+# Require email verification
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # Use email as the identifier for login
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
@@ -40,8 +40,7 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
-# These will permit GET requests to mutate the user state, but significantly improve usability
-ACCOUNT_LOGOUT_ON_GET = True
+# Confirm URLs include a secret token, so CSRF safety isn't a concern
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # This will likely become the default in the future, but enable it now
