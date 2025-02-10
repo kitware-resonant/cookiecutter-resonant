@@ -40,8 +40,7 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
-# These will permit GET requests to mutate the user state, but significantly improve usability
-ACCOUNT_LOGOUT_ON_GET = True
+# Confirm URLs include a secret token, so CSRF safety isn't a concern
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # This will likely become the default in the future, but enable it now
