@@ -1,3 +1,5 @@
+import iptools
+
 from .testing import *
 
 # Import these afterwards, to override
@@ -27,6 +29,10 @@ MIDDLEWARE += [
 # to add new settings as individual feature flags.
 DEBUG = True
 
+# This is typically only overridden when running from Docker.
+INTERNAL_IPS = iptools.IpRangeList(
+    *env.list('DJANGO_INTERNAL_IPS', cast=str, default=['127.0.0.1'])
+)
 CORS_ORIGIN_REGEX_WHITELIST = env.list(
     'DJANGO_CORS_ORIGIN_REGEX_WHITELIST',
     cast=str,
