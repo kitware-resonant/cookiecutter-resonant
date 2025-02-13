@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import subprocess
 import sys
 
 EXAMPLE_CODE_REMOVE = [
@@ -35,9 +36,14 @@ def include_example_code_hook():
             sys.exit(1)
 
 
+def uv_lock_hook():
+    subprocess.check_call(['uv', 'lock'])
+
+
 def run_hooks():
     if '{{ cookiecutter.include_example_code }}' != 'yes':
         include_example_code_hook()
+    uv_lock_hook()
 
 
 if __name__ == "__main__":

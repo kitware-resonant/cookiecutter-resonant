@@ -1,14 +1,25 @@
 services:
   django:
-    build:
-      context: .
-      dockerfile: ./dev/django.Dockerfile
-    command: ["./manage.py", "runserver", "0.0.0.0:8000"]
-    # Log printing via Rich is enhanced by a TTY
-    tty: true
+    image: ghcr.io/astral-sh/uv:debian
+    command: [
+      "uv", "run",
+      "./manage.py",
+      "runserver", "0.0.0.0:8000"
+    ]
+    # uv progress doesn't display properly with a Docker TTY
+    tty: false
+    environment:
+      PYTHONUNBUFFERED: 1
+      UV_PROJECT_ENVIRONMENT: /var/lib/venv
+      UV_CACHE_DIR: /var/cache/uv/cache
+      UV_PYTHON_INSTALL_DIR: /var/cache/uv/bin
+      # The uv cache and environment are on different volumes, so hardlinks won't work
+      UV_LINK_MODE: copy
     env_file: ./dev/.env.docker-compose
+    working_dir: /opt/django-project
     volumes:
       - .:/opt/django-project
+      - uv_cache:/var/cache/uv
     ports:
       - 8000:8000
     depends_on:
@@ -17,10 +28,10 @@ services:
       - minio
 
   celery:
-    build:
-      context: .
-      dockerfile: ./dev/django.Dockerfile
+    image: ghcr.io/astral-sh/uv:debian
     command: [
+      "uv",
+      "run",
       "celery",
       "--app", "{{ cookiecutter.pkg_name }}.celery",
       "worker",
@@ -29,10 +40,21 @@ services:
     ]
     # Docker Compose does not set the TTY width, which causes Celery errors
     tty: false
+    environment:
+      PYTHONUNBUFFERED: 1
+      UV_PROJECT_ENVIRONMENT: /var/lib/venv
+      UV_CACHE_DIR: /var/cache/uv/cache
+      UV_PYTHON_INSTALL_DIR: /var/cache/uv/bin
+      UV_LINK_MODE: copy
     env_file: ./dev/.env.docker-compose
+    working_dir: /opt/django-project
     volumes:
       - .:/opt/django-project
+      - uv_cache:/var/cache/uv
     depends_on:
       - postgres
       - rabbitmq
       - minio
+
+volumes:
+  uv_cache:

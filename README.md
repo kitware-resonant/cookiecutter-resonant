@@ -1,8 +1,8 @@
 # cookiecutter-resonant
 
 # Creation
-* Install [`cookiecutter`](https://pypi.org/project/cookiecutter/)
-* Run: `cookiecutter gh:kitware-resonant/cookiecutter-resonant`
+* [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
+* Run: `uvx cookiecutter gh:kitware-resonant/cookiecutter-resonant`
   * Fill variables, as documented below.
   * This will create a new directory for you.
 * In the new directory, initialize Git and connect it to your upstream repository.
