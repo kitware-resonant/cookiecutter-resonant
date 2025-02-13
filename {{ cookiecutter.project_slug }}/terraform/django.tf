@@ -9,7 +9,7 @@ data "heroku_team" "this" {
 
 module "django" {
   source  = "kitware-resonant/resonant/heroku"
-  version = "2.0.0"
+  version = "2.1.1"
 
   project_slug           = "{{ cookiecutter.project_slug }}"
   route53_zone_id        = data.aws_route53_zone.this.zone_id
