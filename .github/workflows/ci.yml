@@ -8,7 +8,8 @@ jobs:
   test-resonant-settings:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
@@ -50,7 +51,8 @@ jobs:
         ports:
           - 9000:9000
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
