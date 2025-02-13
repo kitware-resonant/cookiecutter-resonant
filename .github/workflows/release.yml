@@ -9,7 +9,8 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
