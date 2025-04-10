@@ -28,8 +28,8 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # Use email as the identifier for login
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+# Don't require a username, but make email required
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 
 # Set the username as the email
 ACCOUNT_ADAPTER = "resonant_settings.allauth_support.adapter.EmailAsUsernameAccountAdapter"
