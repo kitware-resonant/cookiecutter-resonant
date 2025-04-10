@@ -97,7 +97,7 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
-CORS_ORIGIN_WHITELIST: list[str] = env.list('DJANGO_CORS_ORIGIN_WHITELIST', cast=str, default=[])
-CORS_ORIGIN_REGEX_WHITELIST: list[str] = env.list(
-    'DJANGO_CORS_ORIGIN_REGEX_WHITELIST', cast=str, default=[]
+CORS_ALLOWED_ORIGINS: list[str] = env.list('DJANGO_CORS_ALLOWED_ORIGINS', cast=str, default=[])
+CORS_ALLOWED_ORIGIN_REGEXES: list[str] = env.list(
+    'DJANGO_CORS_ALLOWED_ORIGIN_REGEXES', cast=str, default=[]
 )
