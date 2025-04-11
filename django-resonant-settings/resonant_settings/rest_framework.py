@@ -70,6 +70,8 @@ SWAGGER_SETTINGS: dict[str, Any] = {
     # security definition for.
     "SECURITY_DEFINITIONS": None,
     "USE_SESSION_AUTH": True,
+    # Needed because https://github.com/axnsan12/drf-yasg/pull/911
+    "USE_COMPAT_RENDERERS": False,
 }
 
 REDOC_SETTINGS: dict[str, Any] = {}
