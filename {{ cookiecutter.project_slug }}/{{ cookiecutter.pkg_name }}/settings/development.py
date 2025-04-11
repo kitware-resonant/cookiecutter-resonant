@@ -35,8 +35,8 @@ SECRET_KEY = 'insecure-secret'
 INTERNAL_IPS = iptools.IpRangeList(
     *env.list('DJANGO_INTERNAL_IPS', cast=str, default=['127.0.0.1'])
 )
-CORS_ORIGIN_REGEX_WHITELIST = env.list(
-    'DJANGO_CORS_ORIGIN_REGEX_WHITELIST',
+CORS_ALLOWED_ORIGIN_REGEXES = env.list(
+    'DJANGO_CORS_ALLOWED_ORIGIN_REGEXES',
     cast=str,
     default=[r'^http://localhost:\d+$', r'^http://127\.0\.0\.1:\d+$'],
 )
