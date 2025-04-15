@@ -4,11 +4,16 @@ from django.urls import include, path
 from ninja import NinjaAPI
 
 {% if cookiecutter.include_example_code == 'yes' -%}
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.rest import image_router
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.views import GalleryView, image_summary
 
 {% endif -%}
 
 api = NinjaAPI()
+{% if cookiecutter.include_example_code == 'yes' -%}
+api.add_router('/images/', image_router)
+
+{% endif -%}
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),

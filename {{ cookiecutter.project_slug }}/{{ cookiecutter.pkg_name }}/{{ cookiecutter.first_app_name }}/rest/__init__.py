@@ -1,5 +1,5 @@
 {% if cookiecutter.include_example_code == 'yes' -%}
-from .image import ImageViewSet
+from .image import router as image_router
 
-__all__ = ['ImageViewSet']
+__all__ = ['image_router']
 {% endif -%}

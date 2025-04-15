@@ -1,25 +1,26 @@
 from django.contrib.auth.models import User
+from django.test import Client
 import pytest
-from rest_framework.test import APIClient
 
 {% if cookiecutter.include_example_code == 'yes' -%}
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
 from .factories import ImageFactory, UserFactory
 {%- else -%}
+
 from .factories import UserFactory
 {%- endif %}
 
 
 @pytest.fixture
-def api_client() -> APIClient:
-    return APIClient()
+def client() -> Client:
+    return Client()
 
 
 @pytest.fixture
-def authenticated_api_client(user) -> APIClient:
-    client = APIClient()
-    client.force_authenticate(user=user)
+def authenticated_client(user: User) -> Client:
+    client = Client()
+    client.force_login(user=user)
     return client
 
 
