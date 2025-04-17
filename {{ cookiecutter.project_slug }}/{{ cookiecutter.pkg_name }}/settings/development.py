@@ -18,7 +18,10 @@ INSTALLED_APPS.insert(staticfiles_index, 'whitenoise.runserver_nostatic')
 # Include Debug Toolbar middleware as early as possible in the list.
 # However, it must come after any other middleware that encodes the response’s content,
 # such as GZipMiddleware.
-MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+MIDDLEWARE.insert(
+    MIDDLEWARE.index('django.middleware.gzip.GZipMiddleware') + 1,
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
 # Should be listed after middleware that encode the response.
 MIDDLEWARE += [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
