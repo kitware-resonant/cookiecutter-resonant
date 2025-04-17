@@ -11,6 +11,8 @@ from .base import *
 from resonant_settings.production.email import *  # isort: skip
 from resonant_settings.production.https import *  # isort: skip
 
+WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
+
 SECRET_KEY: str = env.str('DJANGO_SECRET_KEY')
 
 # This only needs to be defined in production. Testing will add 'testserver'. In development

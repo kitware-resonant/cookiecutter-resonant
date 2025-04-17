@@ -16,7 +16,6 @@ env = Env()
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
 ROOT_URLCONF = '{{ cookiecutter.pkg_name }}.urls'
 
 INSTALLED_APPS = [
