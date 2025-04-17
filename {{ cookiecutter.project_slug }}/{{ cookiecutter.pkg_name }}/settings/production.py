@@ -4,6 +4,7 @@ import sentry_sdk
 import sentry_sdk.integrations.celery
 import sentry_sdk.integrations.django
 import sentry_sdk.integrations.logging
+import sentry_sdk.integrations.pure_eval
 
 from .base import *
 
@@ -35,6 +36,7 @@ sentry_sdk.init(
         ),
         sentry_sdk.integrations.django.DjangoIntegration(),
         sentry_sdk.integrations.celery.CeleryIntegration(),
+        sentry_sdk.integrations.pure_eval.PureEvalIntegration(),
     ],
     # Send traces for non-exception events too
     attach_stacktrace=True,
