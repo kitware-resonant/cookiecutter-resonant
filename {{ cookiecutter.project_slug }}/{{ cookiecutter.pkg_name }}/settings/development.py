@@ -4,6 +4,7 @@ from .base import *
 
 # Import these afterwards, to override
 from resonant_settings.development.celery import *  # isort: skip
+from resonant_settings.development.debug_toolbar import *  # isort: skip
 from resonant_settings.development.extensions import *  # isort: skip
 
 INSTALLED_APPS += [
