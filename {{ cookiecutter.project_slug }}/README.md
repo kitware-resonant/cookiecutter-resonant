@@ -27,11 +27,12 @@ but allows developers to run Python code on their native system.
 ### Initial Setup
 1. Run `docker compose -f ./docker-compose.yml up -d`
 2. Install Python 3.13
-3. Create and activate a new Python virtualenv
-4. Run `pip install -e .[dev]`
-5. Run `source ./dev/export-env.sh`
-6. Run `./manage.py migrate`
-7. Run `./manage.py createsuperuser` and follow the prompts to create your own user
+3. [Install Watchman](https://facebook.github.io/watchman/docs/install.html).
+4. Create and activate a new Python virtualenv
+5. Run `pip install -e .[dev]`
+6. Run `source ./dev/export-env.sh`
+7. Run `./manage.py migrate`
+8. Run `./manage.py createsuperuser` and follow the prompts to create your own user
 
 ### Run Application
 1.  Ensure `docker compose -f ./docker-compose.yml up -d` is still active

@@ -40,6 +40,7 @@ dev = [
   "django-s3-file-field[minio]",
   "iptools",
   "ipython",
+  "pywatchman",
   "tox",
 ]
 

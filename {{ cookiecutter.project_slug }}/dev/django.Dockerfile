@@ -1,5 +1,12 @@
 FROM python:3.13-slim
 
+# Install system librarires for Python packages.
+RUN apt-get update && \
+    && apt-get install --no-install-recommends --yes \
+        watchman \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
