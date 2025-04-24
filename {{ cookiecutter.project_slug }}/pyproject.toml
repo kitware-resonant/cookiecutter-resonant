@@ -70,6 +70,10 @@ test = [
   "pytest",
   "pytest-django",
   "pytest-mock",
+  # Enable with "pytest --random-order ..."
+  "pytest-random-order",
+  # Enable with "pytest --count=... ..."
+  "pytest-repeat",
 ]
 
 [tool.hatch.build]
