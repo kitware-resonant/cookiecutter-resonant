@@ -29,7 +29,7 @@ dependencies = [
   "django-s3-file-field[s3]",
   "django-storages[s3]",
   "gunicorn",
-  "sentry-sdk[celery,django]",
+  "sentry-sdk[celery,django,pure_eval]",
 ]
 
 [project.optional-dependencies]
