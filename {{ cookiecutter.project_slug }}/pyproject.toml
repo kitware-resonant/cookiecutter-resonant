@@ -118,5 +118,7 @@ addopts = [
 ]
 filterwarnings = [
   "error",
+  "ignore::django.utils.deprecation.RemovedInDjango60Warning",
+  "ignore::pydantic.warnings.PydanticDeprecatedSince20",
 ]
 DJANGO_SETTINGS_MODULE = "{{ cookiecutter.pkg_name }}.settings.testing"
