@@ -135,4 +135,7 @@ filterwarnings = [
   "error",
   # pytest often causes unclosed socket warnings
   "ignore:unclosed <socket\\.socket:ResourceWarning",
+  # django-ninja emits these warnings
+  "ignore::django.utils.deprecation.RemovedInDjango60Warning",
+  "ignore::pydantic.warnings.PydanticDeprecatedSince20",
 ]
