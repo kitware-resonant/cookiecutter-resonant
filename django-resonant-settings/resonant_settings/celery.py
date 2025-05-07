@@ -2,14 +2,12 @@
 Configure Celery with the following features:
 * Disable the results backend
 * Ensure that tasks will never be lost, but tasks themselves must be idempotent
-* Optimize the network connection to CloudAMQP
 
 This requires the `celery` package to be installed.
 """
 
 from resonant_settings._env import env
 
-# Assume AMQP.
 CELERY_BROKER_URL: str = env.str("DJANGO_CELERY_BROKER_URL")
 
 # Disable results backend, as this feature has too many weaknesses.
@@ -48,12 +46,12 @@ CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS = True
 # This is the default, but is necessary to suppress warnings in Celery
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
-# CloudAMQP-suggested settings
-# https://www.cloudamqp.com/docs/celery.html
+# If using Heroku Redis addon, consult the connection limits for your tier to see if it's safe
+# to raise this: https://elements.heroku.com/addons/heroku-redis
+# Keep in mind that celery workers may not be the only use of Redis in a deployment.
 CELERY_BROKER_POOL_LIMIT = 1
 CELERY_BROKER_HEARTBEAT = None
 CELERY_BROKER_CONNECTION_TIMEOUT = 30
-CELERY_EVENT_QUEUE_EXPIRES = 60
 
 # Note, CELERY_WORKER settings could be different on each running worker.
 

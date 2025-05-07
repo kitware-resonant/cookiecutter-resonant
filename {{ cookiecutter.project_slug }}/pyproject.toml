@@ -9,7 +9,7 @@ requires-python = ">=3.13"
 license = { text = "Apache 2.0" }
 classifiers = ["Private :: Do Not Upload"]
 dependencies = [
-  "celery",
+  "celery[redis]",
   "django[argon2]",
   "django-allauth",
   "django-auth-style",

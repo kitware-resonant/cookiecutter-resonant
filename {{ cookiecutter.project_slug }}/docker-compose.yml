@@ -10,13 +10,12 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
-  rabbitmq:
-    image: rabbitmq:management-alpine
+  redis:
+    image: redis:alpine
     ports:
-      - 5672:5672
-      - 15672:15672
+      - 6379:6379
     volumes:
-      - rabbitmq:/var/lib/rabbitmq
+      - redis:/data
 
   minio:
     image: minio/minio:latest
@@ -35,4 +34,4 @@ services:
 volumes:
   postgres:
   minio:
-  rabbitmq:
+  redis:
