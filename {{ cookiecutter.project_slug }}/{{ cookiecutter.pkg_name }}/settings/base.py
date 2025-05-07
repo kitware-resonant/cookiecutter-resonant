@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # WhiteNoiseMiddleware must be directly after SecurityMiddleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    # GZipMiddleware can be after WhiteNoiseMiddleware, as WhiteNoise performs its own compression
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
