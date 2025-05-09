@@ -10,11 +10,17 @@ services:
     # Log printing is enhanced by a TTY
     tty: true
     environment:
-      UV_ENV_FILE: ./dev/.env.docker-compose
-    working_dir: /opt/django-project
+      PYTHONUNBUFFERED: 1
+      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
+      UV_CACHE_DIR: /home/vscode/uv/cache
+      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
+      # The uv cache and environment are on different volumes, so hardlinks won't work
+      UV_LINK_MODE: copy
+    working_dir: /home/vscode/{{ project_slug }}
+    env_file: ./dev/.env.docker-compose
     volumes:
-      - .:/opt/django-project
-      - uv_cache:/var/cache/uv
+      - .:/home/vscode/{{ project_slug }}
+      - uv_cache:/home/vscode/uv
     ports:
       - 8000:8000
     depends_on:
@@ -37,14 +43,20 @@ services:
       "--loglevel", "INFO",
       "--without-heartbeat"
     ]
-    # Docker Compose does not set the TTY width, which causes Celery errors
+    # uv progress doesn't display properly with a Docker TTY
     tty: false
     environment:
-      UV_ENV_FILE: ./dev/.env.docker-compose
-    working_dir: /opt/django-project
+      PYTHONUNBUFFERED: 1
+      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
+      UV_CACHE_DIR: /home/vscode/uv/cache
+      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
+      # The uv cache and environment are on different volumes, so hardlinks won't work
+      UV_LINK_MODE: copy
+    working_dir: /home/vscode/{{ project_slug }}
+    env_file: ./dev/.env.docker-compose
     volumes:
-      - .:/opt/django-project
-      - uv_cache:/var/cache/uv
+      - .:/home/vscode/{{ project_slug }}
+      - uv_cache:/home/vscode/uv
     depends_on:
       postgres:
         condition: service_healthy
