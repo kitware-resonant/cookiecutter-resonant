@@ -1,6 +1,19 @@
 # {{ cookiecutter.project_name }}
 
-## Develop with Docker (recommended quickstart)
+## Develop with VSCode Dev Containers (recommended quickstart)
+
+### Initial Setup
+1. Follow the steps for [setting up Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers#_installation) if necessary.
+1. From VSCode, use `Ctrl-Shift-p` and run the command `Dev Containers: Reopen in Container`.
+1. From the VSCode built-in terminal, run `uv run ./manage.py migrate`.
+1. From the VSCode built-in terminal, run `uv run ./manage.py createsuperuser`.
+
+### Run Application
+1. Run `serve` from the VSCode built-in-terminal.
+1. Access the site, starting at http://localhost:8000/admin/
+1. When finished, use `Ctrl+C`
+
+## Develop with Docker
 This is the simplest configuration for developers to start with.
 
 ### Initial Setup

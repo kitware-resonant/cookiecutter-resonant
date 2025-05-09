@@ -1,6 +1,8 @@
 services:
   django:
-    image: ghcr.io/astral-sh/uv:debian
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: [
       "uv", "run",
       "./manage.py",
@@ -10,16 +12,16 @@ services:
     tty: false
     environment:
       PYTHONUNBUFFERED: 1
-      UV_PROJECT_ENVIRONMENT: /var/lib/venv
-      UV_CACHE_DIR: /var/cache/uv/cache
-      UV_PYTHON_INSTALL_DIR: /var/cache/uv/bin
+      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
+      UV_CACHE_DIR: /home/vscode/uv/cache
+      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
       # The uv cache and environment are on different volumes, so hardlinks won't work
       UV_LINK_MODE: copy
     env_file: ./dev/.env.docker-compose
-    working_dir: /opt/django-project
+    working_dir: /home/vscode/django-project
     volumes:
-      - .:/opt/django-project
-      - uv_cache:/var/cache/uv
+      - .:/home/vscode/django-project
+      - uv_cache:/home/vscode/uv
     ports:
       - 8000:8000
     depends_on:
@@ -28,29 +30,32 @@ services:
       - minio
 
   celery:
-    image: ghcr.io/astral-sh/uv:debian
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: [
       "uv",
       "run",
       "celery",
-      "--app", "{{ cookiecutter.pkg_name }}.celery",
+      "--app", "{{ cookiecutter.project_slug }}.celery",
       "worker",
       "--loglevel", "INFO",
       "--without-heartbeat"
     ]
-    # Docker Compose does not set the TTY width, which causes Celery errors
+    # uv progress doesn't display properly with a Docker TTY
     tty: false
     environment:
       PYTHONUNBUFFERED: 1
-      UV_PROJECT_ENVIRONMENT: /var/lib/venv
-      UV_CACHE_DIR: /var/cache/uv/cache
-      UV_PYTHON_INSTALL_DIR: /var/cache/uv/bin
+      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
+      UV_CACHE_DIR: /home/vscode/uv/cache
+      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
+      # The uv cache and environment are on different volumes, so hardlinks won't work
       UV_LINK_MODE: copy
     env_file: ./dev/.env.docker-compose
-    working_dir: /opt/django-project
+    working_dir: /home/vscode/django-project
     volumes:
-      - .:/opt/django-project
-      - uv_cache:/var/cache/uv
+      - .:/home/vscode/django-project
+      - uv_cache:/home/vscode/uv
     depends_on:
       - postgres
       - rabbitmq
