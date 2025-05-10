@@ -15,8 +15,12 @@ When Allauth is configured to use a User's `email` as the `username`, override t
 management command to only prompt for an email address.
 """
 
+username_required: bool | None = allauth_settings.SIGNUP_FIELDS.get("username", {}).get(
+    "required", None
+)
+
 # If using email as username
-if not allauth_settings.USERNAME_REQUIRED:
+if not username_required:
     # Expose the modified command
     Command: type[BaseCommand] = allauth_support_createsuperuser.Command
     user_model: type[AbstractUser] = allauth_support_createsuperuser.EmailAsUsernameProxyUser
