@@ -21,6 +21,7 @@ classifiers = [
   "Environment :: Web Environment",
   "Framework :: Django :: 5",
   "Framework :: Django :: 5.1",
+  "Framework :: Django :: 5.2",
   "Framework :: Django",
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
