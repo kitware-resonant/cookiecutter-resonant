@@ -79,7 +79,9 @@ jobs:
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
           # Ensure that the local django-resonant-settings (instead of the one on PyPI) is
           # installed for environments that install the project
-          TOX_OVERRIDE: >
-            testenv:test.deps+=${{ github.workspace }}/django-resonant-settings;
-            testenv:check-migrations.deps+=${{ github.workspace }}/django-resonant-settings
+          TOX_OVERRIDE: "\
+            testenv:type.deps+=${{ github.workspace }}/django-resonant-settings[allauth];\
+            testenv:test.deps+=${{ github.workspace }}/django-resonant-settings[allauth];\
+            testenv:check-migrations.deps+=${{ github.workspace }}/django-resonant-settings[allauth]\
+            "
         working-directory: resonant
