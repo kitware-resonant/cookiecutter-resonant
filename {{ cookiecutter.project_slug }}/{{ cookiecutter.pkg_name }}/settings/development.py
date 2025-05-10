@@ -17,7 +17,7 @@ staticfiles_index = INSTALLED_APPS.index('django.contrib.staticfiles')
 INSTALLED_APPS.insert(staticfiles_index, 'whitenoise.runserver_nostatic')
 
 # Include Debug Toolbar middleware as early as possible in the list.
-# However, it must come after any other middleware that encodes the response’s content,
+# However, it must come after any other middleware that encodes the response's content,
 # such as GZipMiddleware.
 MIDDLEWARE.insert(
     MIDDLEWARE.index('django.middleware.gzip.GZipMiddleware') + 1,
