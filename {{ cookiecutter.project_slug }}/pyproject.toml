@@ -39,7 +39,6 @@ dev = [
   "django-debug-toolbar",
   "django-minio-storage",
   "django-s3-file-field[minio]",
-  "iptools",
   "ipython",
   "tox",
   "werkzeug",

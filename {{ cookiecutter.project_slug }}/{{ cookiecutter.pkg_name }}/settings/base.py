@@ -7,6 +7,7 @@ from environ import Env
 from resonant_settings.allauth import *
 from resonant_settings.celery import *
 from resonant_settings.django import *
+from resonant_settings.django_extensions import *
 from resonant_settings.logging import *
 from resonant_settings.oauth_toolkit import *
 from resonant_settings.rest_framework import *
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    'django_extensions',
     'django_filters',
     'drf_yasg',
     'oauth2_provider',
