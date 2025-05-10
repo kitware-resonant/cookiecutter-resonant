@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import timedelta
 from pathlib import Path
 
+import django_stubs_ext
 from environ import Env
 from resonant_settings.allauth import *
 from resonant_settings.celery import *
@@ -10,6 +11,8 @@ from resonant_settings.django import *
 from resonant_settings.logging import *
 from resonant_settings.oauth_toolkit import *
 from resonant_settings.rest_framework import *
+
+django_stubs_ext.monkeypatch()
 
 env = Env()
 
