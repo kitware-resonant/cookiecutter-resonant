@@ -11,7 +11,7 @@
     "workspaceFolder": "/home/vscode/django-project",
     "features": {
         "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
-        "ghcr.io/meaningful-ooo/devcontainer-features/fish:2": {},
+        "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
         // TODO does this also give the extension? :-/
         //"ghcr.io/devcontainers/features/aws-cli:1": {},
         "ghcr.io/devcontainers-extra/features/heroku-cli:1": {},
