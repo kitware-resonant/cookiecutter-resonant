@@ -10,6 +10,9 @@
     "overrideCommand": true,
     "workspaceFolder": "/home/vscode/django-project",
     "features": {
+        "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {
+            "version": 17
+        },
         "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
         "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
         // TODO does this also give the extension? :-/
