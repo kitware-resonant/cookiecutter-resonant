@@ -91,3 +91,8 @@ jobs:
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
         working-directory: resonant
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: uvx tox
+          subFolder: resonant
