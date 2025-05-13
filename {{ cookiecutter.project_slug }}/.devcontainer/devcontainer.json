@@ -15,8 +15,6 @@
         // TODO does this also give the extension? :-/
         //"ghcr.io/devcontainers/features/aws-cli:1": {},
         "ghcr.io/devcontainers-extra/features/heroku-cli:1": {},
-        // TODO asks for fingerprint confirmation maybe?
-        "ghcr.io/devcontainers/features/git-lfs:1": {},
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
     "customizations": {
