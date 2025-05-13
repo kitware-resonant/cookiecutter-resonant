@@ -22,15 +22,15 @@
             "extensions": [
                 "matangover.mypy",
                 "ms-python.debugpy",
+                "ms-python.flake8",
                 "ms-python.python",
                 "ms-python.vscode-pylance"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/home/vscode/uv-env/bin/python",
                 "python.testing.pytestEnabled": true,
-                // TODO: figure out coverage
-                "testing.coverageToolbarEnabled": true,
-                "python.analysis.autoImportCompletions": true
+                "python.analysis.autoImportCompletions": true,
+                "flake8.importStrategy": "fromEnvironment"
             }
         }
     },
