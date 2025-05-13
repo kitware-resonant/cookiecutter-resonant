@@ -5,6 +5,10 @@ services:
     environment:
       POSTGRES_DB: django
       POSTGRES_PASSWORD: postgres
+      # Due to the use of musl libc in the alpine image, we need to set collation here with ICU.
+      # This issue appears on ARM CPUs, and not on x86.
+      # See https://github.com/docker-library/postgres/issues/1004#issuecomment-1280559846
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=en_US"
     ports:
       - 5432:5432
     volumes:
