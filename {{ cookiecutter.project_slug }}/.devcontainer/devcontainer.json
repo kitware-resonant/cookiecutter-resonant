@@ -20,8 +20,9 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
+                "matangover.mypy",
                 "ms-python.debugpy",
+                "ms-python.python",
                 "ms-python.vscode-pylance"
             ],
             "settings": {
