@@ -74,3 +74,8 @@ jobs:
             testenv:test.deps+=${{ github.workspace }}/django-resonant-settings;
             testenv:check-migrations.deps+=${{ github.workspace }}/django-resonant-settings
         working-directory: resonant
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: uvx tox
+          subFolder: resonant
