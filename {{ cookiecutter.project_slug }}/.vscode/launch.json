@@ -13,7 +13,7 @@
       "justMyCode": false
     },
     {
-      "name": "Python: Django original",
+      "name": "Python: Django Server",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
