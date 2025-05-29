@@ -1,3 +1,5 @@
+celerybeat-schedule*
+
 # Created by https://www.toptal.com/developers/gitignore/api/django,terraform
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,terraform
 
@@ -123,7 +125,6 @@ ipython_config.py
 __pypackages__/
 
 # Celery stuff
-celerybeat-schedule
 celerybeat.pid
 
 # SageMath parsed files
