@@ -41,6 +41,9 @@ dynamic = ["version"]
 allauth = [
   "django-allauth",
 ]
+oauth-toolkit = [
+  "django-oauth-toolkit",
+]
 
 [project.urls]
 Repository = "https://github.com/kitware-resonant/cookiecutter-resonant"

@@ -20,7 +20,7 @@ dependencies = [
   "django-filter",
   "django-ninja",
   "django-oauth-toolkit",
-  "django-resonant-settings[allauth]",
+  "django-resonant-settings[allauth,oauth-toolkit]",
   "django-resonant-utils",
   "django-stubs-ext",
   "psycopg[binary]",
