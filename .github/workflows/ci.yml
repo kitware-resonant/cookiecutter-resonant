@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: read
 jobs:
   test-resonant-settings:
     runs-on: ubuntu-latest
