@@ -65,6 +65,7 @@ type = [
   "celery-types",
   "django-stubs[compatible-mypy]",
   "djangorestframework-stubs",
+  "types-factory-boy",
 ]
 test = [
   "factory-boy",
