@@ -39,10 +39,14 @@ jobs:
         env:
           POSTGRES_DB: django
           POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd "pg_isready"
         ports:
           - 5432:5432
       rabbitmq:
         image: rabbitmq:management-alpine
+        options: >-
+          --health-cmd "rabbitmq-diagnostics ping"
         ports:
           - 5672:5672
       minio:
@@ -51,6 +55,8 @@ jobs:
         env:
           MINIO_ROOT_USER: minioAccessKey
           MINIO_ROOT_PASSWORD: minioSecretKey
+        options: >-
+          --health-cmd "mc ready local"
         ports:
           - 9000:9000
     steps:
