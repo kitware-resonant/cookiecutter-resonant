@@ -5,6 +5,8 @@ services:
     environment:
       POSTGRES_DB: django
       POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD", "pg_isready"]
     ports:
       - 5432:5432
     volumes:
@@ -12,6 +14,8 @@ services:
 
   rabbitmq:
     image: rabbitmq:management-alpine
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
     ports:
       - 5672:5672
       - 15672:15672
@@ -26,6 +30,8 @@ services:
     environment:
       MINIO_ROOT_USER: minioAccessKey
       MINIO_ROOT_PASSWORD: minioSecretKey
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
     ports:
       - 9000:9000
       - 9001:9001

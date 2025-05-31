@@ -12,9 +12,12 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - postgres
-      - rabbitmq
-      - minio
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
 
   celery:
     build:
@@ -33,6 +36,9 @@ services:
     volumes:
       - .:/opt/django-project
     depends_on:
-      - postgres
-      - rabbitmq
-      - minio
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
