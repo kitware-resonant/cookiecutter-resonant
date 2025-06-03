@@ -55,7 +55,3 @@ OAUTH2_PROVIDER['REQUEST_APPROVAL_PROMPT'] = 'force'
 SHELL_PLUS_IMPORTS = [
     'from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }} import tasks',
 ]
-
-# Expose task_always_eager configurability via the environment for debugging purposes.
-CELERY_TASK_ALWAYS_EAGER = env.bool('DJANGO_CELERY_TASK_ALWAYS_EAGER', default=False)
-CELERY_TASK_EAGER_PROPAGATES = CELERY_TASK_ALWAYS_EAGER
