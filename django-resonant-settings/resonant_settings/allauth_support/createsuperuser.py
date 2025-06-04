@@ -25,9 +25,7 @@ class Command(createsuperuser.Command):
         with temporarily_change_attributes(self.username_field, _unique=True):
             # Normalize (as it would be done before saving) for better duplicate detection
             username = self.UserModel.normalize_username(username)
-            return super()._validate_username(  # type: ignore[misc]
-                username, verbose_field_name, database
-            )
+            return super()._validate_username(username, verbose_field_name, database)
 
 
 class EmailAsUsernameProxyUserManager(UserManager):
