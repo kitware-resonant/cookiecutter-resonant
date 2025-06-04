@@ -71,7 +71,11 @@ combine_as_imports = true
 files = [
   "resonant_settings",
 ]
+check_untyped_defs = true
 show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
 
 [[tool.mypy.overrides]]
 module = [
