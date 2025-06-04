@@ -99,8 +99,12 @@ combine_as_imports = true
 files = [
   "{{ cookiecutter.pkg_name }}",
 ]
-show_error_codes = true
+check_untyped_defs = true
 ignore_missing_imports = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
 plugins = [
     "mypy_django_plugin.main",
 ]
