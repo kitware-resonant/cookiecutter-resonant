@@ -10,7 +10,6 @@ from resonant_settings.celery import *
 from resonant_settings.django import *
 from resonant_settings.django_extensions import *
 from resonant_settings.logging import *
-from resonant_settings.oauth_toolkit import *
 
 django_stubs_ext.monkeypatch()
 
@@ -29,6 +28,7 @@ INSTALLED_APPS = [
     # Everything else
     'allauth',
     'allauth.account',
+    'allauth.idp.oidc',
     'allauth.socialaccount',
     'corsheaders',
     'django.contrib.admin',
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_filters',
-    'oauth2_provider',
     'resonant_utils',
     's3_file_field',
 ]

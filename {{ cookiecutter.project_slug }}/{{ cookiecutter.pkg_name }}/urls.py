@@ -17,7 +17,7 @@ api.add_router('/images/', image_router)
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
-    path('oauth/', include('oauth2_provider.urls')),
+    path('oauth/', include('allauth.idp.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/s3-upload/', include('s3_file_field.urls')),
     path('api/v1/', api.urls),
