@@ -16,13 +16,17 @@ jobs:
           POSTGRES_DB: django
           POSTGRES_PASSWORD: postgres
         options: >-
-          --health-cmd "pg_isready"
+          --health-cmd "pg_isready --username postgres"
+          --health-start-period 30s
+          --health-start-interval 2s
         ports:
           - 5432:5432
       rabbitmq:
         image: rabbitmq:management-alpine
         options: >-
           --health-cmd "rabbitmq-diagnostics ping"
+          --health-start-period 30s
+          --health-start-interval 2s
         ports:
           - 5672:5672
       minio:
@@ -33,6 +37,9 @@ jobs:
           MINIO_ROOT_PASSWORD: minioSecretKey
         options: >-
           --health-cmd "mc ready local"
+          --health-timeout 1s
+          --health-start-period 30s
+          --health-start-interval 2s
         ports:
           - 9000:9000
     steps:
