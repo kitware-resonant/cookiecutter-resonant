@@ -37,7 +37,7 @@ but allows developers to run Python code on their native system.
 1.  Ensure `docker compose -f ./docker-compose.yml up -d` is still active
 2. Run:
    1. `source ./dev/export-env.sh`
-   2. `./manage.py runserver`
+   2. `./manage.py runserver_plus`
 3. Run in a separate terminal:
    1. `source ./dev/export-env.sh`
    2. `celery --app {{ cookiecutter.pkg_name }}.celery worker --loglevel INFO --without-heartbeat`
