@@ -42,6 +42,7 @@ dev = [
   "django-s3-file-field[minio]",
   "ipython",
   "tox",
+  "watchdog",
   "werkzeug",
 ]
 
