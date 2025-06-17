@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 from allauth.account.models import EmailAddress
 from django.contrib.auth.models import AbstractUser
@@ -10,8 +11,8 @@ def verify_email_address_on_user_post_save(
     sender: type[AbstractUser],
     instance: AbstractUser,
     created: bool,
-    **kwargs,
-):
+    **kwargs: Any,
+) -> None:
     """Automatically verify email addresses of newly created superusers."""
     # These should always be true, but it's a final sanity check
     if created and instance.is_superuser:
