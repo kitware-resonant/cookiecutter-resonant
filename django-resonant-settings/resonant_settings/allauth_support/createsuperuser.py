@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import ClassVar
+from typing import Any, ClassVar
 
 from django.contrib.auth.management.commands import createsuperuser
 from django.contrib.auth.models import User, UserManager
@@ -9,7 +9,7 @@ from resonant_settings.allauth_support.utils import temporarily_change_attribute
 
 
 class Command(createsuperuser.Command):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.UserModel = EmailAsUsernameProxyUser
         self.username_field = self.UserModel._meta.get_field(self.UserModel.USERNAME_FIELD)
@@ -37,7 +37,7 @@ class EmailAsUsernameProxyUserManager(UserManager):
         username: str | None = None,
         email: str | None = None,
         password: str | None = None,
-        **extra_fields,
+        **extra_fields: Any,
     ) -> EmailAsUsernameProxyUser:
         # Practically, email will always be provided
         assert email
