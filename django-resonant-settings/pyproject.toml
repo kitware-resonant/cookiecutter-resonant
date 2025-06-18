@@ -37,14 +37,36 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.urls]
+Repository = "https://github.com/kitware-resonant/cookiecutter-resonant"
+"Bug Reports" = "https://github.com/kitware-resonant/cookiecutter-resonant/issues"
+
 [project.optional-dependencies]
 allauth = [
   "django-allauth",
 ]
 
-[project.urls]
-Repository = "https://github.com/kitware-resonant/cookiecutter-resonant"
-"Bug Reports" = "https://github.com/kitware-resonant/cookiecutter-resonant/issues"
+[dependency-groups]
+dev = [
+  "tox",
+  "tox-uv",
+]
+lint = [
+  "flake8",
+  "flake8-black",
+  "flake8-bugbear",
+  "flake8-docstrings",
+  "flake8-isort",
+  "pep8-naming",
+]
+format = [
+  "black",
+  "isort",
+]
+type = [
+  "mypy",
+  "django-stubs[compatible-mypy]",
+]
 
 [tool.hatch.build]
 packages = [
