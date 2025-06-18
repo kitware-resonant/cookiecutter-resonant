@@ -9,6 +9,7 @@
       "args": [
         "${fileBasenameNoExtension}"
       ],
+      "envFile": "${workspaceFolder}/dev/.env.docker-compose",
       "django": true,
       "justMyCode": false
     },
@@ -22,6 +23,7 @@
         "--print-sql",
         "0.0.0.0:8000"
       ],
+      "envFile": "${workspaceFolder}/dev/.env.docker-compose",
       "django": true,
       "justMyCode": false
     },
@@ -38,6 +40,7 @@
       "env": {
         "DJANGO_CELERY_TASK_ALWAYS_EAGER": "true",
       },
+      "envFile": "${workspaceFolder}/dev/.env.docker-compose",
       "django": true,
       "justMyCode": false
     },
@@ -49,6 +52,7 @@
       "purpose": [
         "debug-test"
       ],
+      "envFile": "${workspaceFolder}/dev/.env.docker-compose",
       "console": "integratedTerminal",
       "justMyCode": false
     }
