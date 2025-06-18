@@ -18,17 +18,14 @@ jobs:
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Python packages
-        run: |
-          pip install --upgrade pip
-          pip install tox
+          working-directory: django-resonant-settings
       - name: Run tests
         run: |
-          tox
+          uv run tox
         working-directory: django-resonant-settings
   test-cookecutter:
     runs-on: ubuntu-latest
@@ -74,29 +71,23 @@ jobs:
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version-file: "{{ cookiecutter.project_slug }}/.python-version"
-      - name: Install Python packages
-        run: |
-          pip install --upgrade pip
-          pip install cookiecutter tox
+          # There's no lockfile at this point
+          enable-cache: false
       - name: Eject from cookiecutter
         run: |
-          cookiecutter --no-input . project_name=Resonant ${{ matrix.cookiecutter-variables }}
+          uvx cookiecutter --no-input . project_name=Resonant ${{ matrix.cookiecutter-variables }}
+      - name: Add local django-resonant-settings
+        run: |
+          uv add ../django-resonant-settings[allauth]
+        working-directory: resonant
       - name: Run tox tests from new project
         run: |
-          tox
+          uv run tox
         env:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
-          # Ensure that the local django-resonant-settings (instead of the one on PyPI) is
-          # installed for environments that install the project
-          TOX_OVERRIDE: "\
-            testenv:type.deps+=${{ github.workspace }}/django-resonant-settings[allauth];\
-            testenv:test.deps+=${{ github.workspace }}/django-resonant-settings[allauth];\
-            testenv:check-migrations.deps+=${{ github.workspace }}/django-resonant-settings[allauth]\
-            "
         working-directory: resonant

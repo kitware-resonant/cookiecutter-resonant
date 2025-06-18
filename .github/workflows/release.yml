@@ -15,19 +15,11 @@ jobs:
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
-      - name: Install Python build
-        run: |
-          pip install --upgrade pip
-          pip install build
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
       - name: Build the Python distribution
         run: |
-          python -m build
-        working-directory: django-resonant-settings
+          uv build
       - name: Publish the Python distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: django-resonant-settings/dist
+        run: |
+          uv publish --trusted-publishing=always
