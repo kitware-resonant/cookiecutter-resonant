@@ -51,6 +51,7 @@
             "onAutoForward": "ignore"
         }
     },
+    "postCreateCommand": "uv sync --all-groups",
     "updateContentCommand": [
         "uv",
         "sync"
