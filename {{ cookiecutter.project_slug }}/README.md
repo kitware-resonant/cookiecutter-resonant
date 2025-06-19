@@ -30,13 +30,13 @@ but allows developers to run Python code on their native system.
 ### Initial Setup
 1. Run `docker compose -f ./docker-compose.yml up -d`
 2. [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
-3. Run `export UV_ENV_FILE=./dev/.env.docker-compose-native`
+3. Run `source ./dev/export-env.sh`
 4. Run `./manage.py migrate`
 5. Run `./manage.py createsuperuser` and follow the prompts to create your own user
 
 ### Run Application
 1. Ensure `docker compose -f ./docker-compose.yml up -d` is still active
-2. Run `export UV_ENV_FILE=./dev/.env.docker-compose-native`
+2. Run `source ./dev/export-env.sh`
 3. Run: `./manage.py runserver_plus`
 4. Run in a separate terminal: `uv run celery --app {{ cookiecutter.pkg_name }}.celery worker --loglevel INFO --without-heartbeat`
 5. When finished, run `docker compose stop`

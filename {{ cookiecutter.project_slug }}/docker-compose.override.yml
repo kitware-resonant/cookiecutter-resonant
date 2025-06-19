@@ -9,8 +9,7 @@ services:
     ]
     # Log printing is enhanced by a TTY
     tty: true
-    environment:
-      UV_ENV_FILE: ./dev/.env.docker-compose
+    env_file: ./dev/.env.docker-compose
     working_dir: /opt/django-project
     volumes:
       - .:/opt/django-project
@@ -39,8 +38,7 @@ services:
     ]
     # Docker Compose does not set the TTY width, which causes Celery errors
     tty: false
-    environment:
-      UV_ENV_FILE: ./dev/.env.docker-compose
+    env_file: ./dev/.env.docker-compose
     working_dir: /opt/django-project
     volumes:
       - .:/opt/django-project
