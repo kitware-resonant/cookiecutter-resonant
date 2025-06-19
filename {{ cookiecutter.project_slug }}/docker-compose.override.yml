@@ -17,6 +17,8 @@ services:
       UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
       # The uv cache and environment are on different volumes, so hardlinks won't work
       UV_LINK_MODE: copy
+    env_file:
+      - ./dev/.env.docker-compose
     working_dir: /home/vscode/django-project
     volumes:
       - .:/home/vscode/django-project
