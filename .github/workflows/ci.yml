@@ -34,7 +34,9 @@ jobs:
         cookiecutter-variables: ["include_example_code=yes", "include_example_code=no"]
     services:
       postgres:
-        image: postgres:alpine
+        # Postgres depends on the OS locale for collation.
+        # Alpine provides locales differently, so for better dev-prod parity, don't use it.
+        image: postgres:latest
         env:
           POSTGRES_DB: django
           POSTGRES_PASSWORD: postgres
