@@ -130,8 +130,9 @@ addopts = [
   "--strict-markers",
   "--showlocals",
   "--verbose",
+  # Specifying as "--ds" will override any value in the environment
+  "--ds={{ cookiecutter.pkg_name }}.settings.testing",
 ]
 filterwarnings = [
   "error",
 ]
-DJANGO_SETTINGS_MODULE = "{{ cookiecutter.pkg_name }}.settings.testing"
