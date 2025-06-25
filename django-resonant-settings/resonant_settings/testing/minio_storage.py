@@ -22,5 +22,7 @@ MINIO_STORAGE_MEDIA_BUCKET_NAME = minio_url.path.lstrip("/")
 MINIO_STORAGE_MEDIA_URL: str | None = env.str("DJANGO_MINIO_STORAGE_MEDIA_URL", default=None)
 
 MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
-MINIO_STORAGE_AUTO_CREATE_MEDIA_POLICY = "READ_WRITE"
+# Make the bucket private to the public
+MINIO_STORAGE_AUTO_CREATE_MEDIA_POLICY = "NONE"
+# Issue signed URLs to provide any read access
 MINIO_STORAGE_MEDIA_USE_PRESIGNED = True
