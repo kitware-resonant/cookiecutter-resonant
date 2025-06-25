@@ -1,6 +1,6 @@
 
 # Additional Celery Beat files
-celerybeat-schedule.db
+celerybeat-schedule.*
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,terraform
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,terraform
