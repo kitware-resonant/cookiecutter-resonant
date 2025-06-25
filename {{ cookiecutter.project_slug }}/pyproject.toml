@@ -36,8 +36,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Runtime dependendencies, only needed with "development" settings
 development = [
+  # Runtime dependendencies, only needed with "development" settings
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
@@ -124,7 +124,7 @@ django_settings_module = "{{ cookiecutter.pkg_name }}.settings.testing"
 [tool.pytest.ini_options]
 addopts = [
   # Test utilies should be imported absolutely from the pythonpath,
-  # so use the Pytest-reccomended "importlib" mode
+  # so use the Pytest-recommended "importlib" mode
   "--import-mode=importlib",
   "--strict-config",
   "--strict-markers",
