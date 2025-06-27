@@ -11,6 +11,7 @@ from .base import *
 # Import these afterwards, to override
 from resonant_settings.production.email import *  # isort: skip
 from resonant_settings.production.https import *  # isort: skip
+from resonant_settings.production.s3_storage import *  # isort: skip
 
 WSGI_APPLICATION = '{{ cookiecutter.pkg_name }}.wsgi.application'
 
@@ -23,7 +24,6 @@ ALLOWED_HOSTS: list[str] = env.list('DJANGO_ALLOWED_HOSTS', cast=str)
 STORAGES['default'] = {
     'BACKEND': 'storages.backends.s3.S3Storage',
 }
-from resonant_settings.production.s3_storage import *  # isort: skip
 
 # sentry_sdk is able to directly use environment variables like 'SENTRY_DSN', but prefix them
 # with 'DJANGO_' to avoid avoiding conflicts with other Sentry-using services.
