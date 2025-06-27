@@ -7,6 +7,8 @@ Configure Celery with the following features:
 This requires the `celery` package to be installed.
 """
 
+import celery.app.trace  # type: ignore[import-not-found]
+
 from resonant_settings._env import env
 
 # Assume AMQP.
@@ -62,3 +64,8 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 # Accept the default of the number of CPU cores.
 # Workers running memory-intensive tasks may need to decrease this.
 CELERY_WORKER_CONCURRENCY: int | None = None
+
+# Make the task received log message include the task's arguments.
+celery.app.trace.LOG_RECEIVED = """\
+Task %(name)s[%(id)s] received: (%(args)s, %(kwargs)s)\
+"""

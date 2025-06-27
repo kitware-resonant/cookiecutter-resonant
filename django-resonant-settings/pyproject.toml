@@ -45,6 +45,9 @@ Repository = "https://github.com/kitware-resonant/cookiecutter-resonant"
 allauth = [
   "django-allauth",
 ]
+celery = [
+  "celery",
+]
 
 [dependency-groups]
 dev = [
@@ -65,6 +68,7 @@ format = [
 ]
 type = [
   "mypy",
+  "celery-types",
   "django-stubs[compatible-mypy]",
 ]
 
