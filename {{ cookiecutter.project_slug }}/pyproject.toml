@@ -20,7 +20,7 @@ dependencies = [
   "django-extensions",
   "django-filter",
   "django-oauth-toolkit",
-  "django-resonant-settings[allauth]",
+  "django-resonant-settings[allauth,celery]",
   "django-resonant-utils",
   "django-stubs-ext",
   "djangorestframework",
