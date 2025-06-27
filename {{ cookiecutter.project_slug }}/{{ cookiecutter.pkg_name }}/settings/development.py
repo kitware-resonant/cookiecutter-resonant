@@ -5,6 +5,7 @@ from .base import *
 # Import these afterwards, to override
 from resonant_settings.development.celery import *  # isort: skip
 from resonant_settings.development.debug_toolbar import *  # isort: skip
+from resonant_settings.testing.minio_storage import *  # isort: skip
 
 INSTALLED_APPS += [
     'debug_toolbar',
@@ -44,7 +45,6 @@ CORS_ALLOWED_ORIGIN_REGEXES = env.list(
 STORAGES['default'] = {
     'BACKEND': 'minio_storage.storage.MinioMediaStorage',
 }
-from resonant_settings.testing.minio_storage import *  # isort: skip
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
