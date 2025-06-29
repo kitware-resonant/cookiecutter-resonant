@@ -15,8 +15,7 @@ dependencies = [
   "django[argon2]",
   # TODO: unpin allauth and remove explicit dependency on oauthlib.
   # This is a temporary measure until allauth OIDC is released.
-  "django-allauth[idp-oidc] @ git+https://github.com/pennersr/django-allauth.git@b74b04a8261486db8a3823c26c188820aed599aa",
-  "oauthlib @ git+https://github.com/oauthlib/oauthlib.git@2e203f17572d7a4a49de738b1d6c143fab919892",
+  "django-allauth[idp-oidc]>=65.10.0",
   "django-auth-style",
   "django-cors-headers",
   "django-environ",
