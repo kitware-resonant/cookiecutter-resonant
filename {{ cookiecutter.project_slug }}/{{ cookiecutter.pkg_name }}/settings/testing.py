@@ -1,5 +1,6 @@
 from .base import *
 
+# Import these afterwards, to override
 from resonant_settings.testing.minio_storage import *  # isort: skip
 
 SECRET_KEY = 'insecure-secret'
