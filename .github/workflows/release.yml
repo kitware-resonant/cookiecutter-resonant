@@ -20,6 +20,8 @@ jobs:
       - name: Build the Python distribution
         run: |
           uv build
+        working-directory: django-resonant-settings
       - name: Publish the Python distributions to PyPI
         run: |
           uv publish --trusted-publishing=always
+        working-directory: django-resonant-settings
