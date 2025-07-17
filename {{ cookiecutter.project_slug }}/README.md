@@ -10,7 +10,7 @@ This is the simplest configuration for developers to start with.
 
 ### Run Application
 1. Run `docker compose up`
-2. Access the site, starting at http://localhost:8000/admin/
+2. Access the site, starting at <http://localhost:8000/admin/>
 3. When finished, use `Ctrl+C`
 
 ### Maintenance
