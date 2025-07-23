@@ -1,3 +1,4 @@
+from allauth.idp.oidc.contrib.ninja.security import TokenAuth
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from ninja import FilterSchema, ModelSchema, Query
@@ -40,7 +41,11 @@ def download_image(request, pk: int):
     return HttpResponseRedirect(image.blob.url)
 
 
-@router.post('/compute/{int:pk}/')
+@router.post(
+    '/compute/{int:pk}/',
+    # Requires authentication to compute image checksums
+    auth=TokenAuth(scope=['openid']),
+)
 def compute_image(request, pk: int):
     # Ensure that the image exists, so a non-existent pk isn't dispatched
     image = get_object_or_404(Image, pk=pk)

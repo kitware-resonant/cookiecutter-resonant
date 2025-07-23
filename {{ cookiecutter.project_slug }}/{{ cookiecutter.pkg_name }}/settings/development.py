@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django_extensions.utils import InternalIPS
 
 from .base import *
@@ -48,10 +50,11 @@ STORAGES['default'] = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-OAUTH2_PROVIDER['ALLOWED_REDIRECT_URI_SCHEMES'] = ['http', 'https']
-# In development, always present the approval dialog
-OAUTH2_PROVIDER['REQUEST_APPROVAL_PROMPT'] = 'force'
-
 SHELL_PLUS_IMPORTS = [
     'from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }} import tasks',
 ]
+
+# Set the OIDC private key for the IDP to the (insecure) development key.
+IDP_OIDC_PRIVATE_KEY = (
+    Path(__file__).parents[2] / 'dev' / 'private_key_development.pem'
+).read_text()

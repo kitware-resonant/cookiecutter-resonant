@@ -13,14 +13,15 @@ dependencies = [
   # Runtime dependendencies, always needed
   "celery",
   "django[argon2]",
-  "django-allauth",
+  # TODO: unpin allauth and remove explicit dependency on oauthlib.
+  # This is a temporary measure until allauth OIDC is released.
+  "django-allauth[idp-oidc]>=65.10.0",
   "django-auth-style",
   "django-cors-headers",
   "django-environ",
   "django-extensions",
   "django-filter",
   "django-ninja",
-  "django-oauth-toolkit",
   "django-resonant-settings[allauth,celery]",
   "django-resonant-utils",
   "django-stubs-ext",
@@ -88,6 +89,10 @@ test = [
 packages = [
   "{{ cookiecutter.project_slug }}",
 ]
+
+[tool.hatch.metadata]
+# TODO: remove when allauth/oauthlib are not pinned to git commit
+allow-direct-references = true
 
 [tool.black]
 line-length = 100

@@ -8,6 +8,8 @@ This requires the `django-allauth` package to be installed and requires
 `resonant_settings.allauth_support` to be added to INSTALLED_APPS.
 """
 
+from datetime import timedelta
+
 # The sites framework requires this to be set.
 # In the unlikely case where a database's pk sequence for the django_site table is not reset,
 # the default site object could have a different pk. Then this will need to be overridden
@@ -45,3 +47,12 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # This will likely become the default in the future, but enable it now
 ACCOUNT_PRESERVE_USERNAME_CASING = False
+
+# Django can persist logins for longer than this via cookies,
+# but non-refreshing clients will need to redirect to Django's auth every 24 hours.
+IDP_OIDC_ACCESS_TOKEN_EXPIRES_IN = timedelta(days=1).total_seconds()
+
+# Allow 5 minutes for a flow to exchange an auth code for a token. This is typically
+# 60 seconds but out-of-band flows may take a bit longer. A maximum of 10 minutes is
+# recommended: https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.2.
+IDP_OIDC_AUTHORIZATION_CODE_EXPIRES_IN = timedelta(minutes=5).total_seconds()
