@@ -33,3 +33,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+# Internationalization
+# https://docs.djangoproject.com/en/5.0/topics/i18n/
+USE_TZ = True
+# Internal datetimes are timezone-aware, so this only affects rendering and form input
+TIME_ZONE = "UTC"
+USE_I18N = True

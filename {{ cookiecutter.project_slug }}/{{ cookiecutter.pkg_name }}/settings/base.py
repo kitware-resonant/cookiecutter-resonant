@@ -69,9 +69,6 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
-# Internal datetimes are timezone-aware, so this only affects rendering and form input
-TIME_ZONE = 'UTC'
-
 DATABASES = {
     'default': {
         **env.db_url('DJANGO_DATABASE_URL', engine='django.db.backends.postgresql'),
