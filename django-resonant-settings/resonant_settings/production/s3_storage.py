@@ -28,4 +28,4 @@ AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 AWS_S3_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 AWS_S3_FILE_OVERWRITE = False
-AWS_QUERYSTRING_EXPIRE = timedelta(hours=6).total_seconds()
+AWS_QUERYSTRING_EXPIRE = int(timedelta(hours=6).total_seconds())
