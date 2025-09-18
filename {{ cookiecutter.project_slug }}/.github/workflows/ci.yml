@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  test-python:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -54,3 +54,22 @@ jobs:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
+  test-terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - name: Lint Terraform code
+        run: |
+          terraform fmt -recursive -check
+      - name: Validate Terraform code
+        run: |
+          terraform init -backend=false
+          terraform validate
