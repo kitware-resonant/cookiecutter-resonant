@@ -27,7 +27,7 @@ jobs:
         run: |
           uv run tox
         working-directory: django-resonant-settings
-  test-cookecutter:
+  test-cookiecutter:
     runs-on: ubuntu-latest
     strategy:
       matrix:
