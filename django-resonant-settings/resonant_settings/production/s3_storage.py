@@ -27,5 +27,9 @@ AWS_STORAGE_BUCKET_NAME: str = env.str("DJANGO_STORAGE_BUCKET_NAME")
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 AWS_S3_MAX_MEMORY_SIZE = 5 * 1024 * 1024
+
+# Although overwriting existing files can be dangerous, it's the application's responsibility
+# (not the Storage layer) to handle. Setting this to `False` allows file names to be mutated in
+# the event of a collision, which can be confusing.
 AWS_S3_FILE_OVERWRITE = True
 AWS_QUERYSTRING_EXPIRE = int(timedelta(hours=6).total_seconds())
