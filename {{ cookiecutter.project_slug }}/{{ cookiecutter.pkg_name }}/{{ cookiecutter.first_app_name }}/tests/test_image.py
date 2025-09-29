@@ -1,5 +1,8 @@
+from django.test import Client
 import pytest
 from rest_framework.test import APIClient
+
+from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
 from {{ cookiecutter.pkg_name }}.{{ cookiecutter.first_app_name }}.models import Image
 
@@ -14,8 +17,7 @@ def test_image_checksum():
 
 
 @pytest.mark.django_db
-def test_image_rest_retrieve(api_client: APIClient, image: Image):
-    resp = api_client.get(f'/api/v1/images/{image.id}/')
+def test_image_rest_retrieve(client: Client, image: Image):
+    resp = client.get(f'/api/v1/images/{image.id}/')
     assert resp.status_code == 200
-    # Inspect .data to avoid parsing the response content
-    assert resp.data['name'] == image.name
+    assert resp.json()['name'] == image.name

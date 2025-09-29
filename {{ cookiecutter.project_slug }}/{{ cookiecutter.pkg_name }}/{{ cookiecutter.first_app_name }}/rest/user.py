@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers
+from ninja import ModelSchema
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSchema(ModelSchema):
     class Meta:
         model = User
         fields = [
