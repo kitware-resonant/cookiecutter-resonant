@@ -1,0 +1,35 @@
+from django.contrib.auth.models import User
+import pytest
+from rest_framework.test import APIClient
+
+{% if include_example_code -%}
+from {{ python_package_name }}.{{ core_app_name }}.models import Image
+
+from .factories import ImageFactory, UserFactory
+{%- else -%}
+from .factories import UserFactory
+{%- endif %}
+
+
+@pytest.fixture
+def api_client() -> APIClient:
+    return APIClient()
+
+
+@pytest.fixture
+def authenticated_api_client(user) -> APIClient:
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client
+
+
+{% if include_example_code -%}
+@pytest.fixture
+def image() -> Image:
+    return ImageFactory.create()
+
+
+{% endif -%}
+@pytest.fixture
+def user() -> User:
+    return UserFactory.create()

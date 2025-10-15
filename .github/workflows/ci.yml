@@ -27,11 +27,11 @@ jobs:
         run: |
           uv run tox
         working-directory: django-resonant-settings
-  test-cookiecutter:
+  test-template-eject:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cookiecutter-variables: ["include_example_code=yes", "include_example_code=no"]
+        example-code: ["include_example_code=yes", "include_example_code=no"]
     services:
       postgres:
         # Postgres depends on the OS locale for collation.
@@ -78,13 +78,13 @@ jobs:
         with:
           # There's no lockfile at this point
           enable-cache: false
-      - name: Eject from cookiecutter
+      - name: Create from template
         run: |
-          uvx cookiecutter --no-input . project_name=Resonant ${{ matrix.cookiecutter-variables }}
+          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --defaults . "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
-          uv add ../django-resonant-settings[allauth]
-        working-directory: resonant
+          uv add "${{ github.workspace }}/django-resonant-settings[allauth]"
+        working-directory: "${{ runner.temp }}/resonant"
       - name: Run tox tests from new project
         run: |
           uv run tox
@@ -92,4 +92,4 @@ jobs:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
           DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage-testing
-        working-directory: resonant
+        working-directory: "${{ runner.temp }}/resonant"

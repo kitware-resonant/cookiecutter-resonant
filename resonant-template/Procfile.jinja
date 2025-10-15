@@ -1,0 +1,3 @@
+release: python ./manage.py migrate
+web: gunicorn --bind 0.0.0.0:$PORT {{ python_package_name }}.wsgi
+worker: REMAP_SIGTERM=SIGQUIT celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat

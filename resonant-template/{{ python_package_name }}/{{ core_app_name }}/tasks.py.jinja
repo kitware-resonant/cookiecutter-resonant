@@ -1,0 +1,12 @@
+{% if not include_example_code %}# {% endif -%}from celery import shared_task
+{%- if include_example_code %}
+
+from {{ python_package_name }}.{{ core_app_name }}.models import Image
+
+
+@shared_task
+def image_compute_checksum(image_id: int):
+    image = Image.objects.get(pk=image_id)
+    image.compute_checksum()
+    image.save()
+{%- endif %}
