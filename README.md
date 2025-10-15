@@ -7,7 +7,6 @@
 * Within `<local-path-to-new-project>`, initialize Git and connect it to your upstream repository.
 
 ## With `include_example_code`
-
 If `include_example_code` is enabled, some initial models, templates, and an associated migration
 are included, as an example of a simple project's structure and capabilities.
 
@@ -17,9 +16,12 @@ and run `./manage.py makemigrations` to create a new initial migration for your 
 Otherwise, the example models will be permanently included in the migration history.
 
 ## Without `include_example_code`
-
 If `include_example_code` is disabled, you may wish to make some small changes as your project
 grows.
 
 Once pytest tests are added, add / uncomment `envlist = test` in
 `{{ project_slug }}/tox.ini`.
+
+# Update
+To update an existing project, run:
+`uvx --with cookiecutter,jinja2_time copier update -a .copier-answers.resonant.yml -A --trust`
