@@ -1,0 +1,28 @@
+project_name:
+  placeholder: "My New Project"
+  help: A human-readable name for the project.
+project_slug:
+  default: "{{ project_name|slugify }}"
+  help: A dash-delimited project identifier.
+python_package_name:
+  default: "{{ project_slug|slugify(separator='_') }}"
+  help: An underscore-delimited Python package identifier.
+core_app_name:
+  default: "core"
+  help: |
+    A Python module name, used for the initial local Django app within this project. Keep the default, unless you know you will be creating multiple apps.
+site_domain:
+  default: "www.{{ project_slug }}.test"
+  help: The fully-qualified domain name of the target production deployment.
+include_example_code:
+  type: bool
+  help: Include (or exclude) example code for an "Image" management capability.
+
+_answers_file: .resonant.copier-answers.yml
+_subdirectory: resonant-template
+_jinja_extensions:
+    - cookiecutter.extensions.SlugifyExtension
+    - jinja2_time.TimeExtension
+_tasks:
+  - command: [ uv, lock ]
+    when: "{{ _copier_operation == 'copy' }}"
