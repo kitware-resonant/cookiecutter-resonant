@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import timedelta
 from pathlib import Path
+from typing import Any
 
 import django_stubs_ext
 from environ import Env
@@ -80,7 +81,7 @@ DATABASES = {
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STORAGES = {
+STORAGES: dict[str, dict[str, Any]] = {
     # Inject the "default" storage in particular run configurations
     'staticfiles': {
         # CompressedManifestStaticFilesStorage does not work properly with drf-
