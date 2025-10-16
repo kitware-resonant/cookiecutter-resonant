@@ -14,6 +14,9 @@ core_app_name:
 site_domain:
   default: "www.{{ project_slug }}.test"
   help: The fully-qualified domain name of the target production deployment.
+include_heroku_support:
+  type: bool
+  help: Include code for deployment with Heroku.
 include_example_code:
   type: bool
   help: Include (or exclude) example code for an "Image" management capability.
@@ -26,3 +29,7 @@ _jinja_extensions:
 _tasks:
   - command: [ uv, lock ]
     when: "{{ _copier_operation == 'copy' }}"
+  - command: [ terraform, init ]
+    # This will run on updates too, in case the required providers have changed
+    when: "{{ include_heroku_support }}"
+    working_directory: "terraform"
