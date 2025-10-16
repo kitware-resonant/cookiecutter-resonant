@@ -23,7 +23,7 @@ AWS_S3_SECRET_ACCESS_KEY: str = env.str("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME: str = env.str("DJANGO_STORAGE_BUCKET_NAME")
 
 # It's critical to use the v4 signature;
-# it isn't the upstream default only for backwards compatability reasons.
+# it isn't the upstream default only for backwards compatibility reasons.
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 AWS_S3_MAX_MEMORY_SIZE = 5 * 1024 * 1024
