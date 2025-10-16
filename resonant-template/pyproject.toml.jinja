@@ -10,7 +10,7 @@ license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 classifiers = ["Private :: Do Not Upload"]
 dependencies = [
-  # Runtime dependendencies, always needed
+  # Runtime dependencies, always needed
   "celery",
   "django[argon2]",
   "django-allauth",
@@ -37,7 +37,7 @@ dependencies = [
 
 [project.optional-dependencies]
 development = [
-  # Runtime dependendencies, only needed with "development" settings
+  # Runtime dependencies, only needed with "development" settings
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
@@ -123,7 +123,7 @@ django_settings_module = "{{ python_package_name }}.settings.testing"
 
 [tool.pytest.ini_options]
 addopts = [
-  # Test utilies should be imported absolutely from the pythonpath,
+  # Test utilities should be imported absolutely from the pythonpath,
   # so use the Pytest-recommended "importlib" mode
   "--import-mode=importlib",
   "--strict-config",
