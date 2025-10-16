@@ -18,7 +18,7 @@ include_example_code:
   type: bool
   help: Include (or exclude) example code for an "Image" management capability.
 
-_answers_file: .resonant.copier-answers.yml
+_answers_file: .copier-answers.resonant.yml
 _subdirectory: resonant-template
 _jinja_extensions:
     - cookiecutter.extensions.SlugifyExtension
@@ -26,3 +26,6 @@ _jinja_extensions:
 _tasks:
   - command: [ uv, lock ]
     when: "{{ _copier_operation == 'copy' }}"
+_migrations:
+  - command: [ uv, lock, --upgrade-package, django-resonant-settings ]
+    when: "{{ _stage == 'after' }}"
