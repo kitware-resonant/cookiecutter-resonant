@@ -4,10 +4,6 @@ from datetime import timedelta
 
 SECURE_SSL_REDIRECT = True
 
-# This needs to be set by the HTTPS terminating reverse proxy.
-# Heroku and Render automatically set this.
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
