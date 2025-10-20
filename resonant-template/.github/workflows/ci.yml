@@ -18,7 +18,6 @@ jobs:
         options: >-
           --health-cmd "pg_isready --username postgres"
           --health-start-period 30s
-          --health-start-interval 2s
         ports:
           - 5432:5432
       rabbitmq:
@@ -26,7 +25,6 @@ jobs:
         options: >-
           --health-cmd "rabbitmq-diagnostics ping"
           --health-start-period 30s
-          --health-start-interval 2s
         ports:
           - 5672:5672
       minio:
@@ -39,7 +37,6 @@ jobs:
           --health-cmd "mc ready local"
           --health-timeout 1s
           --health-start-period 30s
-          --health-start-interval 2s
         ports:
           - 9000:9000
     steps:
