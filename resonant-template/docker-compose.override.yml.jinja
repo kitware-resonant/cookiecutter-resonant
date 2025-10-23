@@ -11,6 +11,7 @@ services:
     tty: true
     environment:
       PYTHONUNBUFFERED: 1
+      TOX_WORK_DIR: /home/vscode/tox
       UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
       UV_CACHE_DIR: /home/vscode/uv/cache
       UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
@@ -47,6 +48,7 @@ services:
     tty: false
     environment:
       PYTHONUNBUFFERED: 1
+      TOX_WORK_DIR: /home/vscode/tox
       UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
       UV_CACHE_DIR: /home/vscode/uv/cache
       UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
