@@ -38,7 +38,7 @@ but allows developers to run Python code on their native system.
 1. Ensure `docker compose -f ./docker-compose.yml up -d` is still active
 2. Run `export UV_ENV_FILE=./dev/.env.docker-compose-native`
 3. Run: `./manage.py runserver_plus`
-4. Run in a separate terminal: `uv run celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat`
+4. Run in a separate terminal: `uv run celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat -B`
 5. When finished, run `docker compose stop`
 
 ## Testing
