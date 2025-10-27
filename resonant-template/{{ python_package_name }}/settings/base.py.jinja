@@ -98,6 +98,24 @@ STATIC_ROOT.mkdir(exist_ok=True)
 # for convenience serving a site on a subpath.
 STATIC_URL = 'static/'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / '{{ python_package_name }}' / '{{ core_app_name }}' / 'templates' / '{{ core_app_name }}',
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 # Make Django and Allauth redirects consistent, but both may be changed.
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
