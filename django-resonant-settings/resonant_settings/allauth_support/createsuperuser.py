@@ -2,10 +2,13 @@ from __future__ import annotations
 
 from typing import Any, ClassVar
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands import createsuperuser
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import UserManager
 
 from resonant_settings.allauth_support.utils import temporarily_change_attributes
+
+User = get_user_model()
 
 
 class Command(createsuperuser.Command):
@@ -47,7 +50,7 @@ class EmailAsUsernameProxyUserManager(UserManager):
         return user
 
 
-class EmailAsUsernameProxyUser(User):
+class EmailAsUsernameProxyUser(User):  # type: ignore
     # https://github.com/typeddjango/django-stubs/issues/2112
     class Meta(User.Meta):  # type: ignore[name-defined]
         proxy = True
