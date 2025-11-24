@@ -12,7 +12,7 @@ from typing import Any
 SESSION_COOKIE_SAMESITE = "Lax"
 CORS_ALLOW_CREDENTIALS = False
 
-REST_FRAMEWORK = {
+REST_FRAMEWORK: dict[str, Any] = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
         # Allow SessionAuthentication, as this is much more convenient for Ajax requests
