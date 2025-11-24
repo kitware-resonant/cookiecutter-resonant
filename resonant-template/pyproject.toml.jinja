@@ -21,7 +21,7 @@ dependencies = [
   "django-filter",
   "django-oauth-toolkit",
   "django-resonant-settings[allauth,celery]",
-  "django-resonant-utils",
+  "django-resonant-utils[allauth,s3_storage]",
   "django-stubs-ext",
   "djangorestframework",
   "drf-yasg",
@@ -41,6 +41,7 @@ development = [
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
+  "django-resonant-utils[minio_storage]",
   "django-s3-file-field[minio]",
   "ipython",
   "watchdog",
@@ -132,6 +133,7 @@ addopts = [
   "--verbose",
   # Specifying as "--ds" will override any value in the environment
   "--ds={{ python_package_name }}.settings.testing",
+  # TODO: coverage
 ]
 filterwarnings = [
   "error",
