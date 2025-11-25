@@ -1,3 +1,4 @@
 release: python ./manage.py migrate
-web: gunicorn --bind 0.0.0.0:$PORT {{ python_package_name }}.wsgi
+# Set graceful_timeout to shorter than the 30 second limit imposed by Heroku restarts
+web: gunicorn --bind 0.0.0.0:$PORT --graceful-timeout 25 {{ python_package_name }}.wsgi
 worker: REMAP_SIGTERM=SIGQUIT celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat
