@@ -16,3 +16,12 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 # opt-in to preload by overriding this setting. Additionally, all subdomains must have HSTS to
 # register for preloading.
 SECURE_HSTS_PRELOAD = False
+
+__all__ = [
+    "SECURE_SSL_REDIRECT",
+    "SESSION_COOKIE_SECURE",
+    "CSRF_COOKIE_SECURE",
+    "SECURE_HSTS_SECONDS",
+    "SECURE_HSTS_INCLUDE_SUBDOMAINS",
+    "SECURE_HSTS_PRELOAD",
+]

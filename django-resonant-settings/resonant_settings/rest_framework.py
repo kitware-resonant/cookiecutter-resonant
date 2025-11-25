@@ -75,3 +75,11 @@ SWAGGER_SETTINGS: dict[str, Any] = {
 }
 
 REDOC_SETTINGS: dict[str, Any] = {}
+
+__all__ = [
+    "SESSION_COOKIE_SAMESITE",
+    "CORS_ALLOW_CREDENTIALS",
+    "REST_FRAMEWORK",
+    "SWAGGER_SETTINGS",
+    "REDOC_SETTINGS",
+]

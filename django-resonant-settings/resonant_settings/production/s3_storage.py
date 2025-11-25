@@ -33,3 +33,14 @@ AWS_S3_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 # the event of a collision, which can be confusing.
 AWS_S3_FILE_OVERWRITE = True
 AWS_QUERYSTRING_EXPIRE = int(timedelta(hours=6).total_seconds())
+
+__all__ = [
+    "AWS_S3_REGION_NAME",
+    "AWS_S3_ACCESS_KEY_ID",
+    "AWS_S3_SECRET_ACCESS_KEY",
+    "AWS_STORAGE_BUCKET_NAME",
+    "AWS_S3_SIGNATURE_VERSION",
+    "AWS_S3_MAX_MEMORY_SIZE",
+    "AWS_S3_FILE_OVERWRITE",
+    "AWS_QUERYSTRING_EXPIRE",
+]
