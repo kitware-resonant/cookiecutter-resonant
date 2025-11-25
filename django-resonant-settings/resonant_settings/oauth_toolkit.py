@@ -8,8 +8,9 @@ This requires the `django-oauth-toolkit` package to be installed.
 """
 
 from datetime import timedelta
+from typing import Any
 
-OAUTH2_PROVIDER = {
+OAUTH2_PROVIDER: dict[str, Any] = {
     "ALLOWED_REDIRECT_URI_SCHEMES": ["https"],
     # Don't require users to re-approve scopes each time
     "REQUEST_APPROVAL_PROMPT": "auto",
@@ -30,3 +31,7 @@ OAUTH2_PROVIDER = {
     # every 30 days.
     "REFRESH_TOKEN_EXPIRE_SECONDS": timedelta(days=30).total_seconds(),
 }
+
+__all__ = [
+    "OAUTH2_PROVIDER",
+]

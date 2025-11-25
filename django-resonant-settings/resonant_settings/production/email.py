@@ -14,3 +14,8 @@ vars().update(env.email_url("DJANGO_EMAIL_URL"))
 
 DEFAULT_FROM_EMAIL: str = env.str("DJANGO_DEFAULT_FROM_EMAIL")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+__all__ = [
+    "DEFAULT_FROM_EMAIL",
+    "SERVER_EMAIL",
+]
