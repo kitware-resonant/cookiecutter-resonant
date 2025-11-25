@@ -1,11 +1,17 @@
 from __future__ import annotations
 
-from typing import Any, ClassVar
+from typing import TYPE_CHECKING, Any, ClassVar
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands import createsuperuser
-from django.contrib.auth.models import User, UserManager
 
 from resonant_settings.allauth_support.utils import temporarily_change_attributes
+
+if TYPE_CHECKING:
+    from django.contrib.auth.models import User, UserManager
+else:
+    User = get_user_model()
+    UserManager = User._default_manager.__class__
 
 
 class Command(createsuperuser.Command):
