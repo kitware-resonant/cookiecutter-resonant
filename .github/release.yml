@@ -1,7 +1,7 @@
 changelog:
   exclude:
     authors:
-      - renovate
+      - renovate[bot]
   categories:
     - title: Cookiecutter Changes
       labels:
