@@ -1,0 +1,14 @@
+changelog:
+  exclude:
+    authors:
+      - renovate
+  categories:
+    - title: Cookiecutter Changes
+      labels:
+        - cookiecutter
+    - title: `django-resonant-settings` Changes
+      labels:
+        - resonant-settings
+    - title: Other Changes
+      labels:
+        - "*"
