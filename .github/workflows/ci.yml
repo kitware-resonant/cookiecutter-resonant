@@ -14,7 +14,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
@@ -69,7 +69,7 @@ jobs:
           - 9000:9000
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
