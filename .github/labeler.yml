@@ -1,0 +1,9 @@
+cookiecutter:
+  - changed-files:
+    - any-glob-to-any-file:
+      - resonant-template/**
+      - copier.yml
+resonant-settings:
+  - changed-files:
+    - any-glob-to-any-file:
+      - django-resonant-settings/**
