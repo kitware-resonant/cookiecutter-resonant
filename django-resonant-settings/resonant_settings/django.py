@@ -1,6 +1,8 @@
 """Configure a basic Django project."""
 
-TEMPLATES = [
+from typing import Any
+
+TEMPLATES: list[dict[str, Any]] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
@@ -16,7 +18,7 @@ TEMPLATES = [
     },
 ]
 
-PASSWORD_HASHERS = [
+PASSWORD_HASHERS: list[str] = [
     # Argon2 is recommended by OWASP, so make it the default for new passwords
     # https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
     "django.contrib.auth.hashers.Argon2PasswordHasher",
@@ -27,7 +29,7 @@ PASSWORD_HASHERS = [
     # since databases shouldn't have entries with other algorithms
 ]
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
