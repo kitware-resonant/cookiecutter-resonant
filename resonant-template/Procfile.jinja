@@ -1,4 +1,10 @@
 release: python ./manage.py migrate
+{% if use_asgi -%}
 # Set `--timeout-graceful-shutdown` to shorter than the 30 second limit imposed by Heroku restarts
 web: uvicorn {{ python_package_name }}.asgi:application --host 0.0.0.0 --port $PORT --workers $WEB_CONCURRENCY --timeout-graceful-shutdown 25
+{% else -%}
+# Set `graceful_timeout` to shorter than the 30 second limit imposed by Heroku restarts
+# Set `timeout` to shorter than the 30 second limit imposed by the Heroku router
+web: gunicorn --bind 0.0.0.0:$PORT --graceful-timeout 25 --timeout 15 {{ python_package_name }}.wsgi
+{% endif -%}
 worker: REMAP_SIGTERM=SIGQUIT celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat

@@ -32,13 +32,13 @@ dependencies = [
   "django-s3-file-field[s3]",
   "django-storages[s3]",
   "sentry-sdk[celery,django,pure_eval]",
-  "uvicorn",
+  {% if use_asgi %}"uvicorn",{% else %}"gunicorn",{% endif %}
 ]
 
 [project.optional-dependencies]
 development = [
   # Runtime dependencies, only needed with "development" settings
-  "daphne",
+  {% if use_asgi %}"daphne",{% endif %}
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
