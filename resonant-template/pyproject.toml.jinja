@@ -25,19 +25,20 @@ dependencies = [
   "django-stubs-ext",
   "djangorestframework",
   "drf-yasg",
-  "psycopg[binary]",
+  "psycopg[binary,pool]",
   "rich",
   "whitenoise[brotli]",
   # Production-only
   "django-s3-file-field[s3]",
   "django-storages[s3]",
-  "gunicorn",
   "sentry-sdk[celery,django,pure_eval]",
+  "uvicorn",
 ]
 
 [project.optional-dependencies]
 development = [
   # Runtime dependencies, only needed with "development" settings
+  "daphne",
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",

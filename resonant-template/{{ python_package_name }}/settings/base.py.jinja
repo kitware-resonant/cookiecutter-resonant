@@ -18,6 +18,9 @@ django_stubs_ext.monkeypatch()
 
 env = Env()
 
+ASGI_APPLICATION = '{{ python_package_name }}.asgi.application'
+WSGI_APPLICATION = '{{ python_package_name }}.wsgi.application'
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
 ROOT_URLCONF = '{{ python_package_name }}.urls'
@@ -27,6 +30,7 @@ INSTALLED_APPS = [
     '{{ python_package_name }}.{{ core_app_name }}.apps.{{ core_app_name.split('_')|map('capitalize')|join('') }}Config',
     # Apps with overrides
     'auth_style',
+    'daphne',  # must come before django.contrib.staticfiles
     'resonant_settings.allauth_support',
     # Everything else
     'allauth',
@@ -77,8 +81,14 @@ TIME_ZONE = 'UTC'
 DATABASES = {
     'default': {
         **env.db_url('DJANGO_DATABASE_URL', engine='django.db.backends.postgresql'),
-        'CONN_MAX_AGE': timedelta(minutes=10).total_seconds(),
-    }
+        'OPTIONS': {
+            'pool': {
+                # Adjust this pool size according to your postgres add-on service tier,
+                # web dyno count, WEB_CONCURRENCY, etc.
+                'max_size': env.int('DJANGO_DATABASE_POOL_MAX_SIZE', default=4),
+            },
+        },
+    },
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
