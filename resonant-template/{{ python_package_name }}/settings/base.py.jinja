@@ -34,9 +34,6 @@ INSTALLED_APPS = [
     '{{ python_package_name }}.{{ core_app_name }}.apps.{{ core_app_name.split('_')|map('capitalize')|join('') }}Config',
     # Apps with overrides
     'auth_style',
-    {%- if use_asgi %}
-    'daphne',  # must come before django.contrib.staticfiles
-    {%- endif %}
     'resonant_settings.allauth_support',
     # Everything else
     'allauth',

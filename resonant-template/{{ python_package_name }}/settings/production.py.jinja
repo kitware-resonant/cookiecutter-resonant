@@ -13,7 +13,6 @@ from resonant_settings.production.email import *  # isort: skip
 from resonant_settings.production.https import *  # isort: skip
 from resonant_settings.production.s3_storage import *  # isort: skip
 
-
 SECRET_KEY: str = env.str('DJANGO_SECRET_KEY')
 
 # This only needs to be defined in production. Testing will add 'testserver'. In development

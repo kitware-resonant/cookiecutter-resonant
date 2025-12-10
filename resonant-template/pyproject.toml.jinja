@@ -38,7 +38,9 @@ dependencies = [
 [project.optional-dependencies]
 development = [
   # Runtime dependencies, only needed with "development" settings
-  {% if use_asgi %}"daphne",{% endif %}
+  {%- if use_asgi %}
+  "daphne",
+  {%- endif %}
   "django-browser-reload",
   "django-debug-toolbar",
   "django-minio-storage",
