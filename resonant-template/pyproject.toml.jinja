@@ -25,7 +25,7 @@ dependencies = [
   "django-stubs-ext",
   "djangorestframework",
   "drf-yasg",
-  "psycopg[binary,pool]",
+  "psycopg[binary{% if use_asgi %},pool{% endif %}]",
   "rich",
   "whitenoise[brotli]",
   # Production-only
