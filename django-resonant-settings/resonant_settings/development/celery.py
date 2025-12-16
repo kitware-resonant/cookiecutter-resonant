@@ -6,7 +6,9 @@ from resonant_settings._env import env
 CELERY_TASK_ACKS_LATE = False
 
 CELERY_TASK_ALWAYS_EAGER: bool = env.bool("DJANGO_CELERY_TASK_ALWAYS_EAGER", default=False)
-CELERY_TASK_EAGER_PROPAGATES = CELERY_TASK_ALWAYS_EAGER
+# In eager mode (which might be set directly in tests), non-propagated exceptions allow bugs to go
+# unnoticed, so ensure this is always enabled. This should have no effect in non-eager mode.
+CELERY_TASK_EAGER_PROPAGATES = True
 
 # In development, run without concurrency.
 CELERY_WORKER_CONCURRENCY: int | None = 1
