@@ -5,7 +5,7 @@ services:
       dockerfile: ./dev/django.Dockerfile
     command: [
       "./manage.py",
-      "runserver", "0.0.0.0:8000"
+      "runserver{% if not use_asgi %}_plus{% endif %}", "0.0.0.0:8000"
     ]
     # Log printing is enhanced by a TTY
     tty: true
