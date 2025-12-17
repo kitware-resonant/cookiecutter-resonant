@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build"]
+build-backend = "uv_build"
 
 [project]
 name = "{{ project_slug }}"
@@ -90,10 +90,9 @@ test = [
   "pytest-repeat",
 ]
 
-[tool.hatch.build]
-packages = [
-  "{{ project_slug }}",
-]
+[tool.uv.build-backend]
+module-name = "{{ project_slug }}"
+module-root = ""
 
 [tool.black]
 line-length = 100
