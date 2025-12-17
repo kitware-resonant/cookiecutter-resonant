@@ -31,7 +31,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example-code: ["include_example_code=yes", "include_example_code=no"]
+        include:
+          - example-code: "include_example_code=no"
+            asgi: "use_asgi=no"
+          - example-code: "include_example_code=yes"
+            asgi: "use_asgi=no"
+          - example-code: "include_example_code=yes"
+            asgi: "use_asgi=yes"
     services:
       postgres:
         # Postgres depends on the OS locale for collation.
@@ -80,7 +86,7 @@ jobs:
           enable-cache: false
       - name: Create from template
         run: |
-          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --defaults . "${{ runner.temp }}/resonant"
+          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
           uv add "${{ github.workspace }}/django-resonant-settings[allauth]"

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+{% if not use_asgi -%}
 from datetime import timedelta
+{% endif -%}
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +24,11 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
 ROOT_URLCONF = '{{ python_package_name }}.urls'
 
+{% if use_asgi -%}
+ASGI_APPLICATION = '{{ python_package_name }}.asgi.application'
+{% else -%}
+WSGI_APPLICATION = '{{ python_package_name }}.wsgi.application'
+{% endif %}
 INSTALLED_APPS = [
     # Install local apps first, to ensure any overridden resources are found first
     '{{ python_package_name }}.{{ core_app_name }}.apps.{{ core_app_name.split('_')|map('capitalize')|join('') }}Config',
@@ -77,8 +84,18 @@ TIME_ZONE = 'UTC'
 DATABASES = {
     'default': {
         **env.db_url('DJANGO_DATABASE_URL', engine='django.db.backends.postgresql'),
+        {% if use_asgi -%}
+        'OPTIONS': {
+            'pool': {
+                # Adjust this pool size according to your postgres add-on service tier,
+                # web dyno count, WEB_CONCURRENCY, etc.
+                'max_size': env.int('DJANGO_DATABASE_POOL_MAX_SIZE', default=4),
+            },
+        },
+        {%- else -%}
         'CONN_MAX_AGE': timedelta(minutes=10).total_seconds(),
-    }
+        {%- endif %}
+    },
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

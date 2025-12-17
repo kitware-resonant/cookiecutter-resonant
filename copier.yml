@@ -17,6 +17,11 @@ site_domain:
 include_example_code:
   type: bool
   help: Include (or exclude) example code for an "Image" management capability.
+  default: false
+use_asgi:
+  type: bool
+  help: Use ASGI instead of WSGI for the web server.
+  default: false
 
 _answers_file: .copier-answers.resonant.yml
 _subdirectory: resonant-template
