@@ -32,11 +32,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - example_code: "include_example_code=no"
+          - example-code: "include_example_code=no"
             asgi: "use_asgi=no"
-          - example_code: "include_example_code=yes"
+          - example-code: "include_example_code=yes"
             asgi: "use_asgi=no"
-          - example_code: "include_example_code=yes"
+          - example-code: "include_example_code=yes"
             asgi: "use_asgi=yes"
     services:
       postgres:
@@ -86,7 +86,7 @@ jobs:
           enable-cache: false
       - name: Create from template
         run: |
-          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example_code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
+          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
           uv add "${{ github.workspace }}/django-resonant-settings[allauth]"
