@@ -20,15 +20,15 @@ django_stubs_ext.monkeypatch()
 
 env = Env()
 
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+
+ROOT_URLCONF = '{{ python_package_name }}.urls'
+
 {% if use_asgi -%}
 ASGI_APPLICATION = '{{ python_package_name }}.asgi.application'
 {% else -%}
 WSGI_APPLICATION = '{{ python_package_name }}.wsgi.application'
 {% endif %}
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-
-ROOT_URLCONF = '{{ python_package_name }}.urls'
-
 INSTALLED_APPS = [
     # Install local apps first, to ensure any overridden resources are found first
     '{{ python_package_name }}.{{ core_app_name }}.apps.{{ core_app_name.split('_')|map('capitalize')|join('') }}Config',
