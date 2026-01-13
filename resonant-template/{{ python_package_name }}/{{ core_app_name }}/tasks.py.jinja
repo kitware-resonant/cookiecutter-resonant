@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-{% if not include_example_code %}# {% endif -%}from celery import shared_task
+{% if not include_example_code %}# {% endif -%}from {{ python_package_name }}.celery import app
 {%- if include_example_code %}
-
 from {{ python_package_name }}.{{ core_app_name }}.models import Image
 
 
-@shared_task
+@app.task
 def image_compute_checksum(image_id: int) -> None:
     image = Image.objects.get(pk=image_id)
     image.compute_checksum()

@@ -41,11 +41,16 @@ CELERY_TASK_ACKS_LATE = True
 # https://docs.celeryproject.org/en/stable/userguide/workers.html#process-signals for reference.
 # This is Celery's default.
 CELERY_TASK_REJECT_ON_WORKER_LOST = False
+# Likewise, do not use the task's retry policy to retry a task whose worker subprocess abruptly
+# exited.
+# This is Celery's default.
+CELERY_TASK_RETRY_ON_WORKER_LOST = False
 
 # When a task fails due to an internally-raised exception or due to a timeout, do not requeue.
 # It's expected that the task wouldn't succeed if run again.
-# This is Celery's default.
-CELERY_TASK_ACKS_ON_FAILURE_OR_TIMEOUT = True
+# These are Celery's defaults.
+CELERY_TASK_ACKS_ON_FAILURE = True
+CELERY_TASK_ACKS_ON_TIMEOUT = True
 
 # This is sensible behavior with TASKS_ACKS_LATE, this must be enabled to prevent warnings,
 # and this will be Celery's default in 6.0.
@@ -76,8 +81,14 @@ CELERY_EVENT_QUEUE_EXPIRES: float = 60
 # CloudAMQP suggests this.
 CELERY_BROKER_CONNECTION_TIMEOUT: float | None = 30
 
-# Maximize usage of AMQP connection pools.
+# Reuse a single pooled connection per process. CloudAMQP plans cap concurrent connections,
+# and the pool limit is per process, so keep total connections equal to the process count.
 CELERY_BROKER_POOL_LIMIT: int | None = 1
+# With such a small pool, publishing a task while another publish is still in progress (e.g. calling
+# `.delay()` from a receiver of the `before_task_publish` or `after_task_publish` signals) must wait
+# for the connection. This should never happen, but if it does, time out and raise an error rather
+# than Celery's default of waiting forever.
+CELERY_BROKER_POOL_ACQUIRE_TIMEOUT: float | None = 30
 
 # Rely on CloudAMQP setting low TCP keep-alive intervals:
 # https://www.cloudamqp.com/docs/celery.html#brokerheartbeat
@@ -92,13 +103,16 @@ Task %(name)s[%(id)s] received: (%(args)s, %(kwargs)s)\
 __all__ = [
     "CELERY_BROKER_CONNECTION_TIMEOUT",
     "CELERY_BROKER_HEARTBEAT",
+    "CELERY_BROKER_POOL_ACQUIRE_TIMEOUT",
     "CELERY_BROKER_POOL_LIMIT",
     "CELERY_BROKER_URL",
     "CELERY_EVENT_QUEUE_EXPIRES",
     "CELERY_RESULT_BACKEND",
     "CELERY_TASK_ACKS_LATE",
-    "CELERY_TASK_ACKS_ON_FAILURE_OR_TIMEOUT",
+    "CELERY_TASK_ACKS_ON_FAILURE",
+    "CELERY_TASK_ACKS_ON_TIMEOUT",
     "CELERY_TASK_REJECT_ON_WORKER_LOST",
+    "CELERY_TASK_RETRY_ON_WORKER_LOST",
     "CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS",
     "CELERY_WORKER_CONCURRENCY",
     "CELERY_WORKER_ENABLE_REMOTE_CONTROL",
