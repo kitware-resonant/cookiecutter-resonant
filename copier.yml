@@ -2,10 +2,10 @@ project_name:
   placeholder: "My New Project"
   help: A human-readable name for the project.
 project_slug:
-  default: "{{ project_name|slugify }}"
+  default: "{{ project_name|lower|replace(' ', '-')|regex_replace('[^a-z0-9\\-]', '') }}"
   help: A dash-delimited project identifier.
 python_package_name:
-  default: "{{ project_slug|slugify(separator='_') }}"
+  default: "{{ project_slug|replace('-', '_') }}"
   help: An underscore-delimited Python package identifier.
 core_app_name:
   default: "core"
@@ -25,9 +25,6 @@ use_asgi:
 
 _answers_file: .copier-answers.resonant.yml
 _subdirectory: resonant-template
-_jinja_extensions:
-    - cookiecutter.extensions.SlugifyExtension
-    - jinja2_time.TimeExtension
 _tasks:
   - command: [ uv, lock ]
     when: "{{ _copier_operation == 'copy' }}"
