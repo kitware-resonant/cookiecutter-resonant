@@ -1,5 +1,7 @@
 """Configure a basic Django project."""
 
+from __future__ import annotations
+
 from typing import Any
 
 TEMPLATES: list[dict[str, Any]] = [
@@ -37,7 +39,7 @@ AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
 ]
 
 __all__ = [
-    "TEMPLATES",
-    "PASSWORD_HASHERS",
     "AUTH_PASSWORD_VALIDATORS",
+    "PASSWORD_HASHERS",
+    "TEMPLATES",
 ]

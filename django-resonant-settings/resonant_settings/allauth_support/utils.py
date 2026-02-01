@@ -1,6 +1,10 @@
-from collections.abc import Generator
+from __future__ import annotations
+
 from contextlib import contextmanager
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 # From https://stackoverflow.com/a/38532086

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from resonant_settings._env import env
 
 # Acknowledge early in development, which will help prevent failing or

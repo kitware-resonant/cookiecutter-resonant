@@ -4,9 +4,14 @@ Configure MinioMediaStorage.
 This requires the `django-minio-storage` package to be installed.
 """
 
-from urllib.parse import ParseResult
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from resonant_settings._env import env
+
+if TYPE_CHECKING:
+    from urllib.parse import ParseResult
 
 minio_url: ParseResult = env.url("DJANGO_MINIO_STORAGE_URL")
 MINIO_STORAGE_USE_HTTPS = minio_url.scheme == "https"
@@ -28,13 +33,13 @@ MINIO_STORAGE_AUTO_CREATE_MEDIA_POLICY = "NONE"
 MINIO_STORAGE_MEDIA_USE_PRESIGNED = True
 
 __all__ = [
-    "MINIO_STORAGE_USE_HTTPS",
-    "MINIO_STORAGE_ENDPOINT",
     "MINIO_STORAGE_ACCESS_KEY",
-    "MINIO_STORAGE_SECRET_KEY",
-    "MINIO_STORAGE_MEDIA_BUCKET_NAME",
-    "MINIO_STORAGE_MEDIA_URL",
     "MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET",
     "MINIO_STORAGE_AUTO_CREATE_MEDIA_POLICY",
+    "MINIO_STORAGE_ENDPOINT",
+    "MINIO_STORAGE_MEDIA_BUCKET_NAME",
+    "MINIO_STORAGE_MEDIA_URL",
     "MINIO_STORAGE_MEDIA_USE_PRESIGNED",
+    "MINIO_STORAGE_SECRET_KEY",
+    "MINIO_STORAGE_USE_HTTPS",
 ]

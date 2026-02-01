@@ -1,5 +1,7 @@
 """
-Configure django-allauth with the following features:
+Configure django-allauth.
+
+This provides the following features:
 * Disable usernames for end users, using exclusively email addresses for login
 * Require email verification
 * Quality of life improvements for users
@@ -8,7 +10,12 @@ This requires the `django-allauth` package to be installed and requires
 `resonant_settings.allauth_support` to be added to INSTALLED_APPS.
 """
 
-from collections.abc import Sequence
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 # The sites framework requires this to be set.
 # In the unlikely case where a database's pk sequence for the django_site table is not reset,
@@ -49,16 +56,16 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 
 __all__ = [
-    "SITE_ID",
-    "AUTHENTICATION_BACKENDS",
+    "ACCOUNT_ADAPTER",
+    "ACCOUNT_CONFIRM_EMAIL_ON_GET",
     "ACCOUNT_EMAIL_VERIFICATION",
     "ACCOUNT_LOGIN_METHODS",
-    "ACCOUNT_SIGNUP_FIELDS",
-    "ACCOUNT_ADAPTER",
-    "ACCOUNT_USER_MODEL_USERNAME_FIELD",
-    "ACCOUNT_SESSION_REMEMBER",
     "ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION",
     "ACCOUNT_LOGIN_ON_PASSWORD_RESET",
-    "ACCOUNT_CONFIRM_EMAIL_ON_GET",
     "ACCOUNT_PRESERVE_USERNAME_CASING",
+    "ACCOUNT_SESSION_REMEMBER",
+    "ACCOUNT_SIGNUP_FIELDS",
+    "ACCOUNT_USER_MODEL_USERNAME_FIELD",
+    "AUTHENTICATION_BACKENDS",
+    "SITE_ID",
 ]

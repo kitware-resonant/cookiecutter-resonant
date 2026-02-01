@@ -1,9 +1,13 @@
 """
-Configure Django Debug Toolbar with the following features:
+Configure Django Debug Toolbar.
+
+This provides the following features:
 * Improve performance with large queries
 
 This requires the `django-debug-toolbar` package to be installed.
 """
+
+from __future__ import annotations
 
 from typing import Any
 

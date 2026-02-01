@@ -1,13 +1,18 @@
+from __future__ import annotations
+
 import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from allauth.account.models import EmailAddress
-from django.contrib.auth.models import AbstractUser
 
-logger = logging.getLogger(__file__)
+if TYPE_CHECKING:
+    from django.contrib.auth.models import AbstractUser
+
+logger = logging.getLogger(__name__)
 
 
 def verify_email_address_on_user_post_save(
+    *,
     sender: type[AbstractUser],
     instance: AbstractUser,
     created: bool,
@@ -25,7 +30,7 @@ def verify_email_address_on_user_post_save(
         # uniqueness.
         # So, make a conservative effort at setting the email address as verified, since failure is
         # not critical and can be resolved by the user.
-        email_address, created = EmailAddress.objects.get_or_create(
+        _email_address, created = EmailAddress.objects.get_or_create(
             email__iexact=instance.email,
             defaults={
                 "user": instance,
@@ -35,4 +40,4 @@ def verify_email_address_on_user_post_save(
             },
         )
         if not created:
-            logger.warning(f'Could not automatically verify email address "{instance.email}".')
+            logger.warning('Could not automatically verify email address "%s".', instance.email)

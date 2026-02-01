@@ -4,6 +4,8 @@ Configure Django REST framework and drf-yasg.
 This requires the `django-oauth-toolkit` and `drf-yasg` packages to be installed.
 """
 
+from __future__ import annotations
+
 from typing import Any
 
 # When SessionAuthentication is allowed, it's critical that the following settings
@@ -77,9 +79,9 @@ SWAGGER_SETTINGS: dict[str, Any] = {
 REDOC_SETTINGS: dict[str, Any] = {}
 
 __all__ = [
-    "SESSION_COOKIE_SAMESITE",
     "CORS_ALLOW_CREDENTIALS",
-    "REST_FRAMEWORK",
-    "SWAGGER_SETTINGS",
     "REDOC_SETTINGS",
+    "REST_FRAMEWORK",
+    "SESSION_COOKIE_SAMESITE",
+    "SWAGGER_SETTINGS",
 ]

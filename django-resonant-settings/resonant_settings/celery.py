@@ -1,5 +1,7 @@
 """
-Configure Celery with the following features:
+Configure Celery.
+
+This provides the following features:
 * Disable the results backend
 * Ensure that tasks will never be lost, but tasks themselves must be idempotent
 * Optimize the network connection to CloudAMQP
@@ -7,7 +9,9 @@ Configure Celery with the following features:
 This requires the `celery` package to be installed.
 """
 
-import celery.app.trace  # type: ignore[import-not-found]
+from __future__ import annotations
+
+import celery.app.trace
 
 from resonant_settings._env import env
 
@@ -71,16 +75,16 @@ Task %(name)s[%(id)s] received: (%(args)s, %(kwargs)s)\
 """
 
 __all__ = [
+    "CELERY_BROKER_CONNECTION_TIMEOUT",
+    "CELERY_BROKER_HEARTBEAT",
+    "CELERY_BROKER_POOL_LIMIT",
     "CELERY_BROKER_URL",
+    "CELERY_EVENT_QUEUE_EXPIRES",
     "CELERY_RESULT_BACKEND",
     "CELERY_TASK_ACKS_LATE",
-    "CELERY_TASK_REJECT_ON_WORKER_LOST",
     "CELERY_TASK_ACKS_ON_FAILURE_OR_TIMEOUT",
+    "CELERY_TASK_REJECT_ON_WORKER_LOST",
     "CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS",
-    "CELERY_BROKER_POOL_LIMIT",
-    "CELERY_BROKER_HEARTBEAT",
-    "CELERY_BROKER_CONNECTION_TIMEOUT",
-    "CELERY_EVENT_QUEUE_EXPIRES",
-    "CELERY_WORKER_PREFETCH_MULTIPLIER",
     "CELERY_WORKER_CONCURRENCY",
+    "CELERY_WORKER_PREFETCH_MULTIPLIER",
 ]

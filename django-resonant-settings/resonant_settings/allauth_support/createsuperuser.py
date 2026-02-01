@@ -31,12 +31,12 @@ class Command(createsuperuser.Command):
         with temporarily_change_attributes(self.username_field, _unique=True):
             # Normalize (as it would be done before saving) for better duplicate detection
             username = self.UserModel.normalize_username(username)
-            return super()._validate_username(  # type: ignore[misc]
+            return super()._validate_username(  # type: ignore[misc,no-any-return]
                 username, verbose_field_name, database
             )
 
 
-class EmailAsUsernameProxyUserManager(UserManager):
+class EmailAsUsernameProxyUserManager(UserManager["EmailAsUsernameProxyUser"]):
     # This version of "create_superuser" makes the "username" argument optional
     def create_superuser(
         self,
@@ -46,16 +46,16 @@ class EmailAsUsernameProxyUserManager(UserManager):
         **extra_fields: Any,
     ) -> EmailAsUsernameProxyUser:
         # Practically, email will always be provided
-        assert email
-        user = super().create_superuser(
+        if email is None:
+            raise ValueError("Email address must be provided.")
+        return super().create_superuser(
             username=email, email=email, password=password, **extra_fields
         )
-        return user
 
 
 class EmailAsUsernameProxyUser(User):
     # https://github.com/typeddjango/django-stubs/issues/2112
-    class Meta(User.Meta):  # type: ignore[name-defined]
+    class Meta(User.Meta):  # type: ignore[misc,name-defined]
         proxy = True
 
     objects = EmailAsUsernameProxyUserManager()

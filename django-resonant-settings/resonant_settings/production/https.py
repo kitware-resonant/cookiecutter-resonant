@@ -1,5 +1,7 @@
 """Configure Django's security middleware to use and require HTTPS."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 
 SECURE_SSL_REDIRECT = True
@@ -18,10 +20,10 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_HSTS_PRELOAD = False
 
 __all__ = [
-    "SECURE_SSL_REDIRECT",
-    "SESSION_COOKIE_SECURE",
     "CSRF_COOKIE_SECURE",
-    "SECURE_HSTS_SECONDS",
     "SECURE_HSTS_INCLUDE_SUBDOMAINS",
     "SECURE_HSTS_PRELOAD",
+    "SECURE_HSTS_SECONDS",
+    "SECURE_SSL_REDIRECT",
+    "SESSION_COOKIE_SECURE",
 ]
