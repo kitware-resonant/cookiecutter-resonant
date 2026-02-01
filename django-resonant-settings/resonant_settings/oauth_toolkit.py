@@ -1,11 +1,15 @@
 """
-Configure Django OAuth Toolkit with the following features:
+Configure Django OAuth Toolkit.
+
+This provides the following features:
 * Harden security
 * Improve usability of token scopes
 * Improve quality of live for out of band flows and non-refreshing clients
 
 This requires the `django-oauth-toolkit` package to be installed.
 """
+
+from __future__ import annotations
 
 from datetime import timedelta
 from typing import Any

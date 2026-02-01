@@ -36,7 +36,7 @@ class Command(createsuperuser.Command):
             )
 
 
-class EmailAsUsernameProxyUserManager(UserManager['EmailAsUsernameProxyUser']):
+class EmailAsUsernameProxyUserManager(UserManager["EmailAsUsernameProxyUser"]):
     # This version of "create_superuser" makes the "username" argument optional
     def create_superuser(
         self,
@@ -46,7 +46,8 @@ class EmailAsUsernameProxyUserManager(UserManager['EmailAsUsernameProxyUser']):
         **extra_fields: Any,
     ) -> EmailAsUsernameProxyUser:
         # Practically, email will always be provided
-        assert email
+        if email is None:
+            raise ValueError("Email address must be provided.")
         return super().create_superuser(
             username=email, email=email, password=password, **extra_fields
         )

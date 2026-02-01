@@ -10,6 +10,8 @@ The following environment variables must be externally set:
 This requires the `django-storages[s3]` package to be installed.
 """
 
+from __future__ import annotations
+
 from datetime import timedelta
 
 from resonant_settings._env import env
@@ -35,12 +37,12 @@ AWS_S3_FILE_OVERWRITE = True
 AWS_QUERYSTRING_EXPIRE = int(timedelta(hours=6).total_seconds())
 
 __all__ = [
-    "AWS_S3_REGION_NAME",
-    "AWS_S3_ACCESS_KEY_ID",
-    "AWS_S3_SECRET_ACCESS_KEY",
-    "AWS_STORAGE_BUCKET_NAME",
-    "AWS_S3_SIGNATURE_VERSION",
-    "AWS_S3_MAX_MEMORY_SIZE",
-    "AWS_S3_FILE_OVERWRITE",
     "AWS_QUERYSTRING_EXPIRE",
+    "AWS_S3_ACCESS_KEY_ID",
+    "AWS_S3_FILE_OVERWRITE",
+    "AWS_S3_MAX_MEMORY_SIZE",
+    "AWS_S3_REGION_NAME",
+    "AWS_S3_SECRET_ACCESS_KEY",
+    "AWS_S3_SIGNATURE_VERSION",
+    "AWS_STORAGE_BUCKET_NAME",
 ]

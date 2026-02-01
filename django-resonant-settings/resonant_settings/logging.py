@@ -1,5 +1,7 @@
 """
-Configure Django logging with the following features:
+Configure Django logging.
+
+This provides the following features:
 * Emit all logs to stdout
 * Exclude favicons and static files from request and server logs
 * Improve log formatting and add colorization
@@ -7,9 +9,14 @@ Configure Django logging with the following features:
 This requires the `rich` package to be installed.
 """
 
-import logging
+from __future__ import annotations
 
-from django.http import HttpRequest
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    import logging
+
+    from django.http import HttpRequest
 
 
 def _filter_favicon_requests(record: logging.LogRecord) -> bool:
@@ -18,7 +25,7 @@ def _filter_favicon_requests(record: logging.LogRecord) -> bool:
         if request and request.path == "/favicon.ico":
             return False
 
-    if (
+    if (  # noqa: SIM103
         record.name == "django.server"
         and isinstance(record.args, tuple)
         and len(record.args) >= 1
@@ -30,7 +37,7 @@ def _filter_favicon_requests(record: logging.LogRecord) -> bool:
 
 
 def _filter_static_requests(record: logging.LogRecord) -> bool:
-    if (
+    if (  # noqa: SIM103
         record.name == "django.server"
         and isinstance(record.args, tuple)
         and len(record.args) >= 1

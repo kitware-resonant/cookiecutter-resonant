@@ -8,6 +8,8 @@ The following environment variables must be externally set:
 * `DJANGO_DEFAULT_FROM_EMAIL`, as the default From address for outgoing email.
 """
 
+from __future__ import annotations
+
 from typing import Any
 
 from resonant_settings._env import env
@@ -19,7 +21,7 @@ DEFAULT_FROM_EMAIL: str = env.str("DJANGO_DEFAULT_FROM_EMAIL")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 
-__all__ = [
+__all__ = [  # noqa: PLE0604
     *email_config.keys(),
     "DEFAULT_FROM_EMAIL",
     "SERVER_EMAIL",
