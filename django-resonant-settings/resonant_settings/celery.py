@@ -7,7 +7,7 @@ Configure Celery with the following features:
 This requires the `celery` package to be installed.
 """
 
-import celery.app.trace  # type: ignore[import-not-found]
+import celery.app.trace
 
 from resonant_settings._env import env
 
