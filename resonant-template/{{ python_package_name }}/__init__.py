@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 # This project module is imported for us when Django starts. To ensure that Celery app is always
 # defined prior to any shared_task definitions (so those tasks will bind to the app), import
 # the Celery module here for side effects.

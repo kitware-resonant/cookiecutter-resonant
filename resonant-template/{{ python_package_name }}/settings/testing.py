@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 from secrets import randbelow
 
 from .base import *
 
 # Import these afterwards, to override
-from resonant_settings.development.minio_storage import *  # isort: skip
+from resonant_settings.development.minio_storage import *
 
 SECRET_KEY = 'insecure-secret'
 

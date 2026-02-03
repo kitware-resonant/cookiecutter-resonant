@@ -1,9 +1,15 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.contrib import admin, messages
-from django.db.models import QuerySet
-from django.http import HttpRequest
 
 from {{ python_package_name }}.{{ core_app_name }}.models import Image
 from {{ python_package_name }}.{{ core_app_name }}.tasks import image_compute_checksum
+
+if TYPE_CHECKING:
+    from django.db.models import QuerySet
+    from django.http import HttpRequest
 
 
 @admin.register(Image)

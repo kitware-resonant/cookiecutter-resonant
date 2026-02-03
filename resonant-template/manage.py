@@ -1,4 +1,6 @@
 #!/usr/bin/env -S uv run
+from __future__ import annotations
+
 import sys
 
 from resonant_utils.management import execute_from_command_line

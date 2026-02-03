@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 
 import sentry_sdk
@@ -9,9 +11,9 @@ import sentry_sdk.integrations.pure_eval
 from .base import *
 
 # Import these afterwards, to override
-from resonant_settings.production.email import *  # isort: skip
-from resonant_settings.production.https import *  # isort: skip
-from resonant_settings.production.s3_storage import *  # isort: skip
+from resonant_settings.production.email import *
+from resonant_settings.production.https import *
+from resonant_settings.production.s3_storage import *
 
 SECRET_KEY: str = env.str('DJANGO_SECRET_KEY')
 

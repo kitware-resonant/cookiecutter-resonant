@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from celery import Celery
 
 # Using a string config_source means the worker doesn't have to serialize

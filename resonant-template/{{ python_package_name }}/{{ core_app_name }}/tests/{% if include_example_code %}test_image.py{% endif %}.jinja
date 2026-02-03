@@ -1,16 +1,22 @@
-import pytest
-from rest_framework.test import APIClient
+from __future__ import annotations
 
-from {{ python_package_name }}.{{ core_app_name }}.models import Image
+from typing import TYPE_CHECKING
+
+import pytest
 
 from .factories import ImageFactory
+
+if TYPE_CHECKING:
+    from rest_framework.test import APIClient
+
+    from {{ python_package_name }}.{{ core_app_name }}.models import Image
 
 
 def test_image_checksum() -> None:
     # Use "build" strategy, so database is not required
     image: Image = ImageFactory.build()
     image.compute_checksum()
-    assert image.checksum is not None
+    assert image.checksum
 
 
 @pytest.mark.django_db

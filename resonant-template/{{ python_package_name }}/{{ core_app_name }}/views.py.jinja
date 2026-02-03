@@ -1,4 +1,5 @@
-{% if include_example_code -%}
+from __future__ import annotations
+{% if include_example_code %}
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from django.shortcuts import render
@@ -19,8 +20,8 @@ def image_summary(request):
         '{{ core_app_name }}/summary.html',
         {
             'user_summary': User.objects.annotate(
-                processed_images=Count('image', filter=Q(image__checksum__isnull=False)),
-                unprocessed_images=Count('image', filter=Q(image__checksum__isnull=True)),
+                processed_images=Count('image', filter=~Q(image__checksum='')),
+                unprocessed_images=Count('image', filter=Q(image__checksum='')),
             )
         },
     )

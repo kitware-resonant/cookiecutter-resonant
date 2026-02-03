@@ -1,11 +1,17 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.conf import settings
 from django.db import migrations
-from django.db.backends.base.schema import BaseDatabaseSchemaEditor
-from django.db.migrations.state import StateApps
+
+if TYPE_CHECKING:
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    from django.db.migrations.state import StateApps
 
 
 def update_default_site(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
-    Site = apps.get_model('sites', 'Site')  # noqa: N806
+    Site = apps.get_model('sites', 'Site')
 
     # A default site object may or may not exist.
     # If this is a brand-new database, the post_migrate will not fire until the very end of the
@@ -22,7 +28,7 @@ def update_default_site(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor
 
 
 def rollback_default_site(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
-    Site = apps.get_model('sites', 'Site')  # noqa: N806
+    Site = apps.get_model('sites', 'Site')
 
     # This is the initial value of the default site object, as populated by the sites app.
     # If it doesn't exist for some reason, there is nothing to roll back.
