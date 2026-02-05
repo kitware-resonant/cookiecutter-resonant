@@ -9,19 +9,19 @@ from {{ python_package_name }}.{{ core_app_name }}.models import Image
 
 
 class GalleryView(ListView):
-    queryset = Image.objects.order_by('created')
-    template_name = '{{ core_app_name }}/gallery.html'
+    queryset = Image.objects.order_by("created")
+    template_name = "{{ core_app_name }}/gallery.html"
     paginate_by = 20
 
 
 def image_summary(request):
     return render(
         request,
-        '{{ core_app_name }}/summary.html',
+        "{{ core_app_name }}/summary.html",
         {
-            'user_summary': User.objects.annotate(
-                processed_images=Count('image', filter=~Q(image__checksum='')),
-                unprocessed_images=Count('image', filter=Q(image__checksum='')),
+            "user_summary": User.objects.annotate(
+                processed_images=Count("image", filter=~Q(image__checksum="")),
+                unprocessed_images=Count("image", filter=Q(image__checksum="")),
             )
         },
     )

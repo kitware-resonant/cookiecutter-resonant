@@ -4,5 +4,5 @@ from django.apps import AppConfig
 
 
 class {{ core_app_name.split('_')|map('capitalize')|join('') }}Config(AppConfig):
-    name = '{{ python_package_name }}.{{ core_app_name }}'
-    verbose_name = '{{ project_name }}: {{ core_app_name.split('_')|map('capitalize')|join(' ') }}'
+    name = "{{ python_package_name }}.{{ core_app_name }}"
+    verbose_name = "{{ project_name }}: {{ core_app_name.split('_')|map('capitalize')|join(' ') }}"
