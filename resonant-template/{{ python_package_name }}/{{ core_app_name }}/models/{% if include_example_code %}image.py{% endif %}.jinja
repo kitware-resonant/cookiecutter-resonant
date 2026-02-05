@@ -14,8 +14,8 @@ class Image(TimeStampedModel, models.Model):
     # TimeStampedModel also provides "created" and "modified" fields
 
     @property
-    def short_checksum(self) -> str | None:
-        return f'{self.checksum[:10]}' if self.checksum else None
+    def short_checksum(self) -> str:
+        return self.checksum[:10] if self.checksum else ''
 
     def compute_checksum(self) -> None:
         hasher = sha512()
