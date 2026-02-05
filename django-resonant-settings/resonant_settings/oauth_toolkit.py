@@ -16,6 +16,9 @@ from typing import Any
 
 OAUTH2_PROVIDER: dict[str, Any] = {
     "ALLOWED_REDIRECT_URI_SCHEMES": ["https"],
+    # This doesn't immediately change behavior, it just authorizes the use of wildcards in
+    # Application redirect URIs, which is necessary to support SPA branch previews
+    "ALLOW_URI_WILDCARDS": True,
     # Don't require users to re-approve scopes each time
     "REQUEST_APPROVAL_PROMPT": "auto",
     # ERROR_RESPONSE_WITH_SCOPES is only used with the "permission_classes" helpers for scopes.
