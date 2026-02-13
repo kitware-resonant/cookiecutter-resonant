@@ -107,13 +107,28 @@ ignore = [
   "EM101", # raw-string-in-exception
   "ERA001", # commented-out-code
   "FIX", # flake8-fixme
+  "RET505", # superfluous-else-return
   "RET506", # superfluous-else-raise
+  "RET507", # superfluous-else-continue
+  "RET508", # superfluous-else-break
   "TD002", # missing-todo-author
   "TD003", # missing-todo-link
   "TRY003", # raise-vanilla-args
 
   # Project-specific
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/**" = [
+  "N806", # non-lowercase-variable-in-function
+  "RUF012", # mutable-class-default
+]
+
+[tool.ruff.lint.flake8-boolean-trap]
+extend-allowed-calls = ["pydantic.Field", "django.db.models.Value"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["ninja.Query"]
 
 [tool.ruff.lint.flake8-self]
 extend-ignore-names = ["_base_manager", "_default_manager",  "_meta"]
