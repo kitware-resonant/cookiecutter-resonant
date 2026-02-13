@@ -2,7 +2,7 @@
 
 # Creation
 * [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
-* Run: `uvx --with cookiecutter,jinja2_time copier copy --trust gh:kitware-resonant/cookiecutter-resonant <local-path-to-new-project>`
+* Run: `uvx copier copy --trust gh:kitware-resonant/cookiecutter-resonant <local-path-to-new-project>`
   * This will create a new directory for you.
 * Within `<local-path-to-new-project>`, initialize Git and connect it to your upstream repository.
 
@@ -24,4 +24,4 @@ Once pytest tests are added, add / uncomment `envlist = test` in
 
 # Update
 To update an existing project, run:
-`uvx --with cookiecutter,jinja2_time copier update -a .copier-answers.resonant.yml -A --trust`
+`uvx copier update -a .copier-answers.resonant.yml -A --trust`
