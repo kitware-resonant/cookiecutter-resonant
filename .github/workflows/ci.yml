@@ -86,7 +86,7 @@ jobs:
           enable-cache: false
       - name: Create from template
         run: |
-          uvx --with cookiecutter,jinja2_time copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
+          uvx copier copy --vcs-ref HEAD --trust --data 'project_name=Resonant' --data ${{ matrix.example-code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
           uv add "${{ github.workspace }}/django-resonant-settings[allauth]"
