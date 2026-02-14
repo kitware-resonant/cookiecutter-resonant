@@ -31,3 +31,14 @@ _tasks:
 _migrations:
   - command: [ uv, lock, --upgrade-package, django-resonant-settings ]
     when: "{{ _stage == 'after' }}"
+_exclude:
+  - ".copier-answers.resonant-meta.yml"
+  # Default values
+  - "copier.yaml"
+  - "copier.yml"
+  - "~*"
+  - "*.py[co]"
+  - "__pycache__"
+  - ".git"
+  - ".DS_Store"
+  - ".svn"

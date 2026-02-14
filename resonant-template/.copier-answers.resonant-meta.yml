@@ -1,0 +1,7 @@
+_commit: v2
+_src_path: gh:kitware-resonant/resonant-meta-template
+django_project: true
+max_python_minor_version: 13
+min_python_minor_version: 13
+project_slug: '{{ project_slug }}'
+python_package_name: '{{ python_package_name }}'
