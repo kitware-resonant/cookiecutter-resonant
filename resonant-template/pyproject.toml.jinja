@@ -72,6 +72,7 @@ type = [
 test = [
   "factory-boy>=0",
   "pytest>=0",
+  "pytest-cov>=0",
   "pytest-django>=0",
   "pytest-mock>=0",
   # Enable with "pytest --random-order ..."
@@ -201,6 +202,7 @@ addopts = [
   "--strict-markers",
   "--showlocals",
   "--verbose",
+  "--cov",
   # Specifying as "--ds" will override any value in the environment
   "--ds={{ python_package_name }}.settings.testing",
 ]
@@ -208,4 +210,10 @@ filterwarnings = [
   "error",
   # pytest often causes unclosed socket warnings
   'ignore:unclosed <socket\.socket:ResourceWarning',
+]
+
+[tool.coverage.paths]
+source = [
+  "{{ python_package_name }}/",
+  ".tox/**/site-packages/{{ python_package_name }}/",
 ]
