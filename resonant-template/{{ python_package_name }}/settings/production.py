@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 
 import sentry_sdk
@@ -9,26 +11,26 @@ import sentry_sdk.integrations.pure_eval
 from .base import *
 
 # Import these afterwards, to override
-from resonant_settings.production.email import *  # isort: skip
-from resonant_settings.production.https import *  # isort: skip
-from resonant_settings.production.s3_storage import *  # isort: skip
+from resonant_settings.production.email import *
+from resonant_settings.production.https import *
+from resonant_settings.production.s3_storage import *
 
-SECRET_KEY: str = env.str('DJANGO_SECRET_KEY')
+SECRET_KEY: str = env.str("DJANGO_SECRET_KEY")
 
-# This only needs to be defined in production. Testing will add 'testserver'. In development
-# (specifically when DEBUG is True), 'localhost' and '127.0.0.1' will be added.
-ALLOWED_HOSTS: list[str] = env.list('DJANGO_ALLOWED_HOSTS', cast=str)
+# This only needs to be defined in production. Testing will add "testserver". In development
+# (specifically when DEBUG is True), "localhost" and "127.0.0.1" will be added.
+ALLOWED_HOSTS: list[str] = env.list("DJANGO_ALLOWED_HOSTS", cast=str)
 
-STORAGES['default'] = {
-    'BACKEND': 'storages.backends.s3.S3Storage',
+STORAGES["default"] = {
+    "BACKEND": "storages.backends.s3.S3Storage",
 }
 
-# sentry_sdk is able to directly use environment variables like 'SENTRY_DSN', but prefix them
-# with 'DJANGO_' to avoid conflicts with other Sentry-using services.
+# sentry_sdk is able to directly use environment variables like "SENTRY_DSN", but prefix them
+# with "DJANGO_" to avoid conflicts with other Sentry-using services.
 sentry_sdk.init(
-    dsn=env.str('DJANGO_SENTRY_DSN', default=None),
-    environment=env.str('DJANGO_SENTRY_ENVIRONMENT', default=None),
-    release=env.str('DJANGO_SENTRY_RELEASE', default=None),
+    dsn=env.str("DJANGO_SENTRY_DSN", default=None),
+    environment=env.str("DJANGO_SENTRY_ENVIRONMENT", default=None),
+    release=env.str("DJANGO_SENTRY_RELEASE", default=None),
     integrations=[
         sentry_sdk.integrations.logging.LoggingIntegration(
             level=logging.INFO,
