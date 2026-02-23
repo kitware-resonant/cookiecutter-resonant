@@ -67,7 +67,7 @@ type = [
   "mypy",
   "celery-types",
   "django-stubs[compatible-mypy]",
-  "djangorestframework-stubs",
+  "djangorestframework-stubs[compatible-mypy]",
 ]
 test = [
   "factory-boy",
@@ -182,6 +182,7 @@ warn_unused_configs = true
 warn_unused_ignores = true
 plugins = [
   "mypy_django_plugin.main",
+  "mypy_drf_plugin.main",
 ]
 
 [tool.django-stubs]
