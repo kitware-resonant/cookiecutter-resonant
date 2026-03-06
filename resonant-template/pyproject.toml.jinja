@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -11,44 +11,44 @@ license-files = ["LICENSE", "NOTICE"]
 classifiers = ["Private :: Do Not Upload"]
 dependencies = [
   # Runtime dependencies, always needed
-  "celery",
-  "django[argon2]",
-  "django-allauth",
-  "django-auth-style",
-  "django-cors-headers",
-  "django-environ",
-  "django-extensions",
-  "django-filter",
-  "django-oauth-toolkit",
-  "django-resonant-settings[allauth,celery]",
-  "django-resonant-utils[allauth,s3_storage]",
-  "django-stubs-ext",
-  "djangorestframework",
-  "drf-yasg",
-  "psycopg[binary{% if use_asgi %},pool{% endif %}]",
-  "rich",
-  "whitenoise[brotli]",
+  "celery>=0",
+  "django[argon2]>=0",
+  "django-allauth>=0",
+  "django-auth-style>=0",
+  "django-cors-headers>=0",
+  "django-environ>=0",
+  "django-extensions>=0",
+  "django-filter>=0",
+  "django-oauth-toolkit>=0",
+  "django-resonant-settings[allauth,celery]>=0",
+  "django-resonant-utils[allauth,s3_storage]>=0",
+  "django-stubs-ext>=0",
+  "djangorestframework>=0",
+  "drf-yasg>=0",
+  "psycopg[binary{% if use_asgi %},pool{% endif %}]>=0",
+  "rich>=0",
+  "whitenoise[brotli]>=0",
   # Production-only
-  "django-s3-file-field[s3]",
-  "django-storages[s3]",
-  "sentry-sdk[celery,django,pure_eval]",
-  {% if use_asgi %}"uvicorn",{% else %}"gunicorn",{% endif %}
+  "django-s3-file-field[s3]>=0",
+  "django-storages[s3]>=0",
+  "sentry-sdk[celery,django,pure_eval]>=0",
+  {% if use_asgi %}"uvicorn>=0",{% else %}"gunicorn>=0",{% endif %}
 ]
 
 [project.optional-dependencies]
 development = [
   # Runtime dependencies, only needed with "development" settings
   {%- if use_asgi %}
-  "daphne",
+  "daphne>=0",
   {%- endif %}
-  "django-browser-reload",
-  "django-debug-toolbar",
-  "django-minio-storage",
-  "django-resonant-utils[minio_storage]",
-  "django-s3-file-field[minio]",
-  "ipython",
-  "watchdog",
-  "werkzeug",
+  "django-browser-reload>=0",
+  "django-debug-toolbar>=0",
+  "django-minio-storage>=0",
+  "django-resonant-utils[minio_storage]>=0",
+  "django-s3-file-field[minio]>=0",
+  "ipython>=0",
+  "watchdog>=0",
+  "werkzeug>=0",
 ]
 
 [dependency-groups]
@@ -57,27 +57,27 @@ dev = [
   # The "dev" dependency group is installed by default,
   # so use this to install "development" extras by default too
   "{{ project_slug }}[development]",
-  "tox",
-  "tox-uv",
+  "tox>=0",
+  "tox-uv>=0",
 ]
 lint = [
-  "ruff",
+  "ruff>=0",
 ]
 type = [
-  "mypy",
-  "celery-types",
-  "django-stubs[compatible-mypy]",
-  "djangorestframework-stubs[compatible-mypy]",
+  "mypy>=0",
+  "celery-types>=0",
+  "django-stubs[compatible-mypy]>=0",
+  "djangorestframework-stubs[compatible-mypy]>=0",
 ]
 test = [
-  "factory-boy",
-  "pytest",
-  "pytest-django",
-  "pytest-mock",
+  "factory-boy>=0",
+  "pytest>=0",
+  "pytest-django>=0",
+  "pytest-mock>=0",
   # Enable with "pytest --random-order ..."
-  "pytest-random-order",
+  "pytest-random-order>=0",
   # Enable with "pytest --count=... ..."
-  "pytest-repeat",
+  "pytest-repeat>=0",
 ]
 
 [tool.hatch.build]
