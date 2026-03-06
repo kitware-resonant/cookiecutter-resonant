@@ -25,12 +25,6 @@ use_asgi:
 
 _answers_file: .copier-answers.resonant.yml
 _subdirectory: resonant-template
-_tasks:
-  - command: [ uv, lock ]
-    when: "{{ _copier_operation == 'copy' }}"
-_migrations:
-  - command: [ uv, lock, --upgrade-package, django-resonant-settings ]
-    when: "{{ _stage == 'after' }}"
 _exclude:
   - ".copier-answers.resonant-meta.yml"
   # Default values

@@ -1,10 +1,20 @@
 # cookiecutter-resonant
 
 # Creation
-* [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
-* Run: `uvx copier copy --trust https://github.com/kitware-resonant/cookiecutter-resonant <local-path-to-new-project>`
-  * This will create a new directory for you.
-* Within `<local-path-to-new-project>`, initialize Git and connect it to your upstream repository.
+* [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/) and
+  [the GitHub CLI](https://github.com/cli/cli#installation)
+* Run: `uvx copier copy https://github.com/kitware-resonant/cookiecutter-resonant <new-project-path>`
+  * This will create a new directory at `<new-project-path>` for you.
+* Initialize uv and Git:
+  ```bash
+  cd <new-project-path>`
+  uv lock
+  git init && git add -A && git commit -m 'Initial commit'
+  ```
+* Push to a new GitHub repository:
+  ```bash
+  gh repo create <org>/<repo-name> --private -s . --push
+  ```
 
 ## With `include_example_code`
 If `include_example_code` is enabled, some initial models, templates, and an associated migration
@@ -24,4 +34,4 @@ Once pytest tests are added, add / uncomment `envlist = test` in
 
 # Update
 To update an existing project, run:
-`uvx copier update -a .copier-answers.resonant.yml -A --trust`
+`uvx copier update -a .copier-answers.resonant.yml -A`
