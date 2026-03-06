@@ -3,16 +3,19 @@
 # Creation
 * [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/) and
   [the GitHub CLI](https://github.com/cli/cli#installation)
-* Run: `uvx copier copy https://github.com/kitware-resonant/cookiecutter-resonant <new-project-path>`
+* Run:
+  ```shell
+  uvx copier copy https://github.com/kitware-resonant/cookiecutter-resonant <new-project-path>
+  ```
   * This will create a new directory at `<new-project-path>` for you.
 * Initialize uv and Git:
-  ```bash
+  ```shell
   cd <new-project-path>`
   uv lock
   git init && git add -A && git commit -m 'Initial commit'
   ```
 * Push to a new GitHub repository:
-  ```bash
+  ```shell
   gh repo create <org>/<repo-name> --private -s . --push
   ```
 
@@ -30,8 +33,10 @@ If `include_example_code` is disabled, you may wish to make some small changes a
 grows.
 
 Once pytest tests are added, add / uncomment `envlist = test` in
-`{{ project_slug }}/tox.ini`.
+`{{ python_package_name }}/tox.ini`.
 
 # Update
 To update an existing project, run:
-`uvx copier update -a .copier-answers.resonant.yml -A`
+```shell
+uvx copier update -a .copier-answers.resonant.yml -A`
+```
