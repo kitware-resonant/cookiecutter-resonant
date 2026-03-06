@@ -238,23 +238,23 @@ type = [
 
 [package.metadata]
 requires-dist = [
-    { name = "celery", marker = "extra == 'celery'" },
+    { name = "celery", marker = "extra == 'celery'", specifier = ">=0" },
     { name = "django", specifier = ">=5.1" },
-    { name = "django-allauth", marker = "extra == 'allauth'" },
-    { name = "django-environ" },
+    { name = "django-allauth", marker = "extra == 'allauth'", specifier = ">=0" },
+    { name = "django-environ", specifier = ">=0.12.1" },
 ]
 provides-extras = ["allauth", "celery"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "tox" },
-    { name = "tox-uv" },
+    { name = "tox", specifier = "==4.46.3" },
+    { name = "tox-uv", specifier = "==1.33.0" },
 ]
-lint = [{ name = "ruff" }]
+lint = [{ name = "ruff", specifier = "==0.15.4" }]
 type = [
-    { name = "celery-types" },
-    { name = "django-stubs", extras = ["compatible-mypy"] },
-    { name = "mypy" },
+    { name = "celery-types", specifier = "==0.24.0" },
+    { name = "django-stubs", extras = ["compatible-mypy"], specifier = "==5.2.9" },
+    { name = "mypy", specifier = "==1.19.1" },
 ]
 
 [[package]]

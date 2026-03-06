@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+requires = ["hatchling>=1,<2", "hatch-vcs>=0.4"]
 build-backend = "hatchling.build"
 
 [project]
@@ -36,7 +36,7 @@ classifiers = [
 ]
 dependencies = [
   "django>=5.1",
-  "django-environ",
+  "django-environ>=0.12.1",
 ]
 dynamic = ["version"]
 
@@ -46,24 +46,24 @@ Repository = "https://github.com/kitware-resonant/cookiecutter-resonant"
 
 [project.optional-dependencies]
 allauth = [
-  "django-allauth",
+  "django-allauth>=0",
 ]
 celery = [
-  "celery",
+  "celery>=0",
 ]
 
 [dependency-groups]
 dev = [
-  "tox",
-  "tox-uv",
+  "tox==4.46.3",
+  "tox-uv==1.33.0",
 ]
 lint = [
-  "ruff",
+  "ruff==0.15.4",
 ]
 type = [
-  "mypy",
-  "celery-types",
-  "django-stubs[compatible-mypy]",
+  "mypy==1.19.1",
+  "celery-types==0.24.0",
+  "django-stubs[compatible-mypy]==5.2.9",
 ]
 
 [tool.hatch.build]
