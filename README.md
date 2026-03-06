@@ -2,7 +2,7 @@
 
 # Creation
 * [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
-* Run: `uvx copier copy --trust gh:kitware-resonant/cookiecutter-resonant <local-path-to-new-project>`
+* Run: `uvx copier copy --trust https://github.com/kitware-resonant/cookiecutter-resonant <local-path-to-new-project>`
   * This will create a new directory for you.
 * Within `<local-path-to-new-project>`, initialize Git and connect it to your upstream repository.
 
