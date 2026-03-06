@@ -159,3 +159,39 @@ module = [
   "environ.*",
 ]
 ignore_missing_imports = true
+<<<<<<< before updating
+=======
+
+[tool.django-stubs]
+django_settings_module = "test_app.settings"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Allow test utility modules to be imported without adding the root directory to the pythonpath,
+# which would cause the local "resonant_settings" module to shadow the install.
+pythonpath = ["tests"]
+# Configure pythonpath ourselves, not based on manage.py
+django_find_project = false
+addopts = [
+  # Use the Pytest-recommended "importlib" mode
+  "--import-mode=importlib",
+  "--strict-config",
+  "--strict-markers",
+  "--showlocals",
+  "--verbose",
+  "--cov",
+  # Specifying as "--ds" will override any value in the environment
+  "--ds=test_app.settings",
+]
+filterwarnings = [
+  "error",
+  # pytest often causes unclosed socket warnings
+  'ignore:unclosed <socket\.socket:ResourceWarning',
+]
+
+[tool.coverage.paths]
+source = [
+  "resonant_settings/",
+  ".tox/**/site-packages/resonant_settings/",
+]
+>>>>>>> after updating

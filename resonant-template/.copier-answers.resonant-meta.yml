@@ -5,3 +5,5 @@ max_python_minor_version: 13
 min_python_minor_version: 13
 project_slug: '{{ project_slug }}'
 python_package_name: '{{ python_package_name }}'
+
+#copier updated
