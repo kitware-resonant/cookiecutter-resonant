@@ -104,7 +104,7 @@ ignore = [
   # Overly burdensome
   "ANN", # flake8-annotations
   "D1", # undocumented-*
-  "EM101", # raw-string-in-exception
+  "EM", # flake8-errmsg
   "ERA001", # commented-out-code
   "FIX", # flake8-fixme
   "RET505", # superfluous-else-return
