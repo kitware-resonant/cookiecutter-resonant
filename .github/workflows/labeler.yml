@@ -6,6 +6,6 @@ permissions:
   pull-requests: write
 jobs:
   labeler:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/labeler@v6
