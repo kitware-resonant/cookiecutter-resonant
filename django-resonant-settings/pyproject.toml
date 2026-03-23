@@ -63,7 +63,7 @@ lint = [
 type = [
   "mypy==1.19.1",
   "celery-types==0.26.0",
-  "django-stubs[compatible-mypy]==5.2.9",
+  "django-stubs[compatible-mypy]==6.0.1",
 ]
 
 [tool.hatch.build]
