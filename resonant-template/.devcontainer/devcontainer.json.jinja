@@ -1,72 +1,83 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
-    "name": "{{ project_name }} Django",
-    "dockerComposeFile": [
-        "../docker-compose.yml",
-        "../docker-compose.override.yml"
-    ],
-    "service": "django",
-    "overrideCommand": true,
-    "workspaceFolder": "/home/vscode/{{ project_slug }}",
-    "features": {
-        "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {
-            "version": 17
-        },
-        "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
-        "ghcr.io/devcontainers-extra/features/heroku-cli:1.0.5": {},
-        "ghcr.io/devcontainers/features/aws-cli:1": {},
-        "ghcr.io/devcontainers/features/github-cli:1": {}
-        "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
+  "name": "{{ project_name }}",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml",
+    "./docker-compose.devcontainer.yml"
+  ],
+  "service": "django",
+  "overrideCommand": true,
+  // The "vscode" user and remoteUser are set by the base image label (devcontainers/base).
+  "workspaceFolder": "/home/vscode/{{ project_slug }}",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/rails/devcontainer/features/postgres-client:1": {
+      "version": 18
     },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                // this removes the extension the AWS feature adds, see https://github.com/devcontainers/features/issues/1228
-                "-AmazonWebServices.aws-toolkit-vscode",
-                "matangover.mypy",
-                "ms-python.debugpy",
-                "ms-python.flake8",
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "tamasfe.even-better-toml"
-            ],
-            "settings": {
-                // disable pylance type checking in lieu of using the mypy extension since
-                // it will match CI/tox.
-                "python.analysis.typeCheckingMode": "off",
-                "python.analysis.gotoDefinitionInStringLiteral": true,
-                "python.defaultInterpreterPath": "/home/vscode/uv-env/bin/python",
-                "python.testing.pytestEnabled": true,
-                "python.analysis.autoImportCompletions": true,
-                // allow for auto-importing from deeper symbols inside of django
-                "python.analysis.packageIndexDepths": [
-                    {"name": "django", "depth": 6}
-                ],
-                "mypy.enabled": false,
-                "mypy.runUsingActiveInterpreter": true,
-                "flake8.importStrategy": "fromEnvironment"
-            }
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/heroku-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        // Django
+        "batisteo.vscode-django",
+        "augustocdias.tasks-shell-input",
+        // Other file formats
+        "editorconfig.editorconfig",
+        "mikestead.dotenv",
+        "tamasfe.even-better-toml",
+        "timonwong.shellcheck",
+        // Infrastructure
+        "ms-azuretools.vscode-containers",
+        "hashicorp.terraform",
+        "github.vscode-github-actions",
+        // Remove AWS extension, as only the CLI is wanted; see: https://github.com/devcontainers/features/issues/1228
+        "-AmazonWebServices.aws-toolkit-vscode"
+      ],
+      "settings": {
+        "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+        // Container-specific Python paths
+        "python.defaultInterpreterPath": "/home/vscode/venv/bin/python",
+        // Ensure that `envFile` from any user settings is ignored; Docker Compose provides it.
+        "python.envFile": "",
+        // Reduce file watcher overhead for generated/cache directories.
+        "files.watcherExclude": {
+          "**/__pycache__/**": true,
+          "**/.pytest_cache/**": true,
+          "**/node_modules/**": true
         }
-    },
-    "portsAttributes": {
-        "8000": {
-            "name": "Django",
-            "onAutoForward": "ignore"
-        },
-        "9000": {
-            "name": "MinIO",
-            "onAutoForward": "ignore"
-        },
-        "9001": {
-            "name": "MinIO Console",
-            "onAutoForward": "ignore"
-        }
-    },
-    "updateContentCommand": [
-        "uv",
-        "sync",
-        "--all-extras",
-        "--all-groups"
-    ]
+      }
+    }
+  },
+  // Prevent a prompt every time the debugger opens a port or Django auto-restarts.
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+  "portsAttributes": {
+    "8000": {
+      "label": "Django",
+      // Show a dialog if the port isn't free.
+      "requireLocalPort": true,
+      "onAutoForward": "silent"
+    }
+  },
+  // Install a global Python and create a venv before VSCode extensions start,
+  // to prevent prompts and ensure test discovery works on first load.
+  "onCreateCommand": {
+    "python": ["uv", "python", "install", "--default"],
+    "venv": ["uv", "sync", "--all-extras", "--all-groups"]
+  },
+  // Ensure it is re-synced on restarts.
+  "updateContentCommand": ["uv", "sync", "--all-extras", "--all-groups"]
 }

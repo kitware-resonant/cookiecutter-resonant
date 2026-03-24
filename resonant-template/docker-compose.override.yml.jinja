@@ -9,14 +9,6 @@ services:
     ]
     # Log printing is enhanced by a TTY
     tty: true
-    environment:
-      PYTHONUNBUFFERED: 1
-      TOX_WORK_DIR: /home/vscode/tox
-      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
-      UV_CACHE_DIR: /home/vscode/uv/cache
-      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
-      # The uv cache and environment are on different volumes, so hardlinks won't work
-      UV_LINK_MODE: copy
     working_dir: /home/vscode/{{ project_slug }}
     env_file: ./dev/.env.docker-compose
     volumes:
@@ -46,14 +38,6 @@ services:
     ]
     # uv progress doesn't display properly with a Docker TTY
     tty: false
-    environment:
-      PYTHONUNBUFFERED: 1
-      TOX_WORK_DIR: /home/vscode/tox
-      UV_PROJECT_ENVIRONMENT: /home/vscode/uv-env
-      UV_CACHE_DIR: /home/vscode/uv/cache
-      UV_PYTHON_INSTALL_DIR: /home/vscode/uv/bin
-      # The uv cache and environment are on different volumes, so hardlinks won't work
-      UV_LINK_MODE: copy
     working_dir: /home/vscode/{{ project_slug }}
     env_file: ./dev/.env.docker-compose
     volumes:

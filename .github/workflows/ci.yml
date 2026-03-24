@@ -86,7 +86,14 @@ jobs:
           enable-cache: false
       - name: Create from template
         run: |
-          uvx copier copy --vcs-ref HEAD --data 'project_name=Resonant' --data ${{ matrix.example-code }} --data ${{ matrix.asgi }} --defaults . "${{ runner.temp }}/resonant"
+          uvx copier copy \
+          --vcs-ref HEAD \
+          --data 'project_name=Resonant' \
+          --data ${{ matrix.example-code }} \
+          --data ${{ matrix.asgi }} \
+          --defaults \
+          . \
+          "${{ runner.temp }}/resonant"
       - name: Initialize lockfile
         run: |
           uv lock
@@ -105,32 +112,32 @@ jobs:
         working-directory: "${{ runner.temp }}/resonant"
 
   test-devcontainers:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v6
         with:
           # Tags are needed to compute the current version number
           fetch-depth: 0
       - name: Install uv
-        uses: astral-sh/setup-uv@445689ea25e0de0a23313031f5fe577c74ae45a1 # v6
+        uses: astral-sh/setup-uv@v7
         with:
           # There's no lockfile at this point
           enable-cache: false
       - name: Eject from cookiecutter
         run: |
-          uvx --with cookiecutter,jinja2_time \
-          copier copy --vcs-ref HEAD \
-          --trust \
+          uvx copier copy \
+          --vcs-ref HEAD \
           --data project_name=Resonant \
           --data include_example_code=yes \
           --defaults \
-          . "${{ runner.temp }}/resonant"
+          . \
+          "${{ runner.temp }}/resonant"
 
       - name: Build and run dev container task
-        uses: devcontainers/ci@8bf61b26e9c3a98f69cb6ce2f88d24ff59b785c6 # v0.3
+        uses: devcontainers/ci@v0.3
         with:
           runCmd: |
             ./manage.py check
-            uv run tox
+            tox
           subFolder: "${{ runner.temp }}/resonant"
