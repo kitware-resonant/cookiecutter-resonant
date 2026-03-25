@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "django-resonant-settings"
 description = "Shared Django settings for Resonant applications."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 maintainers = [{ name = "Kitware, Inc.", email = "kitware@kitware.com" }]
@@ -18,24 +18,23 @@ keywords = [
   "settings",
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Environment :: Web Environment",
   "Framework :: Django",
   "Framework :: Django :: 5",
-  "Framework :: Django :: 5.1",
   "Framework :: Django :: 5.2",
+  "Framework :: Django :: 6",
+  "Framework :: Django :: 6.0",
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "django>=5.1",
+  "django>=5.2",
   "django-environ>=0.12.1",
 ]
 dynamic = ["version"]
@@ -63,7 +62,7 @@ lint = [
 type = [
   "mypy==1.19.1",
   "celery-types==0.26.0",
-  "django-stubs[compatible-mypy]==5.2.9",
+  "django-stubs[compatible-mypy]==6.0.1",
 ]
 
 [tool.hatch.build]

@@ -54,8 +54,7 @@ class EmailAsUsernameProxyUserManager(UserManager["EmailAsUsernameProxyUser"]):
 
 
 class EmailAsUsernameProxyUser(User):
-    # https://github.com/typeddjango/django-stubs/issues/2112
-    class Meta(User.Meta):  # type: ignore[misc,name-defined]
+    class Meta(User.Meta):
         proxy = True
 
     objects = EmailAsUsernameProxyUserManager()
