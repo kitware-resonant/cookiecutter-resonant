@@ -1,64 +1,34 @@
 # {{ project_name }}
 
-## Develop with Docker (recommended quickstart)
-This is the simplest configuration for developers to start with.
+## Setup
+1. Install [VS Code with dev container support](https://code.visualstudio.com/docs/devcontainers/containers#_installation).
+1. Open the project in VS Code, then run `Dev Containers: Reopen in Container`
+   from the Command Palette (`Ctrl+Shift+P`).
+1. Once the container is ready, open a terminal and run:
+   ```sh
+   ./manage.py migrate
+   ./manage.py createsuperuser
+   ```
 
-### Initial Setup
-1. Run `docker compose run --rm django ./manage.py migrate`
-2. Run `docker compose run --rm django ./manage.py createsuperuser`
-   and follow the prompts to create your own user
+## Run
+Open the **Run and Debug** panel (`Ctrl+Shift+D`) and select a launch configuration:
 
-### Run Application
-1. Run `docker compose up`
-2. Access the site, starting at <http://localhost:8000/admin/>
-3. When finished, use `Ctrl+C`
+* **Django: Server** — Starts the development server at http://localhost:8000/
+* **Django: Server (eager Celery)** — Same, but Celery tasks run synchronously
+  in the web process (useful for debugging task code without a worker)
+* **Celery: Worker** — Starts only the Celery worker
+* **Django + Celery** — Starts both the server and a Celery worker
+* **Django: Management Command** — Pick and run any management command
 
-### Maintenance
-To non-destructively update your development stack at any time:
-1. Run `docker compose down`
-2. Run `docker compose pull`
-3. Run `docker compose build --pull`
-4. Run `docker compose run --rm django ./manage.py migrate`
+## Test
+Run the full test suite from a terminal: `tox`
 
-### Destruction
-1. Run `docker compose down -v`
+Auto-format code: `tox -e format`
 
-## Develop Natively (advanced)
-This configuration still uses Docker to run attached services in the background,
-but allows developers to run Python code on their native system.
+Run and debug individual tests from the **Testing** panel (`Ctrl+Shift+;`).
 
-### Initial Setup
-1. Run `docker compose -f ./docker-compose.yml up -d`
-2. [Install `uv`](https://docs.astral.sh/uv/getting-started/installation/)
-3. Run `export UV_ENV_FILE=./dev/.env.docker-compose-native`
-4. Run `./manage.py migrate`
-5. Run `./manage.py createsuperuser` and follow the prompts to create your own user
+## Rebuild
+After changes to the Dockerfile, Docker Compose files, or `devcontainer.json`,
+run `Dev Containers: Rebuild Container` from the Command Palette (`Ctrl+Shift+P`).
 
-### Run Application
-1. Ensure `docker compose -f ./docker-compose.yml up -d` is still active
-2. Run `export UV_ENV_FILE=./dev/.env.docker-compose-native`
-3. Run: `./manage.py runserver_plus`
-4. Run in a separate terminal: `uv run celery --app {{ python_package_name }}.celery worker --loglevel INFO --without-heartbeat`
-5. When finished, run `docker compose stop`
-
-## Testing
-### Initial Setup
-tox is used to manage the execution of all tests.
-[Install `uv`](https://docs.astral.sh/uv/getting-started/installation/) and run tox with
-`uv run tox ...`.
-
-When running the "Develop with Docker" configuration, all tox commands must be run as
-`docker compose run --rm django uv run tox`; extra arguments may also be appended to this form.
-
-### Running Tests
-Run `uv run tox` to launch the full test suite.
-
-Individual test environments may be selectively run.
-This also allows additional options to be be added.
-Useful sub-commands include:
-* `uv run tox -e lint`: Run only the style checks
-* `uv run tox -e type`: Run only the type checks
-* `uv run tox -e test`: Run only the pytest-driven tests
-
-To automatically reformat all code to comply with
-some (but not all) of the style checks, run `uv run tox -e format`.
+For dependency changes in `pyproject.toml`, just run `uv sync --all-extras --all-groups`.
