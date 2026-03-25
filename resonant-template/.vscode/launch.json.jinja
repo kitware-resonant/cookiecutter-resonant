@@ -6,13 +6,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}",
-        {% if not use_asgi -%}
-        "--print-sql",
-        {% endif -%}
-        "localhost:8000"
-      ],
+      "args": ["{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}", {% if not use_asgi -%}"--print-sql", {% endif -%}"localhost:8000"],
       "django": true,
       "console": "integratedTerminal"
     },
@@ -21,13 +15,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": [
-        "{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}",
-        {% if not use_asgi -%}
-        "--print-sql",
-        {% endif -%}
-        "localhost:8000"
-      ],
+      "args": ["{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}", {% if not use_asgi -%}"--print-sql", {% endif -%}"localhost:8000"],
       "env": {
         "DJANGO_CELERY_TASK_ALWAYS_EAGER": "true"
       },
@@ -49,10 +37,13 @@
       "request": "launch",
       "module": "celery",
       "args": [
-        "--app", "{{ python_package_name }}.celery",
+        "--app",
+        "{{ python_package_name }}.celery",
         "worker",
-        "--loglevel", "INFO",
-        "--pool", "solo",
+        "--loglevel",
+        "INFO",
+        "--pool",
+        "solo",
         "--without-heartbeat"
       ],
       "console": "integratedTerminal",
