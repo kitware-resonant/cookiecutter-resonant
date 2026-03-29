@@ -5,11 +5,13 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 # Ensure Python output appears immediately in container logs.
 ENV PYTHONUNBUFFERED=1
 
-# Put the uv cache in a separate location, where it can persist and be shared across containers.
-# The uv cache and virtual environment will be on different volumes, so hardlinks won't work.
-ENV UV_CACHE_DIR=/home/vscode/uv/cache \
-  UV_PYTHON_INSTALL_DIR=/home/vscode/uv/bin \
-  UV_LINK_MODE=symlink
+# Put the uv and npm caches in a separate location,
+# where they can persist and be shared across containers.
+# The uv cache and virtual environment are on different volumes, so hardlinks won't work.
+ENV UV_CACHE_DIR=/home/vscode/pkg-cache/uv \
+  UV_PYTHON_INSTALL_DIR=/home/vscode/pkg-cache/uv-python \
+  UV_LINK_MODE=symlink \
+  NPM_CONFIG_CACHE=/home/vscode/pkg-cache/npm
 
 # Put the virtual environment outside the project directory,
 # to improve performance on macOS and prevent accidental usage from the host machine.
@@ -28,4 +30,4 @@ USER vscode
 
 # Pre-create named volume mount points, so the new volume inherits `vscode` user ownership:
 # https://docs.docker.com/engine/storage/volumes/#populate-a-volume-using-a-container
-RUN ["mkdir", "/home/vscode/uv"]
+RUN ["mkdir", "/home/vscode/pkg-cache"]
