@@ -13,7 +13,7 @@ services:
     env_file: ./dev/.env.docker-compose
     volumes:
       - .:/home/vscode/{{ project_slug }}
-      - uv_cache:/home/vscode/uv
+      - pkg_cache:/home/vscode/pkg-cache
     ports:
       - 8000:8000
     depends_on:
@@ -42,7 +42,7 @@ services:
     env_file: ./dev/.env.docker-compose
     volumes:
       - .:/home/vscode/{{ project_slug }}
-      - uv_cache:/home/vscode/uv
+      - pkg_cache:/home/vscode/pkg-cache
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,4 +52,4 @@ services:
         condition: service_healthy
 
 volumes:
-  uv_cache:
+  pkg_cache:
