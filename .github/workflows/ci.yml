@@ -134,10 +134,14 @@ jobs:
           . \
           "${{ runner.temp }}/resonant"
 
-      - name: Build and run dev container task
+      - name: Copy Dev Container test into ejected project
+        run: |
+          cp .github/devcontainer-smoke-test.bats "${{ runner.temp }}/resonant/"
+
+      - name: Build and test Dev Container
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
-            ./manage.py check
-            tox
+            sudo apt-get update && sudo apt-get install --yes bats
+            bats devcontainer-smoke-test.bats
           subFolder: "${{ runner.temp }}/resonant"
