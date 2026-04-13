@@ -8,7 +8,8 @@
       "program": "${workspaceFolder}/manage.py",
       "args": ["{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}", {% if not use_asgi -%}"--print-sql", {% endif -%}"localhost:8000"],
       "django": true,
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "justMyCode": false
     },
     {
       "name": "Django: Server (eager Celery)",
@@ -20,7 +21,8 @@
         "DJANGO_CELERY_TASK_ALWAYS_EAGER": "true"
       },
       "django": true,
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "justMyCode": false
     },
     {
       "name": "Django: Management Command",
@@ -29,7 +31,8 @@
       "program": "${workspaceFolder}/manage.py",
       "args": ["${input:managementCommand}"],
       "django": true,
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "justMyCode": false
     },
     {
       "name": "Celery: Worker",
