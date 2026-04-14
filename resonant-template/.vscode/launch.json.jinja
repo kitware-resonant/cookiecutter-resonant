@@ -38,8 +38,24 @@
       "name": "Celery: Worker",
       "type": "debugpy",
       "request": "launch",
-      "module": "celery",
+      "module": "watchdog.watchmedo",
       "args": [
+        "auto-restart",
+        "--directory",
+        "./{{ python_package_name }}",
+        "--pattern",
+        "*.py",
+        "--recursive",
+        "--signal",
+        "SIGQUIT",
+        "--kill-after",
+        "2",
+        "--",
+        // Invoke via `python -m` so debugpy's subprocess hook recognizes it as Python and attaches;
+        // the bare `celery` console script isn't detected.
+        "python",
+        "-m",
+        "celery",
         "--app",
         "{{ python_package_name }}.celery",
         "worker",
@@ -50,7 +66,11 @@
         "--without-heartbeat"
       ],
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": false,
+      // debugpy attaches to watchmedo, but it should continue into the Celery worker subprocess.
+      "subProcess": true,
+      // Rapid reloads or shutdowns can leave orphaned workers.
+      "postDebugTask": "Kill orphaned Celery workers"
     },
     {
       "name": "Pytest: Debug",
