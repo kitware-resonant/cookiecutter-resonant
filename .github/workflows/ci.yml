@@ -25,7 +25,7 @@ jobs:
           working-directory: django-resonant-settings
       - name: Run tests
         run: |
-          uv run tox
+          uv run --locked tox
         working-directory: django-resonant-settings
   test-template-eject:
     runs-on: ubuntu-24.04
@@ -104,7 +104,7 @@ jobs:
         working-directory: "${{ runner.temp }}/resonant"
       - name: Run tox tests from new project
         run: |
-          uv run tox
+          uv run --locked tox
         env:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/

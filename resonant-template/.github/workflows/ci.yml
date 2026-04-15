@@ -49,7 +49,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: Run tests
         run: |
-          uv run tox
+          uv run --locked tox
         env:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
