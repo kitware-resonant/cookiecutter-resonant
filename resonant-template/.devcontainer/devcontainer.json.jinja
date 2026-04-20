@@ -53,6 +53,8 @@
         "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
         // Container-specific Python paths
         "python.defaultInterpreterPath": "/home/vscode/venv/bin/python",
+        // Disable automatic Python venv activation in new terminals.
+        "python-envs.terminal.autoActivationType": "off",
         // Ensure that `envFile` from any user settings is ignored; Docker Compose provides it.
         "python.envFile": "",
         // Reduce file watcher overhead for generated/cache directories.
