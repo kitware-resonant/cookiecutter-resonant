@@ -49,15 +49,11 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
-# Confirm URLs include a secret token, so CSRF safety isn't a concern
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-
 # This will likely become the default in the future, but enable it now
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 
 __all__ = [
     "ACCOUNT_ADAPTER",
-    "ACCOUNT_CONFIRM_EMAIL_ON_GET",
     "ACCOUNT_EMAIL_VERIFICATION",
     "ACCOUNT_LOGIN_METHODS",
     "ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION",
