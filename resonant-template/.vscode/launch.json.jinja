@@ -9,7 +9,11 @@
       "args": ["{% if use_asgi %}runserver{% else %}runserver_plus{% endif %}", {% if not use_asgi -%}"--print-sql", {% endif -%}"localhost:8000"],
       "django": true,
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": false,
+      "presentation": {
+        "group": "2-services",
+        "order": 1
+      }
     },
     {
       "name": "Django: Server (eager Celery)",
@@ -22,7 +26,11 @@
       },
       "django": true,
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": false,
+      "presentation": {
+        "group": "3-utilities",
+        "order": 1
+      }
     },
     {
       "name": "Django: Management Command",
@@ -32,7 +40,11 @@
       "args": ["${input:managementCommand}"],
       "django": true,
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": false,
+      "presentation": {
+        "group": "3-utilities",
+        "order": 2
+      }
     },
     {
       "name": "Celery: Worker",
@@ -50,7 +62,11 @@
         "--without-heartbeat"
       ],
       "console": "integratedTerminal",
-      "justMyCode": false
+      "justMyCode": false,
+      "presentation": {
+        "group": "2-services",
+        "order": 2
+      }
     },
     {
       "name": "Pytest: Debug",
@@ -60,14 +76,21 @@
       "purpose": ["debug-test"],
       "console": "integratedTerminal",
       "django": true,
-      "justMyCode": false
+      "justMyCode": false,
+      "presentation": {
+        "hidden": true
+      }
     }
   ],
   "compounds": [
     {
       "name": "Django + Celery",
       "configurations": ["Django: Server", "Celery: Worker"],
-      "stopAll": true
+      "stopAll": true,
+      "presentation": {
+        "group": "1-compound",
+        "order": 1
+      }
     }
   ],
   "inputs": [
