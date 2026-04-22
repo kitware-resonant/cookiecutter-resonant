@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Kill orphaned Celery workers",
+      "type": "shell",
+      "command": "pkill -9 -f '{{ python_package_name }}.celery.*worker' || true",
+      "presentation": {
+        "reveal": "silent",
+        "close": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

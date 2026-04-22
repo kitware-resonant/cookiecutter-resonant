@@ -30,10 +30,18 @@ services:
       dockerfile: ./dev/django.Dockerfile
     command: [
       "uv", "run",
+      "watchmedo", "auto-restart",
+      "--directory", "./{{ python_package_name }}",
+      "--pattern", "*.py",
+      "--recursive",
+      "--signal", "SIGQUIT",
+      "--kill-after", "2",
+      "--",
       "celery",
       "--app", "{{ python_package_name }}.celery",
       "worker",
       "--loglevel", "INFO",
+      "--pool", "solo",
       "--without-heartbeat"
     ]
     # uv progress doesn't display properly with a Docker TTY
