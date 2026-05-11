@@ -53,8 +53,8 @@ celery = [
 
 [dependency-groups]
 dev = [
-  "tox==4.53.0",
-  "tox-uv==1.35.1",
+  "tox==4.53.1",
+  "tox-uv==1.35.2",
 ]
 lint = [
   "ruff==0.15.12",
