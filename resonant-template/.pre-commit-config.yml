@@ -1,0 +1,72 @@
+repos:
+  - repo: builtin
+    hooks:
+      # File content fixers
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+
+      # File validators
+      - id: check-json
+        exclude: ^(\.vscode/.*|\.devcontainer/devcontainer\.json)$
+      - id: check-json5
+        files: ^(\.vscode/.*|\.devcontainer/devcontainer\.json)$
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+
+      # Git checks
+      - id: check-added-large-files
+      - id: check-merge-conflict
+        args: [--assume-in-merge]
+
+      # Filesystem checks
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-illegal-windows-names
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: destroyed-symlinks
+
+      # Security checks
+      - id: detect-private-key
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.46.1
+    hooks:
+      - id: typos
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.37.2
+    hooks:
+      - id: check-github-workflows
+
+  - repo: local
+    hooks:
+      - id: django-upgrade
+        name: django-upgrade
+        language: system
+        entry: uv run --group lint django-upgrade
+        types: [python]
+      - id: ruff-check
+        name: ruff-check
+        language: system
+        entry: uv run --group lint ruff check --fix-only
+        types: [python]
+      - id: ruff-format
+        name: ruff-format
+        language: system
+        entry: uv run --group lint ruff format
+        types: [python]
+
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.11.0
+    hooks:
+      - id: shellcheck
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.14.0
+    hooks:
+      - id: hadolint-docker
