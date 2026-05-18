@@ -86,5 +86,7 @@
     "venv": ["uv", "sync", "--all-extras", "--all-groups"]
   },
   // Ensure it is re-synced on restarts.
-  "updateContentCommand": ["uv", "sync", "--all-extras", "--all-groups"]
+  "updateContentCommand": {
+    "venv": ["uv", "sync", "--all-extras", "--all-groups"]
+  }
 }
