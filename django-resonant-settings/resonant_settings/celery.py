@@ -20,7 +20,7 @@ CELERY_BROKER_URL: str = env.str("DJANGO_CELERY_BROKER_URL")
 
 # Disable results backend, as this feature has too many weaknesses.
 # The database should be used to communicate results of completed tasks.
-CELERY_RESULT_BACKEND = None
+CELERY_RESULT_BACKEND: str | None = None
 
 # Only acknowledge a task being done after the function finishes.
 # This provides safety against worker crashes, but adds the requirement
@@ -28,7 +28,7 @@ CELERY_RESULT_BACKEND = None
 # See: https://docs.celeryproject.org/en/stable/faq.html#should-i-use-retry-or-acks-late
 CELERY_TASK_ACKS_LATE = True
 
-# When a worker subprocess abruptly exists, assume it was is killed by the operating system for
+# When a worker subprocess abruptly exits, assume it was killed by the operating system for
 # a cause which is intrinsic (e.g. a segfault or OOM) to the task it was running, so do not
 # requeue. It's expected that the task wouldn't succeed if run again.
 # This should not impact cases where the task fails due to extrinsic causes (e.g. the process
@@ -51,13 +51,6 @@ CELERY_TASK_ACKS_ON_FAILURE_OR_TIMEOUT = True
 # and this will be Celery's default in 6.0.
 CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS = True
 
-# CloudAMQP-suggested settings
-# https://www.cloudamqp.com/docs/celery.html
-CELERY_BROKER_POOL_LIMIT = 1
-CELERY_BROKER_HEARTBEAT: int | None = None
-CELERY_BROKER_CONNECTION_TIMEOUT = 30
-CELERY_EVENT_QUEUE_EXPIRES = 60
-
 # Note, CELERY_WORKER settings could be different on each running worker.
 
 # Do not prefetch, as the speed benefit for fast-running tasks may not be
@@ -68,6 +61,28 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 # Accept the default of the number of CPU cores.
 # Workers running memory-intensive tasks may need to decrease this.
 CELERY_WORKER_CONCURRENCY: int | None = None
+
+# Disable the non-essential remote control queue.
+# Also requires `--without-mingle`.
+CELERY_WORKER_ENABLE_REMOTE_CONTROL = False
+
+# Disable the non-essential events queue.
+# Also requires `--without-heartbeat`, `--without-gossip`.
+CELERY_WORKER_SEND_TASK_EVENTS = False
+# If the events queue is enabled, ensure it doesn't accumulate too many messages.
+CELERY_EVENT_QUEUE_EXPIRES: float = 60
+
+# Give a more generous connection time than the default of 4.0;
+# CloudAMQP suggests this.
+CELERY_BROKER_CONNECTION_TIMEOUT: float | None = 30
+
+# Maximize usage of AMQP connection pools.
+CELERY_BROKER_POOL_LIMIT: int | None = 1
+
+# Rely on CloudAMQP setting low TCP keep-alive intervals:
+# https://www.cloudamqp.com/docs/celery.html#brokerheartbeat
+# Note Broker (AMQP) heartbeats are totally distinct from Celery heartbeats.
+CELERY_BROKER_HEARTBEAT: int | None = None
 
 # Make the task received log message include the task's arguments.
 celery.app.trace.LOG_RECEIVED = """\
@@ -86,5 +101,7 @@ __all__ = [
     "CELERY_TASK_REJECT_ON_WORKER_LOST",
     "CELERY_WORKER_CANCEL_LONG_RUNNING_TASKS_ON_CONNECTION_LOSS",
     "CELERY_WORKER_CONCURRENCY",
+    "CELERY_WORKER_ENABLE_REMOTE_CONTROL",
     "CELERY_WORKER_PREFETCH_MULTIPLIER",
+    "CELERY_WORKER_SEND_TASK_EVENTS",
 ]

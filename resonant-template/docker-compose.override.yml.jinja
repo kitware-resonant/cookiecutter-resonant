@@ -34,7 +34,9 @@ services:
       "--app", "{{ python_package_name }}.celery",
       "worker",
       "--loglevel", "INFO",
-      "--without-heartbeat"
+      "--without-mingle",
+      "--without-heartbeat",
+      "--without-gossip"
     ]
     # uv progress doesn't display properly with a Docker TTY
     tty: false
