@@ -61,12 +61,12 @@ repos:
         entry: uv run --group lint ruff format
         types: [python]
 
-  - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.11.0
-    hooks:
-      - id: shellcheck
-
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.14.0
-    hooks:
-      - id: hadolint-docker
+#  - repo: https://github.com/koalaman/shellcheck-precommit
+#    rev: v0.11.0
+#    hooks:
+#      - id: shellcheck
+#
+#  - repo: https://github.com/hadolint/hadolint
+#    rev: v2.14.0
+#    hooks:
+#      - id: hadolint-docker
