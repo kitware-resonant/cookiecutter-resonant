@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, ClassVar
+from typing import TYPE_CHECKING, Any, ClassVar, cast
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands import createsuperuser
@@ -48,9 +48,19 @@ class EmailAsUsernameProxyUserManager(UserManager["EmailAsUsernameProxyUser"]):
         # Practically, email will always be provided
         if email is None:
             raise ValueError("Email address must be provided.")
-        return super().create_superuser(
+        # Don't call "super().create_superuser", since we want the sender of all signals to still
+        # be a "User", not "EmailAsUsernameProxyUser" (signal receivers don't match
+        # subclasses).
+        user = User.objects.create_superuser(
             username=email, email=email, password=password, **extra_fields
         )
+        # The return object really is a "User", but this method needs to return an
+        # "EmailAsUsernameProxyUser". To be super-extra safe, actually change the class (which is
+        # safe, because the two classes have identical instance state), rather than just lying with
+        # a cast.
+        user.__class__ = EmailAsUsernameProxyUser
+        # The variable type can't track the class change.
+        return cast("EmailAsUsernameProxyUser", user)
 
 
 class EmailAsUsernameProxyUser(User):
