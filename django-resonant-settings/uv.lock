@@ -253,7 +253,7 @@ type = [
 [package.metadata]
 requires-dist = [
     { name = "celery", marker = "extra == 'celery'", specifier = ">=0" },
-    { name = "django", specifier = ">=5.2" },
+    { name = "django", specifier = ">=6.0" },
     { name = "django-allauth", marker = "extra == 'allauth'", specifier = ">=0" },
     { name = "django-environ", specifier = ">=0.12.1" },
 ]
