@@ -12,18 +12,13 @@ This requires the `django-allauth` package to be installed and requires
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from collections.abc import Sequence
-
 # The sites framework requires this to be set.
 # In the unlikely case where a database's pk sequence for the django_site table is not reset,
 # the default site object could have a different pk. Then this will need to be overridden
 # downstream.
 SITE_ID = 1
 
-AUTHENTICATION_BACKENDS: Sequence[str] = [
+AUTHENTICATION_BACKENDS: list[str] = [
     # Django's built-in ModelBackend is not necessary, since all users will be
     # authenticated by their email address
     "allauth.account.auth_backends.AuthenticationBackend",
