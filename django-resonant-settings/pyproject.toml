@@ -142,6 +142,9 @@ force-sort-within-sections = true
 # Deferred annotations allows TC* rules to move more imports into TYPE_CHECKING blocks
 required-imports = ["from __future__ import annotations"]
 
+[tool.ruff.lint.pep8-naming]
+staticmethod-decorators = ["factory.post_generation"]
+
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
 
