@@ -38,5 +38,5 @@ Once pytest tests are added, add / uncomment `envlist = test` in
 # Update
 To update an existing project, run:
 ```shell
-uvx copier update -a .copier-answers.resonant.yml -A`
+uvx copier update -a .copier-answers.resonant.yml -A
 ```
