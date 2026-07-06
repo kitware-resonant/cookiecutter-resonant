@@ -53,16 +53,16 @@ celery = [
 
 [dependency-groups]
 dev = [
-  "tox==4.55.1",
+  "tox==4.56.1",
   "tox-uv==1.35.2",
 ]
 lint = [
-  "ruff==0.15.18",
+  "ruff==0.15.20",
 ]
 type = [
   "mypy==2.1.0",
   "celery-types==0.26.0",
-  "django-stubs[compatible-mypy]==6.0.5",
+  "django-stubs[compatible-mypy]==6.0.6",
 ]
 
 [tool.hatch.build]
