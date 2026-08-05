@@ -98,6 +98,12 @@ jobs:
         run: |
           uv lock
         working-directory: "${{ runner.temp }}/resonant"
+      - name: Initialize Git repo
+        # This is required for Prek to run
+        run: |
+          git init
+          git add .
+        working-directory: "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
           uv add "${{ github.workspace }}/django-resonant-settings[allauth]"
@@ -133,11 +139,14 @@ jobs:
           --defaults \
           . \
           "${{ runner.temp }}/resonant"
-
+      - name: Initialize Git repo
+        run: |
+          git init
+          git add .
+        working-directory: "${{ runner.temp }}/resonant"
       - name: Copy Dev Container test into ejected project
         run: |
           cp .github/devcontainer-smoke-test.bats "${{ runner.temp }}/resonant/"
-
       - name: Build and test Dev Container
         uses: devcontainers/ci@513af61f4de4f75d37e4438f184ba4358f0fc1ca # v0.3
         with:
