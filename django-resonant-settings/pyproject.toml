@@ -53,14 +53,14 @@ celery = [
 
 [dependency-groups]
 dev = [
-  "tox==4.58.0",
+  "tox==4.61.4",
   "tox-uv==1.36.0",
 ]
 lint = [
-  "ruff==0.16.1",
+  "ruff==0.16.6",
 ]
 type = [
-  "mypy==2.3.0",
+  "mypy==2.3.1",
   "celery-types==0.26.0",
   "django-stubs[compatible-mypy]==6.0.7",
 ]
