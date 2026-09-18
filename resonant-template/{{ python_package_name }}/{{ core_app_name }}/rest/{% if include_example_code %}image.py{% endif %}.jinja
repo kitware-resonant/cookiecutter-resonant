@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from django.http import HttpResponseRedirect
-from django_filters import rest_framework as filters
 from rest_framework import serializers, status
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -28,9 +27,6 @@ class ImageViewSet(ReadOnlyModelViewSet):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = ImageSerializer
-
-    filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = ["name", "checksum"]
 
     pagination_class = PageNumberPagination
 
