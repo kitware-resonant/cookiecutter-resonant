@@ -3,4 +3,15 @@
   extends: [
     'github>kitware-resonant/.github:renovate-library-core.json5',
   ],
+  packageRules: [
+    // The template uses stable placeholder versions (`>=0` in `pyproject.toml.jinja`,
+    // `@v0` for GitHub Actions in `.github/workflows/`), which are resolved to real
+    // versions when a downstream project is created. Downstream Renovate then bumps
+    // them. Never update these upstream, so Copier updates merge cleanly downstream.
+    {
+      matchManagers: ['pep621', 'github-actions'],
+      matchFileNames: ['resonant-template/**'],
+      enabled: false,
+    },
+  ],
 }

@@ -8,10 +8,11 @@
   uvx copier copy https://github.com/kitware-resonant/cookiecutter-resonant <new-project-path>
   ```
   * This will create a new directory at `<new-project-path>` for you.
-* Initialize uv and Git:
+* Pin Python and GitHub Actions versions, and initialize Git:
   ```shell
-  cd <new-project-path>`
+  cd <new-project-path>
   uv lock
+  uvx gha-update
   git init && git add -A && git commit -m 'Initial commit'
   ```
 * Push to a new GitHub repository:
