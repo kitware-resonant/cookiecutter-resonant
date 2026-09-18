@@ -20,7 +20,10 @@ extras =
 package = skip
 dependency_groups =
     lint
+set_env =
+    PREK_SKIP = ruff-check,ruff-format
 commands =
+    prek run --all-files
     ruff check
     ruff format --check
 
@@ -28,7 +31,10 @@ commands =
 package = skip
 dependency_groups =
     lint
+set_env =
+    PREK_SKIP = ruff-check,ruff-format
 commands =
+    prek run --all-files
     ruff check --fix-only
     ruff format
 
