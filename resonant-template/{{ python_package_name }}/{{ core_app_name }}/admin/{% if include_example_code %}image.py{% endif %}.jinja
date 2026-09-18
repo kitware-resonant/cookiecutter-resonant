@@ -21,8 +21,7 @@ class ImageAdmin(admin.ModelAdmin):
         ("created", admin.DateFieldListFilter),
         "owner__username",
     ]
-    list_select_related = True
-    # list_select_related = ["owner"]
+    list_select_related = ["owner"]
 
     search_fields = ["name"]
     actions = ["compute_checksum"]

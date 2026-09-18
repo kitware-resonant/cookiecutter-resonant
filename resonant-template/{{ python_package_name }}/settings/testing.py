@@ -17,4 +17,10 @@ STORAGES["default"] = {
 }
 MINIO_STORAGE_MEDIA_BUCKET_NAME = f"test-django-storage-{randbelow(1_000_000):06d}"
 
-# Testing will set EMAIL_BACKEND to use the memory backend
+# Django's test runner will override every mailer here with the memory backend, but a "default"
+# mailer must exist for outgoing email to be captured instead of failing.
+MAILERS: dict[str, dict[str, Any]] = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.locmem.EmailBackend",
+    },
+}

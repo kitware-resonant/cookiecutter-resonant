@@ -52,7 +52,11 @@ STORAGES["default"] = {
     "BACKEND": "minio_storage.storage.MinioMediaStorage",
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+MAILERS: dict[str, dict[str, Any]] = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.console.EmailBackend",
+    },
+}
 
 OAUTH2_PROVIDER["ALLOWED_REDIRECT_URI_SCHEMES"] = ["http", "https"]
 # In development, always present the approval dialog
