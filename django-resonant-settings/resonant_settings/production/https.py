@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from datetime import timedelta
 
+from django.utils.csp import CSP
+
 SECURE_SSL_REDIRECT = True
 
 SESSION_COOKIE_SECURE = True
@@ -19,8 +21,15 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 # register for preloading.
 SECURE_HSTS_PRELOAD = False
 
+# Report-only CSP: logs violations without blocking anything, so projects can monitor and tighten.
+# Override with SECURE_CSP to enforce.
+SECURE_CSP_REPORT_ONLY: dict[str, list[str]] = {
+    "default-src": [CSP.SELF],
+}
+
 __all__ = [
     "CSRF_COOKIE_SECURE",
+    "SECURE_CSP_REPORT_ONLY",
     "SECURE_HSTS_INCLUDE_SUBDOMAINS",
     "SECURE_HSTS_PRELOAD",
     "SECURE_HSTS_SECONDS",
