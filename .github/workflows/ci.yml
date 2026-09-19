@@ -98,9 +98,15 @@ jobs:
         run: |
           uv lock
         working-directory: "${{ runner.temp }}/resonant"
+      - name: Pin GitHub Actions
+        run: |
+          uvx gha-update
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        working-directory: "${{ runner.temp }}/resonant"
       - name: Add local django-resonant-settings
         run: |
-          uv add "${{ github.workspace }}/django-resonant-settings[allauth]"
+          uv add "django-resonant-settings[allauth,celery] @ ${{ github.workspace }}/django-resonant-settings"
         working-directory: "${{ runner.temp }}/resonant"
       - name: Run tox tests from new project
         run: |
@@ -133,6 +139,24 @@ jobs:
           --defaults \
           . \
           "${{ runner.temp }}/resonant"
+      - name: Initialize lockfile
+        run: |
+          uv lock
+        working-directory: "${{ runner.temp }}/resonant"
+      - name: Pin GitHub Actions
+        run: |
+          uvx gha-update
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        working-directory: "${{ runner.temp }}/resonant"
+      - name: Add local django-resonant-settings
+        # Place the wheel inside the new project, so the lockfile references it by a relative path.
+        # The Dev Container only mounts the project, so it can find the wheel there when its
+        # bootstrap creates the venv. Don't create a venv here, as that would also get mounted.
+        run: |
+          uv build --project "${{ github.workspace }}/django-resonant-settings" --wheel --out-dir wheels
+          uv add --no-sync "django-resonant-settings[allauth,celery] @ $(ls wheels/*.whl)"
+        working-directory: "${{ runner.temp }}/resonant"
 
       - name: Copy Dev Container test into ejected project
         run: |
