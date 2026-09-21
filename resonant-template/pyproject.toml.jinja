@@ -181,10 +181,10 @@ files = [
 ]
 check_untyped_defs = true
 ignore_missing_imports = true
-show_error_codes = true
 warn_redundant_casts = true
 warn_unused_configs = true
 warn_unused_ignores = true
+enable_error_code = ["exhaustive-match"]
 plugins = [
   "mypy_django_plugin.main",
   "mypy_drf_plugin.main",
@@ -194,12 +194,11 @@ plugins = [
 django_settings_module = "{{ python_package_name }}.settings.testing"
 
 [tool.pytest.ini_options]
+strict = true
 addopts = [
   # Test utilities should be imported absolutely from the pythonpath,
   # so use the Pytest-recommended "importlib" mode
   "--import-mode=importlib",
-  "--strict-config",
-  "--strict-markers",
   "--showlocals",
   # Specifying as "--ds" will override any value in the environment
   "--ds={{ python_package_name }}.settings.testing",
