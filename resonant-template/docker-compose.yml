@@ -2,6 +2,7 @@ services:
   postgres:
     image: postgres:18
     shm_size: 128mb
+    command: ["postgres", "-c", "log_lock_waits=on", "-c", "log_min_duration_statement=100"]
     environment:
       POSTGRES_DB: django
       POSTGRES_PASSWORD: postgres
