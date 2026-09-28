@@ -15,10 +15,14 @@ TEMPLATES: list[dict[str, Any]] = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.csp",
             ],
         },
     },
 ]
+
+# Can be removed in Django 7.0
+URLIZE_ASSUME_HTTPS = True
 
 PASSWORD_HASHERS: list[str] = [
     # Argon2 is recommended by OWASP, so make it the default for new passwords
@@ -42,4 +46,5 @@ __all__ = [
     "AUTH_PASSWORD_VALIDATORS",
     "PASSWORD_HASHERS",
     "TEMPLATES",
+    "URLIZE_ASSUME_HTTPS",
 ]
