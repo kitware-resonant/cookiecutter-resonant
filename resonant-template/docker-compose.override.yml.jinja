@@ -21,7 +21,7 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
-      minio:
+      seaweedfs:
         condition: service_healthy
 
   celery:
@@ -50,7 +50,7 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
-      minio:
+      seaweedfs:
         condition: service_healthy
 
 volumes:

@@ -60,19 +60,17 @@ jobs:
           --health-start-interval 2s
         ports:
           - 5672:5672
-      minio:
-        # This image does not require any command arguments (which GitHub Actions don't support)
-        image: bitnamilegacy/minio:latest
+      seaweedfs:
+        image: chrislusf/seaweedfs:4.47
         env:
-          MINIO_ROOT_USER: minioAccessKey
-          MINIO_ROOT_PASSWORD: minioSecretKey
+          AWS_ACCESS_KEY_ID: seaweedAccessKey
+          AWS_SECRET_ACCESS_KEY: seaweedSecretKey
         options: >-
-          --health-cmd "mc ready local"
-          --health-timeout 1s
+          --health-cmd "curl --fail --silent http://localhost:8333/healthz"
           --health-start-period 30s
           --health-start-interval 2s
         ports:
-          - 9000:9000
+          - 8333:8333
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -114,7 +112,7 @@ jobs:
         env:
           DJANGO_DATABASE_URL: postgres://postgres:postgres@localhost:5432/django
           DJANGO_CELERY_BROKER_URL: amqp://localhost:5672/
-          DJANGO_MINIO_STORAGE_URL: http://minioAccessKey:minioSecretKey@localhost:9000/django-storage
+          DJANGO_MINIO_STORAGE_URL: http://seaweedAccessKey:seaweedSecretKey@localhost:8333/django-storage
         working-directory: "${{ runner.temp }}/resonant"
 
   test-devcontainers:
