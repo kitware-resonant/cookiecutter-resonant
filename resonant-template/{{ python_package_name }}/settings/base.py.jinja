@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 {% if not use_asgi -%}
-from datetime import timedelta
+import datetime as dt
 {% endif -%}
 from pathlib import Path
 from typing import Any
@@ -94,7 +94,7 @@ DATABASES = {
             },
         },
         {%- else -%}
-        "CONN_MAX_AGE": timedelta(minutes=10).total_seconds(),
+        "CONN_MAX_AGE": dt.timedelta(minutes=10).total_seconds(),
         {%- endif %}
     },
 }

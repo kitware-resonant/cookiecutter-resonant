@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import timedelta
+import datetime as dt
 
 SECURE_SSL_REDIRECT = True
 
@@ -10,7 +10,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 # Enable HSTS
-SECURE_HSTS_SECONDS = int(timedelta(days=365).total_seconds())
+SECURE_HSTS_SECONDS = int(dt.timedelta(days=365).total_seconds())
 # This is already False by default, but it's important to ensure HSTS is not forced on other
 # subdomains which may have different HTTPS practices.
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
