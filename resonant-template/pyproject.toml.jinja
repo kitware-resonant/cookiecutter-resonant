@@ -209,4 +209,7 @@ filterwarnings = [
   "error",
   # pytest often causes unclosed socket warnings
   'ignore:unclosed <socket\.socket:ResourceWarning',
+  # swagger-spec-validator, a dependency of drf-yasg, imports the deprecated `jsonschema.RefResolver`
+  # https://github.com/Yelp/swagger_spec_validator/issues/171
+  'ignore:jsonschema\.RefResolver is deprecated:DeprecationWarning:swagger_spec_validator',
 ]
