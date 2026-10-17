@@ -12,7 +12,7 @@ This requires the `django-storages[s3]` package to be installed.
 
 from __future__ import annotations
 
-from datetime import timedelta
+import datetime as dt
 
 from resonant_settings._env import env
 
@@ -34,7 +34,7 @@ AWS_S3_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 # (not the Storage layer) to handle. Setting this to `False` allows file names to be mutated in
 # the event of a collision, which can be confusing.
 AWS_S3_FILE_OVERWRITE = True
-AWS_QUERYSTRING_EXPIRE = int(timedelta(hours=6).total_seconds())
+AWS_QUERYSTRING_EXPIRE = int(dt.timedelta(hours=6).total_seconds())
 
 __all__ = [
     "AWS_QUERYSTRING_EXPIRE",
