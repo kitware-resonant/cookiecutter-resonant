@@ -121,6 +121,7 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "**/migrations/**" = [
+  "ICN001", # unconventional-import-alias
   "N806", # non-lowercase-variable-in-function
   "RUF012", # mutable-class-default
 ]
