@@ -4,12 +4,24 @@
     'github>kitware-resonant/.github:renovate-library-core.json5',
   ],
   packageRules: [
-    // The template uses stable placeholder versions (`>=0` in `pyproject.toml.jinja`,
-    // `@v0` for GitHub Actions in `.github/workflows/`), which are resolved to real
-    // versions when a downstream project is created. Downstream Renovate then bumps
-    // them. Never update these upstream, so Copier updates merge cleanly downstream.
+    // The template uses stable placeholder versions for some dependencies, which are
+    // resolved to real versions when a downstream project is created. Downstream
+    // Renovate then bumps them. Ignore these upstream, so Copier updates merge cleanly
+    // downstream.
+    // Ignore `>=0` in `pyproject.toml.jinja`.
     {
-      matchManagers: ['pep621', 'github-actions'],
+      matchManagers: ['pep621'],
+      matchFileNames: ['resonant-template/**'],
+      enabled: false,
+    },
+    // Ignore the `@v0` placeholders on `uses:` fields (actions and reusable workflows)
+    // in `.github/workflows/`. Continue to update service container images (so they
+    // stay in sync with images in `docker-compose.yml`) and runner versions; this may
+    // occasionally result in Copier conflicts, but there's no good way to pin / bump
+    // them on template initialization (like there is with `uv lock` and `gha-update`).
+    {
+      matchManagers: ['github-actions'],
+      matchDepTypes: ['action', 'workflow'],
       matchFileNames: ['resonant-template/**'],
       enabled: false,
     },
