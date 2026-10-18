@@ -42,7 +42,7 @@ jobs:
       postgres:
         # Postgres depends on the OS locale for collation.
         # Alpine provides locales differently, so for better dev-prod parity, don't use it.
-        image: postgres:latest
+        image: postgres:18.6
         env:
           POSTGRES_DB: django
           POSTGRES_PASSWORD: postgres
@@ -53,7 +53,7 @@ jobs:
         ports:
           - 5432:5432
       rabbitmq:
-        image: rabbitmq:4.3-management-alpine
+        image: rabbitmq:4.3.6-management-alpine
         options: >-
           --health-cmd "rabbitmq-diagnostics ping"
           --health-start-period 30s
