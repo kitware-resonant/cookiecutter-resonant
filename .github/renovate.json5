@@ -3,6 +3,32 @@
   extends: [
     'github>kitware-resonant/.github:renovate-library-core.json5',
   ],
+
+  // Match template files with a `.jinja` suffix. Each pattern is the manager's
+  // default with `\.jinja` appended; these merge with the defaults.
+  dockerfile: {
+    // The other default pattern already accepts any suffix.
+    managerFilePatterns: ['/(^|/|\\.)([Dd]ocker|[Cc]ontainer)file\\.jinja$/'],
+  },
+  'docker-compose': {
+    managerFilePatterns: ['/(^|/)(?:docker-)?compose[^/]*\\.ya?ml\\.jinja$/'],
+  },
+  devcontainer: {
+    // The defaults are anchored with `^`, which misses `resonant-template/`, so the
+    // suffix is optional here.
+    managerFilePatterns: [
+      '/(^|/)\\.devcontainer/devcontainer\\.json(\\.jinja)?$/',
+      '/(^|/)\\.devcontainer\\.json(\\.jinja)?$/',
+      '/(^|/)\\.devcontainer/[^/]+/devcontainer\\.json(\\.jinja)?$/',
+    ],
+  },
+  terraform: {
+    // The defaults are globs.
+    managerFilePatterns: ['**/*.tf.jinja', '**/*.tofu.jinja'],
+  },
+  // `pyproject.toml.jinja` is not valid TOML, so `pep621` can't parse it. It only
+  // contains `>=0` placeholders, which the rule below ignores anyway.
+
   packageRules: [
     // The template uses stable placeholder versions for some dependencies, which are
     // resolved to real versions when a downstream project is created. Downstream
