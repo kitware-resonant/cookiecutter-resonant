@@ -15,7 +15,7 @@ services:
       - postgres:/var/lib/postgresql
 
   rabbitmq:
-    image: rabbitmq:4.3.6-management-alpine
+    image: rabbitmq:4.4.0-management-alpine
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       start_period: 30s
@@ -27,17 +27,19 @@ services:
       - rabbitmq:/var/lib/rabbitmq
 
   seaweedfs:
-    image: chrislusf/seaweedfs:4.48
+    image: chrislusf/seaweedfs:4.50
     environment:
       AWS_ACCESS_KEY_ID: seaweedAccessKey
       AWS_SECRET_ACCESS_KEY: seaweedSecretKey
+      WEED_ADMIN_USER: seaweedAdmin
+      WEED_ADMIN_PASSWORD: seaweedAdminPassword
     healthcheck:
       test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8333/healthz"]
       start_period: 30s
       start_interval: 2s
     ports:
       - 8333:8333
-      - 23646:23646
+      - 12535:12535
     volumes:
       - seaweedfs:/data
 
