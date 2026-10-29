@@ -8,7 +8,7 @@ permissions:
   contents: read
 jobs:
   test-resonant-settings:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     strategy:
       matrix:
         python-version: ["3.12", "3.13", "3.14", "3.15"]
@@ -28,7 +28,7 @@ jobs:
           uv run --locked tox
         working-directory: django-resonant-settings
   test-template-eject:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     strategy:
       matrix:
         include:
@@ -116,7 +116,7 @@ jobs:
         working-directory: "${{ runner.temp }}/resonant"
 
   test-devcontainers:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
