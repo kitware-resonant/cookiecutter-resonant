@@ -30,7 +30,7 @@ jobs:
         ports:
           - 5672:5672
       seaweedfs:
-        image: chrislusf/seaweedfs:4.50
+        image: chrislusf/seaweedfs:4.51
         env:
           AWS_ACCESS_KEY_ID: seaweedAccessKey
           AWS_SECRET_ACCESS_KEY: seaweedSecretKey
