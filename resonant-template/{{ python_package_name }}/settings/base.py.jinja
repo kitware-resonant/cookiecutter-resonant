@@ -67,6 +67,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     # WhiteNoiseMiddleware must be directly after SecurityMiddleware
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.csp.ContentSecurityPolicyMiddleware",
     # GZipMiddleware can be after WhiteNoiseMiddleware, as WhiteNoise performs its own compression
     "django.middleware.gzip.GZipMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -98,7 +99,6 @@ DATABASES = {
         {%- endif %}
     },
 }
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STORAGES: dict[str, dict[str, Any]] = {
     # Inject the "default" storage in particular run configurations
