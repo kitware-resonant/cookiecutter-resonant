@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from hashlib import sha512
+import hashlib
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -23,8 +23,6 @@ class Image(TimeStampedModel, models.Model):
         return self.checksum[:10] if self.checksum else ""
 
     def compute_checksum(self) -> None:
-        hasher = sha512()
-        with self.blob.open() as blob:
-            for chunk in blob.chunks():
-                hasher.update(chunk)
-        self.checksum = hasher.hexdigest()
+        with self.blob.open("rb") as blob:
+            digest = hashlib.file_digest(blob, "sha512")
+        self.checksum = digest.hexdigest()
