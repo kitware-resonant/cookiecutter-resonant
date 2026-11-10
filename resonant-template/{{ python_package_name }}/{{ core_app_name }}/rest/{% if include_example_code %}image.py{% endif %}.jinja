@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django_filters import rest_framework as filters
 from rest_framework import serializers, status
 from rest_framework.decorators import action
@@ -35,12 +35,12 @@ class ImageViewSet(ReadOnlyModelViewSet):
     pagination_class = PageNumberPagination
 
     @action(detail=True, methods=["get"])
-    def download(self, request, pk=None):
+    def download(self, request, pk=None) -> HttpResponse:
         image = self.get_object()
         return HttpResponseRedirect(image.blob.url)
 
     @action(detail=True, methods=["post"])
-    def compute(self, request, pk=None):
+    def compute(self, request, pk=None) -> HttpResponse:
         # Ensure that the image exists, so a non-existent pk isn't dispatched
         image = self.get_object()
         image_compute_checksum.delay(image.pk)

@@ -7,7 +7,7 @@ from {{ python_package_name }}.{{ core_app_name }}.models import Image
 
 
 @shared_task
-def image_compute_checksum(image_id: int):
+def image_compute_checksum(image_id: int) -> None:
     image = Image.objects.get(pk=image_id)
     image.compute_checksum()
     image.save()

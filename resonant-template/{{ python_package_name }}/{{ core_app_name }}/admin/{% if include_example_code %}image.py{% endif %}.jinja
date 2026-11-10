@@ -36,11 +36,11 @@ class ImageAdmin(admin.ModelAdmin):
         # Sorting by checksum also sorts the prefix values
         ordering="checksum",
     )
-    def short_checksum(self, image: Image):
+    def short_checksum(self, image: Image) -> str:
         return image.short_checksum
 
     @admin.action(description="Recompute checksum")
-    def compute_checksum(self, request: HttpRequest, queryset: QuerySet):
+    def compute_checksum(self, request: HttpRequest, queryset: QuerySet) -> None:
         for image in queryset:
             image_compute_checksum.delay(image.pk)
         self.message_user(request, f"{len(queryset)} images queued", messages.SUCCESS)
