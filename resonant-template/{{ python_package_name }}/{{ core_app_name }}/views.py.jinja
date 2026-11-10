@@ -1,11 +1,16 @@
 from __future__ import annotations
 {% if include_example_code %}
+from typing import TYPE_CHECKING
+
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from django.shortcuts import render
 from django.views.generic import ListView
 
 from {{ python_package_name }}.{{ core_app_name }}.models import Image
+
+if TYPE_CHECKING:
+    from django.http import HttpResponse
 
 
 class GalleryView(ListView):
@@ -14,7 +19,7 @@ class GalleryView(ListView):
     paginate_by = 20
 
 
-def image_summary(request):
+def image_summary(request) -> HttpResponse:
     return render(
         request,
         "{{ core_app_name }}/summary.html",
