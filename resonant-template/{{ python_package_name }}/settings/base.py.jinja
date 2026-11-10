@@ -103,9 +103,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STORAGES: dict[str, dict[str, Any]] = {
     # Inject the "default" storage in particular run configurations
     "staticfiles": {
-        # CompressedManifestStaticFilesStorage does not work properly with drf-
-        # https://github.com/axnsan12/drf-yasg/issues/761
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
