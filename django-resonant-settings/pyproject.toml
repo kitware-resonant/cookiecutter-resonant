@@ -50,7 +50,8 @@ allauth = [
   "django-allauth>=0",
 ]
 celery = [
-  "celery>=0",
+  # Required for Celery type annotations
+  "celery>=5.7",
 ]
 
 [dependency-groups]
