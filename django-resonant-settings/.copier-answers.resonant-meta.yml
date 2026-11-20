@@ -1,7 +1,7 @@
 _commit: v15
 _src_path: https://github.com/kitware-resonant/resonant-meta-template
 django_project: false
-max_python_minor_version: 14
-min_python_minor_version: 10
+max_python_minor_version: 15
+min_python_minor_version: 12
 project_slug: django-resonant-settings
 python_package_name: resonant_settings
