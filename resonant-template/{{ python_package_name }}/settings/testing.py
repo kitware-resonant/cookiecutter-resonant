@@ -17,6 +17,11 @@ STORAGES["default"] = {
 }
 MINIO_STORAGE_MEDIA_BUCKET_NAME = f"test-django-storage-{randbelow(1_000_000):06d}"
 
+STORAGES["staticfiles"] = {
+    # "CompressedManifestStaticFilesStorage" would require running "collectstatic" before tests.
+    "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+}
+
 # Django's test runner will override every mailer here with the memory backend, but a "default"
 # mailer must exist for outgoing email to be captured instead of failing.
 MAILERS: dict[str, dict[str, Any]] = {
