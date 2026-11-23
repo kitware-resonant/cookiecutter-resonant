@@ -16,6 +16,10 @@ terraform {
     heroku = {
       source = "heroku/heroku"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.0"
+    }
   }
 }
 
@@ -25,4 +29,7 @@ provider "aws" {
 }
 provider "heroku" {
   # Must set HEROKU_EMAIL, HEROKU_API_KEY envvars
+}
+provider "cloudflare" {
+  # Must set CLOUDFLARE_API_TOKEN envvars
 }
