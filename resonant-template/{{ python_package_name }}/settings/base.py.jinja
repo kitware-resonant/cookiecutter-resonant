@@ -117,6 +117,9 @@ STATIC_ROOT.mkdir(exist_ok=True)
 # for convenience serving a site on a subpath.
 STATIC_URL = "static/"
 
+# Collect first and last name during signup
+ACCOUNT_SIGNUP_FORM_CLASS = "resonant_utils.allauth.FullNameSignupForm"
+
 # Make Django and Allauth redirects consistent, but both may be changed.
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
