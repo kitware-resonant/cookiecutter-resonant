@@ -54,7 +54,7 @@ jobs:
         ports:
           - 5432:5432
       rabbitmq:
-        image: rabbitmq:4.4.0-management-alpine
+        image: rabbitmq:4.4.1-management-alpine
         options: >-
           --health-cmd "rabbitmq-diagnostics ping"
           --health-start-period 30s
@@ -62,7 +62,7 @@ jobs:
         ports:
           - 5672:5672
       seaweedfs:
-        image: chrislusf/seaweedfs:4.54
+        image: chrislusf/seaweedfs:4.55
         env:
           AWS_ACCESS_KEY_ID: seaweedAccessKey
           AWS_SECRET_ACCESS_KEY: seaweedSecretKey
